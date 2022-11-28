@@ -23,7 +23,7 @@ public class Item {
 	/** 画像パス */
 	private String imagePath;
 	/** 削除フラグ */
-	private Boolean deleteId;
+	private Boolean deleted;
 	/** トッピングリスト */
 	private List<Topping> toppingList;
 
@@ -75,12 +75,12 @@ public class Item {
 		this.imagePath = imagePath;
 	}
 
-	public Boolean getDeleteId() {
-		return deleteId;
+	public Boolean getDeleted() {
+		return deleted;
 	}
 
-	public void setDeleteId(Boolean deleteId) {
-		this.deleteId = deleteId;
+	public void setDeleteId(Boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public List<Topping> getToppingList() {
@@ -94,7 +94,7 @@ public class Item {
 	@Override
 	public String toString() {
 		return "Item [id=" + id + ", name=" + name + ", description=" + description + ", priceM=" + priceM + ", priceL="
-				+ priceL + ", imagePath=" + imagePath + ", deleteId=" + deleteId + ", toppingList=" + toppingList + "]";
+				+ priceL + ", imagePath=" + imagePath + ", deleted=" + deleted + ", toppingList=" + toppingList + "]";
 	}
 
 }
