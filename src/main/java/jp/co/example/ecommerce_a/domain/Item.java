@@ -3,98 +3,82 @@ package jp.co.example.ecommerce_a.domain;
 import java.util.List;
 
 /**
- * 商品情報を表すdomainクラス.
+ * 商品情報を表すドメインクラス.
  * 
- * @author kumagaimayu
+ * @author moriharanariki
  *
  */
 public class Item {
-
-	/** 商品ID */
+	
+	/* ID */
 	private Integer id;
-	/** 商品名 */
+	/* 商品名 */
 	private String name;
-	/** 商品説明 */
+	/* 説明 */
 	private String description;
-	/** 商品価格(Mの価格) */
+	/* Mの価格 */
 	private Integer priceM;
-	/** 商品価格(Lの価格) */
+	/* Lの価格 */
 	private Integer priceL;
-	/** 画像パス */
+	/* 画像パス */
 	private String imagePath;
-	/** 削除フラグ */
-	private Boolean deleteId;
-	/** トッピングリスト */
+	/* 削除フラグ */
+	private Boolean deleted;
+	/* トッピングリスト */
 	private List<Topping> toppingList;
-
+		
 	public Integer getId() {
 		return id;
 	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public String getDescription() {
 		return description;
 	}
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 	public Integer getPriceM() {
 		return priceM;
 	}
-
 	public void setPriceM(Integer priceM) {
 		this.priceM = priceM;
 	}
-
 	public Integer getPriceL() {
 		return priceL;
 	}
-
 	public void setPriceL(Integer priceL) {
 		this.priceL = priceL;
 	}
-
 	public String getImagePath() {
 		return imagePath;
 	}
-
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
-
-	public Boolean getDeleteId() {
-		return deleteId;
+	public Boolean getDeleted() {
+		return deleted;
 	}
-
-	public void setDeleteId(Boolean deleteId) {
-		this.deleteId = deleteId;
+	public void setDeleted(Boolean deleted) {
+		this.deleted = deleted;
 	}
-
 	public List<Topping> getToppingList() {
 		return toppingList;
 	}
-
 	public void setToppingList(List<Topping> toppingList) {
 		this.toppingList = toppingList;
 	}
-
 	@Override
 	public String toString() {
 		return "Item [id=" + id + ", name=" + name + ", description=" + description + ", priceM=" + priceM + ", priceL="
-				+ priceL + ", imagePath=" + imagePath + ", deleteId=" + deleteId + ", toppingList=" + toppingList + "]";
+				+ priceL + ", imagePath=" + imagePath + ", deleted=" + deleted + "]";
 	}
 
 }
