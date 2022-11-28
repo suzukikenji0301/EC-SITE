@@ -19,7 +19,7 @@ public class OrderItem {
 	/** 数量 */
 	private Integer quantity;
 	/** サイズ */
-	private String size;
+	private String size; //ローマッパーでcharcter型が受け取れなかったため一旦string型に変更.
 	/** 商品 */
 	private Item item;
 	/** 注文商品ID */

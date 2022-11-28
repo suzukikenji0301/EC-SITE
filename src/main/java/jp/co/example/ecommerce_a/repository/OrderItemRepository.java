@@ -41,11 +41,12 @@ public class OrderItemRepository {
 	 * 
 	 * @param orderItem
 	 */
-	public void insert(OrderItem orderItem) {
+	public OrderItem insert(OrderItem orderItem) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(orderItem);
 		String sql = "insert into order_items(id,item_id,order_id,quantity,size)"
 				+ "values(:id,:itemId, :orderId, :quantity, size);";
 		template.update(sql, param);
+		return orderItem;
 	}
 	
 	/**

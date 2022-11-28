@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import jp.co.example.ecommerce_a.domain.Order;
 
 /**
- * orderテーブルを操作するリポジトリ.
+ * ordersテーブルを操作するリポジトリ.
  * 
  * @author moriharanariki
  *
@@ -49,11 +49,12 @@ public class OrderRepository {
 	 * @param order
 	 * @return オーダー情報
 	 */
-	public void insert(Order order) {
+	public Order insert(Order order) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
 		String sql = "insert into orders(id,user_id,status,totalPrice,orderDate,destination_name,destination_email,destination_zipcode,destination_address,destination_tel,delivery_time,payment_method)"
 				+ "values(:id,:userId,:status,:totalPrice,:orderDate,:destinationName,:destinationEmail,:destinationZipcode,:destinationAddress,:destinationTel,:deliveryTime,:paymentMethod);";
 		template.update(sql, param);
+		return order;
 	}
 	
 	/**
@@ -84,6 +85,8 @@ public class OrderRepository {
 				+ "destination_tel=:destinationTel,delivery_time=:deliveryTime,payment_method=:paymentMethod";
 		template.update(updateSql, param);
 	}
+	
+	
 	
 
 }
