@@ -19,7 +19,7 @@ public class OrderItem {
 	/** 数量 */
 	private Integer quantity;
 	/** サイズ */
-	private Character size;
+	private String size;
 	/** 商品 */
 	private Item item;
 	/** 注文商品ID */
@@ -57,11 +57,11 @@ public class OrderItem {
 		this.quantity = quantity;
 	}
 
-	public Character getSize() {
+	public String getSize() {
 		return size;
 	}
 
-	public void setSize(Character size) {
+	public void setSize(String size) {
 		this.size = size;
 	}
 
