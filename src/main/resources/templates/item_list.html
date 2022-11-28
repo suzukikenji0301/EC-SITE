@@ -70,10 +70,10 @@
       </div>
     </div>
     <!-- item list -->
-    <div class="item-wrapper" th:each="item : ${itemList}">
+    <div class="item-wrapper">
       <div class="container">
         <div class="items">
-          <div class="item">
+          <div class="item"  th:each="item : ${itemList}">
             <div class="item-icon">
               <img src="../img_toy/1.jpg" th:src="'../img_toy/' + ${item.imagePath}"/>
             </div>
