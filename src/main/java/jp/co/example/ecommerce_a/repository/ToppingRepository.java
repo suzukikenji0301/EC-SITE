@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
 
-import jp.co.example.ecommerce_a.domain.Item;
 import jp.co.example.ecommerce_a.domain.Topping;
 
 /**
@@ -15,6 +15,7 @@ import jp.co.example.ecommerce_a.domain.Topping;
  * @author moriharanariki
  *
  */
+@Repository
 public class ToppingRepository {
 	
 	/**

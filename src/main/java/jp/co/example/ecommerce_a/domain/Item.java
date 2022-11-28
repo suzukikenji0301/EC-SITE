@@ -26,7 +26,7 @@ public class Item {
 	private Boolean deleted;
 	/* トッピングリスト */
 	private List<Topping> toppingList;
-	
+		
 	public Integer getId() {
 		return id;
 	}

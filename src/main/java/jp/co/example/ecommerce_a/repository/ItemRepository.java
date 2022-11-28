@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.stereotype.Repository;
 
 import jp.co.example.ecommerce_a.domain.Item;
 
@@ -16,6 +17,7 @@ import jp.co.example.ecommerce_a.domain.Item;
  * @author moriharanariki
  *
  */
+@Repository
 public class ItemRepository {
 	
 	/**
