@@ -21,7 +21,7 @@ public class Order {
 	/** 合計金額 */
 	private Integer totalPrice;
 	/** 注文日 */
-	private Date OrderDate;
+	private Date orderDate;
 	/** 宛先氏名 */
 	private String destinationName;
 	/** 宛先Eメール */
@@ -74,11 +74,11 @@ public class Order {
 	}
 
 	public Date getOrderDate() {
-		return OrderDate;
+		return orderDate;
 	}
 
 	public void setOrderDate(Date orderDate) {
-		OrderDate = orderDate;
+		this.orderDate = orderDate;
 	}
 
 	public String getDestinationName() {
@@ -156,7 +156,7 @@ public class Order {
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", userId=" + userId + ", status=" + status + ", totalPrice=" + totalPrice
-				+ ", OrderDate=" + OrderDate + ", destinationName=" + destinationName + ", destinationEmail="
+				+ ", OrderDate=" + orderDate + ", destinationName=" + destinationName + ", destinationEmail="
 				+ destinationEmail + ", destinationZipcode=" + destinationZipcode + ", destinationAddress="
 				+ destinationAddress + ", distinationTel=" + distinationTel + ", deliveryTime=" + deliveryTime
 				+ ", paymentMethod=" + paymentMethod + ", user=" + user + ", orderItemList=" + orderItemList + "]";
