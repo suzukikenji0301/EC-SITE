@@ -1,13 +1,18 @@
 package jp.co.example.ecommerce_a.domain;
 
 /**
+<<<<<<< HEAD
  * トッピング情報を表すドメインクラス.
  * 
  * @author moriharanariki
+=======
+ * トッピングの情報を表すdomainクラス.
+ * 
+ * @author kumagaimayu
+>>>>>>> develop
  *
  */
 public class Topping {
-
 	/* ID */
 	private Integer id;
 	/* トッピング名 */
