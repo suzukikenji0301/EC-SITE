@@ -32,8 +32,14 @@ public class LoginUserService {
 	 * @return ユーザー情報 存在しない場合はnullが返ります
 	 */
 	public User login(String email, String password) {
-		User user = userRepository.findByMailAndPassword(email, password);
+//		User user = userRepository.findByMailAndPassword(email, password);
+		User user = userRepository.findByMail(email);
+		if (user == null) {
+			return null;
+		}
+		if (!passwordEncoder.matches(password, user.getPassword())) {
+			return null;
+		}
 		return user;
 	}
-
 }

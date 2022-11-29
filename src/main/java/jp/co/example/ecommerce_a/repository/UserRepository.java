@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 
 import jp.co.example.ecommerce_a.domain.User;
 
-
 /**
  * usersテーブルを操作するリポジトリ.
  * 
@@ -25,7 +24,7 @@ public class UserRepository {
 
 	@Autowired
 	private NamedParameterJdbcTemplate template;
-	
+
 	/**
 	 * メールアドレスとパスワードから管理者情報を取得します.
 	 * 
@@ -33,9 +32,8 @@ public class UserRepository {
 	 */
 	private static final RowMapper<User> USER_ROW_MAPPER = new BeanPropertyRowMapper<>(User.class);
 
-	
 	/**
-	 * 	User情報を挿入します.
+	 * User情報を挿入します.
 	 * 
 	 * @param user
 	 */
@@ -44,7 +42,7 @@ public class UserRepository {
 		String sql = "insert into users(name,email,password,zipcode,address,telephone) values(:name,:email,:password,:zipcode,:address,:telephone);";
 		template.update(sql, param);
 	}
-	
+
 	/**
 	 * @param email    メールアドレス
 	 * @param password パスワード
@@ -58,6 +56,13 @@ public class UserRepository {
 			return null;
 		}
 		return userList.get(0);
+	}
+
+	public User findByMail(String email) {
+		String sql = "SELECT id, name, email, password, zipcode, address, telephone FROM users WHERE email=:email;";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("email", email);
+		User user = template.queryForObject(sql, param, USER_ROW_MAPPER);
+		return user;
 	}
 
 }
