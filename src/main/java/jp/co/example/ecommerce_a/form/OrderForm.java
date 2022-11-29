@@ -1,7 +1,7 @@
 package jp.co.example.ecommerce_a.form;
 
-import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 /**
@@ -102,15 +102,24 @@ public class OrderForm {
 	public String getOrderId() {
 		return orderId;
 	}
+	
+	public Integer intGetOrderId() {
+		return Integer.parseInt(orderId);
+	}
 
 	public void setOrderId(String orderId) {
 		this.orderId = orderId;
 	}
 	
-	public Timestamp getDeliveryTime (String deliveryDate, String deliveryTime) throws Exception {
+	public Timestamp getDeliveryTimestamp()  {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		String str = deliveryDate + deliveryTime;
-		Timestamp timestamp = new Timestamp(simpleDateFormat.parse(str).getTime());
+		String str = deliveryDate + deliveryTime + ":00:00";
+		Timestamp timestamp = null;
+		try {
+			timestamp = new Timestamp(simpleDateFormat.parse(str).getTime());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		return timestamp;
 	}
 
