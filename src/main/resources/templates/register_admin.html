@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
   <head>
     <!--Import Google Icon Font-->
     <link
@@ -52,33 +53,67 @@
         </div>
       </div>
     </header>
+    <form
+    	method="post"
+    	action="login"
+    	th:action="@{/toInsert}"
+    	th:object="${insertUserForm}"
+    	>
+    
     <div class="top-wrapper">
       <div class="container">
         <div class="row register-page">
-          <div class="error">名前を入力して下さい</div>
+          <div th:errors="*{name}" class="error-messages">名前を入力して下さい</div>
           <div class="row">
             <div class="input-field col s6">
-              <input id="last_name" type="text" class="validate" required />
-              <label for="last_name">姓</label>
+              <input id="last_name"
+               type="text" 
+               class="validate" 
+               required 
+               placeholder="山田太郎"
+               th:field="*{name}"
+               th:errorclass="error-input"
+               value="山田太郎"/>
+              <label for="last_name" 
+              th:errors="*{name}"
+              class="error-messages">姓</label>
             </div>
             <div class="input-field col s6">
-              <input id="first_name" type="text" class="validate" required />
+              <input id="first_name" 
+              name="name"
+              type="text" 
+              class="validate" 
+              th:field="*{name}"
+              th:errorclass="error-input"
+              required />
               <label for="first_name">名</label>
             </div>
           </div>
           <div class="error">メールアドレスの形式が不正です</div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="email" type="email" class="validate" required />
-              <label for="email">メールアドレス</label>
+              <input id="email"
+               type="email"
+                class="validate" 
+                placeholder="yamada@gmail.com"
+                th:field="*{email}"
+                th:errorclass="error-input"
+                value="yamada@mail.com"
+                required />
+              <label for="email" 
+              th:errors="*{email}" 
+              class="error-message">メールアドレス</label>
             </div>
           </div>
           <div class="error">郵便番号はXXX-XXXXの形式で入力してください</div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="zipcode" type="text" maxlength="8" />
-              <label for="zipcode">郵便番号</label>
-              <button class="btn" type="button">
+              <input id="zipcode" 
+              type="text" 
+              maxlength="8" />
+              <label for="zipcode">郵便番号(ハイフン含む)</label>
+              <button id="getdress_btn" 
+              type="button" >
                 <span>住所検索</span>
               </button>
             </div>
@@ -86,8 +121,8 @@
           <div class="error">住所を入力して下さい</div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="address" type="text" />
-              <label for="address">住所</label>
+              <input id="address" type="text" size="50">
+              <label for="address" >住所</label>
             </div>
           </div>
           <div class="error">
@@ -123,6 +158,10 @@
                 class="validate"
                 minlength="8"
                 required
+                placeholder ="password"
+                th:field="*{password}"
+                th:errorclass="error-input"
+                value="xxxxxxxxxx"
               />
               <label for="confirmation_password">確認用パスワード</label>
             </div>
@@ -135,11 +174,14 @@
             >
               <span>登録<i class="material-icons right">done</i></span>
             </button>
+            
           </div>
+          
         </div>
       </div>
       <!-- end container-->
     </div>
+    </form>
     <!-- end top-wrapper -->
     <footer>
       <div class="container">
