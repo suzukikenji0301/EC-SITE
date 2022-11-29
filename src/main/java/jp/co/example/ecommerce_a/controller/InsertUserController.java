@@ -41,11 +41,15 @@ public class InsertUserController {
 	 */
 	@RequestMapping("/insert")
 	public String insertUser(@Validated InsertUserForm form,BindingResult result,Model model) {
+		System.out.println("呼ばれた");
 		if(result.hasErrors()) {
 			return toResisterAdmin(form);
 		}
 		User user = new User();
 		BeanUtils.copyProperties(form, user);
+		user.setName(form.getLastName() + form.getFirstName());
+		System.out.println(form);
+		System.out.println(user);
 		insertUserService.insertUser(user);
 		return "redirect:/";
 	}

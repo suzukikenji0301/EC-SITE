@@ -4,14 +4,16 @@ public class InsertUserForm {
 
 	/** ID */
 	private Integer id;
+	/** 苗字 */
+	private String lastName;
 	/** 名前 */
-	private String name;
+	private String firstName;
 	/** メール */
 	private String email;
 	/** パスワード */
 	private String password;
 	/** 郵便番号 */
-	private String zipcord;
+	private String zipcode;
 	/** 住所 */
 	private String address;
 	/** 電話番号 */
@@ -25,12 +27,20 @@ public class InsertUserForm {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
 	public String getEmail() {
@@ -49,12 +59,12 @@ public class InsertUserForm {
 		this.password = password;
 	}
 
-	public String getZipcord() {
-		return zipcord;
+	public String getZipcode() {
+		return zipcode;
 	}
 
-	public void setZipcord(String zipcord) {
-		this.zipcord = zipcord;
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
 	}
 
 	public String getAddress() {
@@ -75,8 +85,9 @@ public class InsertUserForm {
 
 	@Override
 	public String toString() {
-		return "insertUserForm [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password
-				+ ", zipcord=" + zipcord + ", address=" + address + ", telephone=" + telephone + "]";
+		return "InsertUserForm [id=" + id + ", lastName=" + lastName + ", firstName=" + firstName + ", email=" + email
+				+ ", password=" + password + ", zipcode=" + zipcode + ", address=" + address + ", telephone="
+				+ telephone + "]";
 	}
 
 }

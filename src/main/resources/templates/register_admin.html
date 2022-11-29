@@ -56,14 +56,14 @@
     <form
     	method="post"
     	action="login"
-    	th:action="@{/toInsert}"
+    	th:action="@{/insert}"
     	th:object="${insertUserForm}"
     	>
     
     <div class="top-wrapper">
       <div class="container">
         <div class="row register-page">
-          <div th:errors="*{name}" class="error-messages">名前を入力して下さい</div>
+          <div th:errors="*{lastName}" class="error-messages">名前を入力して下さい</div>
           <div class="row">
             <div class="input-field col s6">
               <input id="last_name"
@@ -71,11 +71,11 @@
                class="validate" 
                required 
                placeholder="山田太郎"
-               th:field="*{name}"
+               th:field="*{lastName}"
                th:errorclass="error-input"
                value="山田太郎"/>
               <label for="last_name" 
-              th:errors="*{name}"
+              th:errors="*{lastName}"
               class="error-messages">姓</label>
             </div>
             <div class="input-field col s6">
@@ -83,7 +83,7 @@
               name="name"
               type="text" 
               class="validate" 
-              th:field="*{name}"
+              th:field="*{firstName}"
               th:errorclass="error-input"
               required />
               <label for="first_name">名</label>
@@ -110,6 +110,7 @@
             <div class="input-field col s12">
               <input id="zipcode" 
               type="text" 
+              th:field="*{zipcode}"
               maxlength="8" />
               <label for="zipcode">郵便番号(ハイフン含む)</label>
               <button id="getdress_btn" 
@@ -121,7 +122,7 @@
           <div class="error">住所を入力して下さい</div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="address" type="text" size="50">
+              <input id="address" type="text" size="50" th:field="*{address}">
               <label for="address" >住所</label>
             </div>
           </div>
@@ -130,7 +131,7 @@
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="tel" type="tel" />
+              <input id="tel" type="tel" th:field="*{telephone}"/>
               <label for="tel">電話番号</label>
             </div>
           </div>
@@ -169,8 +170,7 @@
           <div class="row register-admin-btn">
             <button
               class="btn"
-              type="button"
-              onclick="location.href='login.html'"
+              type="submit"
             >
               <span>登録<i class="material-icons right">done</i></span>
             </button>
