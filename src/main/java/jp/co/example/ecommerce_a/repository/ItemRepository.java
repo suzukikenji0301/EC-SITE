@@ -1,7 +1,6 @@
 package jp.co.example.ecommerce_a.repository;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -19,7 +18,10 @@ import jp.co.example.ecommerce_a.domain.Item;
  */
 @Repository
 public class ItemRepository {
-	
+
+	@Autowired
+	private NamedParameterJdbcTemplate template;
+
 	/**
 	 * Itemオブジェクトを生成するローマッパー.
 	 * 
@@ -35,11 +37,20 @@ public class ItemRepository {
 		item.setDeleted(rs.getBoolean("deleted"));
 		return item;
 	};
-	
-	@Autowired
-	private NamedParameterJdbcTemplate template;
-	
-	
+
+	/**
+	 * 商品IDから商品を1件検索する.
+	 * 
+	 * @param id 商品ID
+	 * @return 商品
+	 */
+	public Item findById(Integer id) {
+		String sql = "SELECT id, name, description, price_m, price_l, image_path, deleted FROM items WHERE id=:id;";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
+		Item item = template.queryForObject(sql, param, ITEM_ROW_MAPPER);
+		return item;
+	}
+
 	/**
 	 * 全件検索を行います。
 	 * 
@@ -50,7 +61,7 @@ public class ItemRepository {
 		List<Item> itemList = template.query(sql, ITEM_ROW_MAPPER);
 		return itemList;
 	}
-	
+
 	/**
 	 * 商品情報を曖昧検索を行い取得します.
 	 * 
@@ -66,6 +77,4 @@ public class ItemRepository {
 
 		return itemList;
 	}
-	
-	
 }
