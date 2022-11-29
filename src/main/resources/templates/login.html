@@ -60,9 +60,9 @@
             <div class="error" th:text="${loginError}"></div>
             <form
               class="login-form"
-              action="employeeList.html"
               th:action="@{/login/loginUser}"
               th:object="${loginUserForm}"
+              method="post"
             >
               <div class="row"></div>
               <div class="row">
@@ -85,16 +85,12 @@
               <div class="row">
                 <div class="input-field col s12">
                   <i class="material-icons prefix">lock_outline</i>
-                  <input id="password" type="password" th:text="${password}" />
+                  <input id="password" type="password" th:field="*{password}" />
                   <label for="password">パスワード</label>
                 </div>
               </div>
               <div class="row login-btn">
-                <button
-                  class="btn"
-                  type="button"
-                  onclick="location.href='item_list.html'"
-                >
+                <button class="btn">
                   <span>ログイン</span>
                 </button>
               </div>
