@@ -51,8 +51,8 @@ public class OrderRepository {
 	 */
 	public Order insert(Order order) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
-		String sql = "insert into orders(id,user_id,status,totalPrice,orderDate,destination_name,destination_email,destination_zipcode,destination_address,destination_tel,delivery_time,payment_method)"
-				+ "values(:id,:userId,:status,:totalPrice,:orderDate,:destinationName,:destinationEmail,:destinationZipcode,:destinationAddress,:destinationTel,:deliveryTime,:paymentMethod);";
+		String sql = "insert into orders(user_id,status,totalPrice,orderDate,destination_name,destination_email,destination_zipcode,destination_address,destination_tel,delivery_time,payment_method)"
+				+ "values(:userId,:status,:totalPrice,:orderDate,:destinationName,:destinationEmail,:destinationZipcode,:destinationAddress,:destinationTel,:deliveryTime,:paymentMethod);";
 		template.update(sql, param);
 		return order;
 	}
