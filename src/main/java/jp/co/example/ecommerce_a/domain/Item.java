@@ -3,28 +3,28 @@ package jp.co.example.ecommerce_a.domain;
 import java.util.List;
 
 /**
- * 商品情報を表すdomainクラス.
+ * 商品情報を表すドメインクラス.
  * 
- * @author kumagaimayu
+ * @author moriharanariki
  *
  */
 public class Item {
 
-	/** 商品ID */
+	/* ID */
 	private Integer id;
-	/** 商品名 */
+	/* 商品名 */
 	private String name;
-	/** 商品説明 */
+	/* 説明 */
 	private String description;
-	/** 商品価格(Mの価格) */
+	/* Mの価格 */
 	private Integer priceM;
-	/** 商品価格(Lの価格) */
+	/* Lの価格 */
 	private Integer priceL;
-	/** 画像パス */
+	/* 画像パス */
 	private String imagePath;
-	/** 削除フラグ */
+	/* 削除フラグ */
 	private Boolean deleted;
-	/** トッピングリスト */
+	/* トッピングリスト */
 	private List<Topping> toppingList;
 
 	public Integer getId() {
@@ -79,7 +79,7 @@ public class Item {
 		return deleted;
 	}
 
-	public void setDeleteId(Boolean deleted) {
+	public void setDeleted(Boolean deleted) {
 		this.deleted = deleted;
 	}
 
