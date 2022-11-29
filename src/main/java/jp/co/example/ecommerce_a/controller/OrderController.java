@@ -13,6 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import jp.co.example.ecommerce_a.form.OrderForm;
 import jp.co.example.ecommerce_a.service.OrderService;
 
+/**
+ * 注文情報を操作するコントローラー.
+ * 
+ * @author Hirabuki
+ *
+ */
 @Controller
 @RequestMapping("/order")
 public class OrderController {
@@ -20,6 +26,13 @@ public class OrderController {
 	@Autowired
 	private OrderService orderService;
 
+	/**
+	 * 注文します.
+	 * 
+	 * @param orderForm 注文情報格納用フォーム
+	 * @param result エラー情報格納用
+	 * @return 正常系→注文完了画面へ遷移　異常系→注文確認画面へ遷移しエラー分表示
+	 */
 	@PostMapping("")
 	public String order(@Validated OrderForm orderForm, BindingResult result) {
 		LocalDateTime localDateTime = LocalDateTime.now();

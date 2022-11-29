@@ -40,7 +40,6 @@ public class OrderForm {
 	@NotBlank(message = "配達日時を入力して下さい")
 	private String deliveryDate;
 	/** 配達時間 */
-	@NotBlank(message = "配達日時を入力して下さい")
 	private String deliveryTime;
 	/** 支払い方法 */
 	private String paymentMethod;
