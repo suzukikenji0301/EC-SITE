@@ -62,10 +62,10 @@
 						<div class="item-hedding">サイズ</div>
 						<div>
 							<label> <input id="size-m" name="size" type="radio"
-								checked="checked" th:field="*{size}"/> <span> &nbsp;Ｍ&nbsp;
+								checked="checked" th:field="*{size}" value="l"/> <span> &nbsp;Ｍ&nbsp;
 								<span class="price" th:text="${item.priceM}"></span>&nbsp;&nbsp;円(税抜)
 							</span>
-							</label> <label> <input id="size-l" name="size" type="radio"/>
+							</label> <label> <input id="size-l" name="size" type="radio" th:field="*{size}" value="l"/>
 								<span> &nbsp;L&nbsp;<span class="price"
 									th:text="${item.priceL}"></span>&nbsp;&nbsp;円(税抜)
 							</span>
