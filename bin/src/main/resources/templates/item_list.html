@@ -16,17 +16,17 @@
       href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../css/common.css" />
-    <link rel="stylesheet" href="../css/header.css" />
-    <link rel="stylesheet" href="../css/footer.css" />
-    <link rel="stylesheet" href="../css/register_admin.css" />
-    <link rel="stylesheet" href="../css/login.css" />
-    <link rel="stylesheet" href="../css/item_list.css" />
-    <link rel="stylesheet" href="../css/item_detail.css" />
-    <link rel="stylesheet" href="../css/cart_list.css" />
-    <link rel="stylesheet" href="../css/order_confirm.css" />
-    <link rel="stylesheet" href="../css/order_finished.css" />
-    <link rel="stylesheet" href="../css/responsive.css" />
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/register_admin.css" />
+    <link rel="stylesheet" href="css/login.css" />
+    <link rel="stylesheet" href="css/item_list.css" />
+    <link rel="stylesheet" href="css/item_detail.css" />
+    <link rel="stylesheet" href="css/cart_list.css" />
+    <link rel="stylesheet" href="css/order_confirm.css" />
+    <link rel="stylesheet" href="css/order_finished.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -38,7 +38,7 @@
         <div class="header">
           <div class="header-left">
             <a href="top.html">
-              <img class="logo" src="../img_toy/header_logo.png" />
+              <img class="logo" src="img/header_logo.png" />
             </a>
           </div>
 
@@ -60,34 +60,34 @@
     <!-- search form -->
     <div class="search-wrapper">
       <div class="container">
-        <form method="post" class="search-form" th:action="@{/showItemList/serchItem}">
-                           <span th:text="${result}">該当する商品がありません</span>
+        <form method="post" class="search-form">
           <input type="text" name="name" class="search-name-input" />
-          <button class="btn search-btn">
-            検　索
+
+          <button class="btn search-btn" type="button">
+            <span>検　索</span>
           </button>
         </form>
       </div>
     </div>
+
     <!-- item list -->
-    <div class="item-wrapper">
+    <div class="item-wrapper" th:each="item :${itemList}">
       <div class="container">
         <div class="items">
-          <div class="item"  th:each="item : ${itemList}">
+          <div class="item">
             <div class="item-icon">
-              <img src="../img_toy/1.jpg" th:src="'../img_toy/' + ${item.imagePath}"/>
+              <img src="img/1.jpg" />
             </div>
-            <a href="item_detail.html"><span th:text="${item.name}"></a><br />
-            <span class="price">Ｍ</span><span th:text="${item.priceM}">1,380円(税抜)</span><br />
-            <span class="price">Ｌ</span><span th:text="${item.priceL}">2,380円(税抜)</span><br />
+            <a href="item_detail.html" th:text="">ハワイアンパラダイス</a><br />
+            <span class="price">Ｍ</span>1,380円(税抜)<br />
+            <span class="price">Ｌ</span>2,380円(税抜)<br />
           </div>
-        </div>
       </div>
     </div>
 
     <footer>
       <div class="container">
-        <img src="../img_toy/header_logo.png" />
+        <img src="img/header_logo.png" />
         <p>アロハな気分をあなたにお届け！</p>
       </div>
     </footer>

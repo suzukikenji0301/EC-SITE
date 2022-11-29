@@ -1,0 +1,1 @@
+SELECT id, name, email, password, zipcode, address, telephone FROM users WHERE email=:email AND password=:password AND password=:password;

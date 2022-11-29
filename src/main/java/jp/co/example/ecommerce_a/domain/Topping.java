@@ -1,20 +1,25 @@
 package jp.co.example.ecommerce_a.domain;
 
 /**
+<<<<<<< HEAD
+ * トッピング情報を表すドメインクラス.
+ * 
+ * @author moriharanariki
+=======
  * トッピングの情報を表すdomainクラス.
  * 
  * @author kumagaimayu
+>>>>>>> develop
  *
  */
 public class Topping {
-
-	/** トッピングID */
+	/* ID */
 	private Integer id;
-	/** トッピング名 */
+	/* トッピング名 */
 	private String name;
-	/** トッピング価格(Mの価格) */
+	/* Mの価格 */
 	private Integer priceM;
-	/** トッピング価格(Mの価格) */
+	/* Lの価格 */
 	private Integer priceL;
 
 	public Integer getId() {
@@ -53,5 +58,4 @@ public class Topping {
 	public String toString() {
 		return "Topping [id=" + id + ", name=" + name + ", priceM=" + priceM + ", priceL=" + priceL + "]";
 	}
-
 }
