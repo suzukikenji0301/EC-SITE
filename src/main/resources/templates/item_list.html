@@ -37,6 +37,9 @@
 					</a>
 				</div>
 				<span sec:authentication="principal.user.name">山田</span>さんこんにちは！
+				<span sec:authorize="!isAuthenticated()"><a th:href="@{/login}">ログイン</a></span>
+				<span sec:authorize="isAuthenticated()"><a th:href="@{/logout}">ログアウト</a></span>
+				
 				<div class="header-right">
 					<a href="item_list.html">商品一覧</a> <a href="register_admin.html">会員登録</a>
 					<a href="cart_list.html"> <i class="fas fa-shopping-cart">
