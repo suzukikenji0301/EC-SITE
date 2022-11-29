@@ -17,12 +17,21 @@ public class OrderService {
 	
 	public void update(OrderForm orderForm) {
 		Order order = orderRepository.load(orderForm.intGetOrderId());
+		order.setTotalPrice(5);
 		order.setDestinationName(orderForm.getDestinationName());
 		order.setDestinationEmail(orderForm.getDestinationEmail());
 		order.setDestinationZipcode(orderForm.getDestinationZipcode());
 		order.setDestinationAddress(orderForm.getDestinationAddress());
 		order.setDistinationTel(orderForm.getDistinationTel());
 		order.setDeliveryTime(orderForm.getDeliveryTimestamp());
+		
+		if(orderForm.intGetPaymentMethod() == 1) {
+			order.setPaymentMethod(1);
+			order.setStatus(1);
+		}else if(orderForm.intGetPaymentMethod() == 2) {
+			order.setPaymentMethod(2);
+			order.setStatus(2);
+		}
 		orderRepository.update(order);
 	}
 

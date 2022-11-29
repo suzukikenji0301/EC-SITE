@@ -4,6 +4,11 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+
 /**
  * 注文時に使うフォーム.
  * 
@@ -11,20 +16,31 @@ import java.text.SimpleDateFormat;
  *
  */
 public class OrderForm {
-	
+
 	/** 宛先氏名 */
+	@NotBlank(message = "名前を入力して下さい")
 	private String destinationName;
 	/** 宛先Eメール */
+	@Size(min = 1, max = 127, message = "Eメールは１文字以上127文字以内で記載してください")
+	@Email(message = "Eメールの形跡が不正です")
 	private String destinationEmail;
 	/** 宛先郵便番号 */
+	@NotBlank(message = "郵便番号を入力して下さい")
+	@Pattern(regexp = "^[0-9]{3}-[0-9]{4}$", message = "郵便番号形式にしてください")
 	private String destinationZipcode;
+
 	/** 宛先住所 */
+	@NotBlank(message = "住所を入力して下さい")
 	private String destinationAddress;
 	/** 宛先TEL */
+	@NotBlank(message = "電話番号を入力して下さい")
+	@Pattern(regexp = "/^0\\d{4}-\\d{4}-\\d{4}$/", message = "郵便番号形式にしてください")
 	private String distinationTel;
 	/** 配達日 */
+	@NotBlank(message = "配達日時を入力して下さい")
 	private String deliveryDate;
 	/** 配達時間 */
+	@NotBlank(message = "配達日時を入力して下さい")
 	private String deliveryTime;
 	/** 支払い方法 */
 	private String paymentMethod;
@@ -90,7 +106,7 @@ public class OrderForm {
 	public String getPaymentMethod() {
 		return paymentMethod;
 	}
-	
+
 	public Integer intGetPaymentMethod() {
 		return Integer.parseInt(paymentMethod);
 	}
@@ -102,7 +118,7 @@ public class OrderForm {
 	public String getOrderId() {
 		return orderId;
 	}
-	
+
 	public Integer intGetOrderId() {
 		return Integer.parseInt(orderId);
 	}
@@ -110,8 +126,8 @@ public class OrderForm {
 	public void setOrderId(String orderId) {
 		this.orderId = orderId;
 	}
-	
-	public Timestamp getDeliveryTimestamp()  {
+
+	public Timestamp getDeliveryTimestamp() {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		String str = deliveryDate + deliveryTime + ":00:00";
 		Timestamp timestamp = null;
