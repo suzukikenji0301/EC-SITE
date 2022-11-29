@@ -33,6 +33,12 @@ public class ItemRepository {
 		return item;
 	};
 
+	/**
+	 * 商品IDから商品を1件検索する.
+	 * 
+	 * @param id 商品ID
+	 * @return 商品
+	 */
 	public Item findById(Integer id) {
 		String sql = "SELECT id, name, description, price_m, price_l, image_path, deleted FROM items WHERE id=:id;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
