@@ -58,11 +58,16 @@ public class UserRepository {
 		return userList.get(0);
 	}
 
+	/**
+	 * メールアドレスからユーザを取得する.
+	 * 
+	 * @param email メールアドレス
+	 * @return ユーザー情報 存在しない場合はnullを返します
+	 */
 	public User findByMail(String email) {
 		String sql = "SELECT id, name, email, password, zipcode, address, telephone FROM users WHERE email=:email;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("email", email);
 		User user = template.queryForObject(sql, param, USER_ROW_MAPPER);
 		return user;
 	}
-
 }
