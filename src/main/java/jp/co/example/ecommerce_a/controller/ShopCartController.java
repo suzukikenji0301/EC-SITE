@@ -40,7 +40,6 @@ public class ShopCartController {
 		User user = (User) session.getAttribute("user");
 		Order order = shopCartService.showCartList(user.getId());
 		
-		order.setOrderItemList(null)
 		return "cart_list";
 	}
 	

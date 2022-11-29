@@ -1,7 +1,5 @@
 package jp.co.example.ecommerce_a.repository;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -11,7 +9,6 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import jp.co.example.ecommerce_a.domain.OrderItem;
-import jp.co.runy.bbs.separated.domain.SeparatedComment;
 
 /**
  * order_itemsテーブルを操作するリポジトリ.
@@ -34,7 +31,8 @@ public class OrderItemRepository {
 		orderItem.setSize(rs.getString("size"));
 		return orderItem;
 	};
-
+	
+	
 	@Autowired
 	private NamedParameterJdbcTemplate template;
 	
@@ -63,11 +61,5 @@ public class OrderItemRepository {
 		template.update(deleteSql, param);
 	}
 	
-	public List<OrderItem> findByOrderId(int orderId) {
-		String sql = "SELECT id,item_id,order_id,quantity,size FROM order_items WHERE order_id=:orderId ORDER BY id";
-		SqlParameterSource param = new MapSqlParameterSource().addValue("orderId", orderId);
-		List<OrderItem> orderItemList = template.query(sql, param, ORDER_ITEM_ROW_MAPPER);
-		return orderItemList;
-	}
 	
 }

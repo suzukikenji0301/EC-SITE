@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
+<html xmlns:th="http://www.thymeleaf.org">
+
   <head>
+  
     <!--Import Google Icon Font-->
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -57,6 +60,7 @@
         </div>
       </div>
     </header>
+     <form method="POST" action="@{/shopCart/insertItem}" th:object="${insertCartForm}">
     <div class="top-wrapper">
       <div class="container">
         <h1 class="page-title">Hawaiianパラダイス</h1>
@@ -69,18 +73,19 @@
               ハワイで取れる名産物でかつオーガニックな食料がふんだんに使われたローカルフーズです。健康志向の方に大人気の商品です。
             </div>
           </div>
+          
           <div class="row item-size">
             <div class="item-hedding">サイズ</div>
             <div>
               <label>
-                <input id="size-m" name="size" type="radio" checked="checked" />
+                <input id="size-m" name="size" type="radio" checked="checked" th:field="*{size}"/>
                 <span>
                   &nbsp;<span class="price">Ｍ</span
                   >&nbsp;&nbsp;1,380円(税抜)</span
                 >
               </label>
               <label>
-                <input id="size-l" name="size" type="radio" />
+                <input id="size-l" name="size" type="radio" th:field="*{size}"/>
                 <span>
                   &nbsp;<span class="price">Ｌ</span
                   >&nbsp;&nbsp;2,380円(税抜)</span
@@ -96,7 +101,7 @@
             </div>
             <div>
               <label class="item-topping">
-                <input type="checkbox" />
+                <input type="checkbox" name="" th:field="*{size}"/>
                 <span>ハワイアンソルト</span>
               </label>
               <label class="item-topping">
@@ -176,6 +181,8 @@
       </div>
       <!-- end container -->
     </div>
+    </form>
+    
     <!-- end top-wrapper -->
     <footer>
       <div class="container">
