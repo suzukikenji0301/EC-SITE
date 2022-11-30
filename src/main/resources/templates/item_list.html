@@ -37,10 +37,11 @@
 					</a>
 				</div>
 
-				<span sec:authentication="principal.user.name">山田</span>さんこんにちは！
-				<span sec:authorize="!isAuthenticated()"><a th:href="@{/login}">ログイン</a></span>
-				<span sec:authorize="isAuthenticated()"><a th:href="@{/logout}">ログアウト</a></span>
-				
+				<span sec:authentication="principal.user.name">山田</span>さんこんにちは！ <span
+					sec:authorize="!isAuthenticated()"><a th:href="@{/login}">ログイン</a></span>
+				<span sec:authorize="isAuthenticated()"><a
+					th:href="@{/logout}">ログアウト</a></span>
+
 				<div class="header-right">
 					<a href="item_list.html">商品一覧</a> <a href="register_admin.html">会員登録</a>
 					<a href="cart_list.html"> <i class="fas fa-shopping-cart">
@@ -49,7 +50,6 @@
 						class="fas fa-sign-in-alt"></i>ログイン
 					</a> <a href="order_history.html">注文履歴</a>
 				</div>
-				
 			</div>
 		</div>
 	</header>
@@ -68,7 +68,6 @@
 			</form>
 		</div>
 	</div>
-	
 	<!-- item list -->
 	<div class="item-wrapper">
 		<div class="container">
@@ -94,5 +93,17 @@
 	<!-- Compiled and minified JavaScript -->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<!-- jQueryの読み込み -->
+	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+	<script th:src="@{/js/paginathing.min.js}"></script>
+	<script type="text/javascript">
+		$(function() {
+			$('.items').paginathing({
+				perPage : 9,
+				prevText : '前へ',
+				nextText : '次へ',
+			})
+		});
+	</script>
 </body>
 </html>
