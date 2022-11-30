@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
   <head>
     <!--Import Google Icon Font-->
     <link
@@ -38,7 +38,7 @@
         <div class="header">
           <div class="header-left">
             <a href="top.html">
-              <img class="logo" src="img/header_logo.png" />
+              <img class="logo" src="img/header_logo.png
             </a>
           </div>
 
@@ -65,20 +65,51 @@
               <tr>
                 <th class="cart-table-th">商品名</th>
                 <th>サイズ、価格(税抜)、数量</th>
-                <th>トッピング、価格(税抜)</th>
+                <th>トッピング、価格税(税抜)</th>
                 <th>小計</th>
               </tr>
+              <tr th:each="orderItem:${orderItemList}">
+                <td class="cart-table-th" th:text="${orderItem.item.name}"></td>
+                <td th:text="${orderItem.size}"></td>
+                <td >
+                  <ul>
+                    <li th:each="orderTopping : ${orderItem.orderToppingList}" th:text="${orderTopping.topping.name}" th:if="${orderItem.size.compareTo('M') == 0}"></li>
+                    <li th:each="orderTopping : ${orderItem.orderToppingList}" th:text="${orderTopping.topping.name}" th:if="${orderItem.size.compareTo('L') == 0}"></li>
+                  </ul>
+                </td>
+                <td >
+                  
+                </td>
+              </tr>
+
+
+
+
+
+
+              <tr>
+                <th class="cart-table-th" th:text="${orderItem.item.name}">商品名あああ</th>
+                <th><span th:text="${orderItem.size}">サイズ</span>
+                	<span th:if="${orderItem.size.compareTo('M') == 0}" th:text="${orderItem.item.priceM}" >価格(税抜)</span>
+                	<span th:if="${orderItem.size.compareTo('L') == 0}" th:text="${orderItem.item.priceL}"></span>
+                	<span th:text="${orderItem.quantity}>数量</span>
+                </th>
+                <th th:each="orderId:" ><span th:text="${orderItem.ordertoppingList}">トッピング</span>
+                	<span th:text="${orderItem.orderToppingList.price}">価格(税抜)</span>
+                </th>
+                <th th:text="${}">小計</th>
+              </tr>
             </thead>
-            <tbody>
+            <!-- <tbody>
               <tr>
                 <td class="cart-item-name">
                   <div class="cart-item-icon">
                     <img src="img/1.jpg" />
                   </div>
-                  <span>ハワイアンパラダイス</span>
+                  <span>ラクラクトイ</span>
                 </td>
                 <td>
-                  <span class="price">&nbsp;Ｌ</span>&nbsp;&nbsp;2,380円
+                  <span class="price" >&nbsp;Ｌ</span>&nbsp;&nbsp;2,380円
                   &nbsp;&nbsp;1個
                 </td>
                 <td>
@@ -90,47 +121,8 @@
                 </td>
                 <td><div class="text-center">3,280円</div></td>
               </tr>
-              <tr>
-                <td class="cart-item-name">
-                  <div class="cart-item-icon">
-                    <img src="img/1.jpg" />
-                  </div>
-                  <span>ハワイアンパラダイス</span>
-                </td>
-                <td>
-                  <span class="price">&nbsp;Ｌ</span>&nbsp;&nbsp;2,380円
-                  &nbsp;&nbsp;1個
-                </td>
-                <td>
-                  <ul>
-                    <li>ピーマン300円</li>
-                    <li>オニオン300円</li>
-                    <li>あらびきソーセージ300円</li>
-                  </ul>
-                </td>
-                <td><div class="text-center">3,280円</div></td>
-              </tr>
-              <tr>
-                <td class="cart-item-name">
-                  <div class="cart-item-icon">
-                    <img src="img/1.jpg" />
-                  </div>
-                  <span>ハワイアンパラダイス</span>
-                </td>
-                <td>
-                  <span class="price">&nbsp;Ｌ</span>&nbsp;&nbsp;2,380円
-                  &nbsp;&nbsp;1個
-                </td>
-                <td>
-                  <ul>
-                    <li>ピーマン300円</li>
-                    <li>オニオン300円</li>
-                    <li>あらびきソーセージ300円</li>
-                  </ul>
-                </td>
-                <td><div class="text-center">3,280円</div></td>
-              </tr>
-            </tbody>
+              
+            </tbody> -->
           </table>
         </div>
 
