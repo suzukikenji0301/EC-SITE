@@ -48,6 +48,6 @@ public class InsertUserController {
 		BeanUtils.copyProperties(form, user);
 		user.setName(form.getLastName() + form.getFirstName());
 		insertUserService.insertUser(user);
-		return "redirect:/";
+		return "redirect:/login/";
 	}
 }
