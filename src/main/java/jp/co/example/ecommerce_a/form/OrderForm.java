@@ -45,6 +45,16 @@ public class OrderForm {
 	private String paymentMethod;
 	/** オーダーID */
 	private String orderId;
+	/** クレジットカード番号 */
+	private String cardNumber;
+	/** 有効期限（月） */
+	private String cardExpMonth;
+	/** 有効期限（年） */
+	private String cardExpYear;
+	/** クレジットカード名義人 */
+	private String cardName;
+	/** セキュリティコード */
+	private String cardCvv;
 
 	public String getDestinationName() {
 		return destinationName;

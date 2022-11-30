@@ -175,10 +175,9 @@
 						<input id="deliveryDate" type="date" th:field="*{deliveryDate}" />
 						<label for="address">配達日時</label>
 					</div>
-					<label class="order-confirm-delivery-time">
-						<span style="color: red"></span> <input name="deliveryTime"
-						type="radio" value="10" checked="checked"
-						th:field="*{deliveryTime}" /> <span>10時</span>
+					<label class="order-confirm-delivery-time"> <span
+						style="color: red"></span> <input name="deliveryTime" type="radio"
+						value="10" checked="checked" th:field="*{deliveryTime}" /> <span>10時</span>
 					</label> <label class="order-confirm-delivery-time"> <input
 						name="deliveryTime" type="radio" value="11"
 						th:field="*{deliveryTime}" /> <span>11時</span>
@@ -207,25 +206,53 @@
 				</div>
 
 			</div>
-		</form>
-		<h2 class="page-title">お支払い方法</h2>
-		<div class="row order-confirm-payment-method">
-			<span> <label class="order-confirm-payment-method-radio">
-					<span th:errors="*{paymentMethod}" style="color: red"></span> <input
+			<h2 class="page-title">お支払い方法</h2>
+			<div class="row order-confirm-payment-method">
+				<label class="order-confirm-payment-method-radio"> <span
+					th:errors="*{paymentMethod}" style="color: red"></span> <input
 					name="paymentMethod" type="radio" value="1" checked="checked"
 					th:field="*{paymentMethod}" /> <span>代金引換</span>
-			</label> <label class="order-confirm-payment-method-radio">
-					<span th:errors="*{paymentMethod}" style="color: red"></span> <input
+				</label> <label class="order-confirm-payment-method-radio"> <span
+					th:errors="*{paymentMethod}" style="color: red"></span> <input
 					name="paymentMethod" type="radio" value="2"
 					th:field="*{paymentMethod}" /> <span>クレジットカード</span>
-			</label>
-			</span>
-		</div>
-		<div class="row order-confirm-btn">
-			<button class="btn">
-				<span>この内容で注文する</span>
-			</button>
-		</div>
+				</label> <span>クレジットカード番号：</span> <input type="text" name="card_number"
+					id="card_number"> <span>有効期限：</span> <select
+					name="card_exp_month">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+				</select> <br> <select name="card_exp_year">
+					<option value="2022">2022</option>
+					<option value="2023">2023</option>
+					<option value="2024">2024</option>
+					<option value="2025">2025</option>
+					<option value="2026">2026</option>
+					<option value="2027">2027</option>
+					<option value="2028">2028</option>
+					<option value="2029">2029</option>
+					<option value="2030">2030</option>
+					<option value="2031">2031</option>
+					<option value="2032">2032</option>
+				</select> <span>カード名義人：</span> <input type="text" name="card_name"
+					id="card_name"> <span>セキュリティコード：</span> <input type="text"
+					name="card_cvv" id="card_cvv">
+			</div>
+			<div class="row order-confirm-btn">
+				<button class="btn">
+					<span>この内容で注文する</span>
+				</button>
+			</div>
+		</form>
 	</div>
 	<!-- end container -->
 	<!-- end top-wrapper -->
