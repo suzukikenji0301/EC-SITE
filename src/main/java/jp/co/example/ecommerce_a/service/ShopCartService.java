@@ -1,10 +1,11 @@
 package jp.co.example.ecommerce_a.service;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import jakarta.servlet.http.HttpSession;
 import jp.co.example.ecommerce_a.domain.Order;
 import jp.co.example.ecommerce_a.domain.OrderItem;
 import jp.co.example.ecommerce_a.domain.OrderTopping;
@@ -25,7 +26,7 @@ import jp.co.example.ecommerce_a.repository.OrderToppingRepository;
 public class ShopCartService {
 	
 	@Autowired
-	HttpSession session;  
+	private HttpSession session;  
 	
 	@Autowired
 	private OrderRepository orderRepository;

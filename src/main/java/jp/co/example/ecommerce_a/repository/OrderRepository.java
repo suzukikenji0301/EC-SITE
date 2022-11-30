@@ -6,6 +6,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -19,16 +22,22 @@ import jp.co.example.ecommerce_a.domain.Order;
 import jp.co.example.ecommerce_a.domain.OrderItem;
 import jp.co.example.ecommerce_a.domain.OrderTopping;
 import jp.co.example.ecommerce_a.domain.Topping;
+import org.springframework.stereotype.Repository;
+
+import jp.co.example.ecommerce_a.domain.Order;
 
 /**
  * ordersテーブルを操作するリポジトリ.
  * 
+<<<<<<< HEAD
  * @author moriharanariki
+=======
+ * @author Hirabuki
+>>>>>>> develop
  *
  */
 @Repository
 public class OrderRepository {
-
 	/**
 	 * articlesとcommentsテーブルを結合したものからarticleリストを作成する.
 	 * articleオブジェクト内にはcommentリストを格納する。
@@ -117,6 +126,7 @@ public class OrderRepository {
 	private NamedParameterJdbcTemplate template;
 
 	/**
+<<<<<<< HEAD
 	 * オーダー情報を追加します.
 	 * 
 	 * @param order
@@ -173,7 +183,7 @@ public class OrderRepository {
 	 * @param order
 	 * @return オーダー情報
 	 */
-	public void update(Order order) {
+	public void update2(Order order) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
 
 		String updateSql = "UPDATE orders SET id=:id,user_id=:userId,status=:status,total_price=:totalPrice,order_date=:orderDate,:destinationName,:destinationEmail,destination_zipcode=:destinationZipcode,destination_address:destinationAddress,"
@@ -201,6 +211,19 @@ public class OrderRepository {
 		List<Order> orderList = template.query(sql, ORDER_RESULT_SET_EXTRACTOR);
 
 		return orderList;
+	}
+	
+	public void update(Order order) {
+		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
+		StringBuilder updateSqlBuilder = new StringBuilder("UPDATE orders");
+		updateSqlBuilder.append("SET user_id=:userId, status=:status, total_price=:totalPrice, ");
+		updateSqlBuilder.append(
+				"order_date=:orderDate, destination_name=:destinationName, destination_email=:destinationEmail, ");
+		updateSqlBuilder.append("destination_zipcode=:destinationZipcode, destination_address=:destinationAddress, ");
+		updateSqlBuilder.append(
+				"destination_tel=:distinationTel, delivery_time=:deliveryTime, payment_method=:paymentMethod, ");
+		updateSqlBuilder.append("WHERE id=:id;");
+		template.update(updateSqlBuilder.toString(), param);
 	}
 
 }

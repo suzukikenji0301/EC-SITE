@@ -10,17 +10,18 @@
 <!-- Import Font Wesome -->
 <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
 	rel="stylesheet" />
-<link rel="stylesheet" href="../css/common.css" />
-<link rel="stylesheet" href="../css/header.css" />
-<link rel="stylesheet" href="../css/footer.css" />
-<link rel="stylesheet" href="../css/register_admin.css" />
-<link rel="stylesheet" href="../css/login.css" />
-<link rel="stylesheet" href="../css/item_list.css" />
-<link rel="stylesheet" href="../css/item_detail.css" />
-<link rel="stylesheet" href="../css/cart_list.css" />
-<link rel="stylesheet" href="../css/order_confirm.css" />
-<link rel="stylesheet" href="../css/order_finished.css" />
-<link rel="stylesheet" href="../css/responsive.css" />
+<link rel="stylesheet" href="css/common.css" />
+<link rel="stylesheet" href="css/header.css" />
+<link rel="stylesheet" href="css/footer.css" />
+<link rel="stylesheet" href="css/register_admin.css" />
+<link rel="stylesheet" href="css/login.css" />
+<link rel="stylesheet" href="css/item_list.css" />
+<link rel="stylesheet" href="css/item_detail.css" />
+<link rel="stylesheet" href="css/cart_list.css" />
+<link rel="stylesheet" href="css/order_confirm.css" />
+<link rel="stylesheet" href="css/order_finished.css" />
+<link rel="stylesheet" href="css/responsive.css" />
+
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -66,6 +67,11 @@
 								<span class="price" th:text="${item.priceM}"></span>&nbsp;&nbsp;円(税抜)
 							</span>
 							</label> <label> <input id="size-l" name="size" type="radio" th:field="*{size}" value="l"/>
+								checked="checked" /> <span> &nbsp;Ｍ&nbsp;<span
+									class="price" th:text="${item.priceM}"></span>&nbsp;&nbsp;円(税抜)
+							</span>
+							</label> <label> <input id="size-l" name="size" type="radio" />
+							
 								<span> &nbsp;L&nbsp;<span class="price"
 									th:text="${item.priceL}"></span>&nbsp;&nbsp;円(税抜)
 							</span>
@@ -80,7 +86,11 @@
 						</div>
 						<input type="hidden" name="itemId" th:field="*{itemId}" th:value="${item.id}">
 						<span th:each="topping:${item.toppingList}"> <label
-							class="item-topping"> <input type="checkbox" name="toppingList" th:value="${topping.id}" th:field="*{toppingList}"/><span
+							class="item-topping"> <input type="checkbox" name="toppingList" th:value="${topping.id}" th:field="*{toppingList}"/>
+							</label></span>
+						
+						<span th:each="topping:${item.toppingList}"> <label
+							class="item-topping"> <input type="checkbox" /><span
 								th:text="${topping.name}">&nbsp;</span>
 						</label>
 						</span>
@@ -90,6 +100,7 @@
 						<div class="item-quantity-selectbox">
 							<div class="input-field col s12">
 								<select class="browser-default" name="quantity" th:field="*{quantity}">
+								<select class="browser-default">
 									<option value="" disabled selected>選択して下さい</option>
 									<option value="1">1</option>
 									<option value="2">2</option>
