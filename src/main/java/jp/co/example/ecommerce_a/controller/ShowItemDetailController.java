@@ -26,7 +26,6 @@ public class ShowItemDetailController {
 	@GetMapping("/showItemDetail")
 	public String showItemDetail(Integer id, Model model,InsertCartForm insertCartForm) {
 		Item item = showItemDetailService.showItemDetail(id);
-		System.out.println(item);
 		model.addAttribute("item", item);
 		return "item_detail";
 	}

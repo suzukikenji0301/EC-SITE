@@ -22,7 +22,7 @@ public class OrderConfirmController {
 	 */
 	@RequestMapping("/")
 	public String orderConfirm(Integer orderId,Model model) {
-		Order order = orderConfirmService.orderConfirm(orderId);
+		Order order = orderConfirmService.orderConfirm(15);
 		model.addAttribute("order",order);
 		return "order_confirm";
 	
