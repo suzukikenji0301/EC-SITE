@@ -1,5 +1,8 @@
 package jp.co.example.ecommerce_a.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,8 +41,15 @@ public class ShopCartController {
 	@GetMapping("/showCartList")
 	private String showCartList(Model model) {
 		User user = (User) session.getAttribute("user");
-		Order order = shopCartService.showCartList(user.getId());
+		Order order = null;
 		
+		if(user != null) {
+			 order = shopCartService.showCartList(user.getId());
+		}else {
+			 order = shopCartService.showCartList(session.hashCode());
+		}
+		
+		model.addAttribute(order);
 		return "cart_list";
 	}
 	
@@ -51,7 +61,13 @@ public class ShopCartController {
 	 */
 	@PostMapping("/insertItem")
 	private String insertItem(InsertCartForm insertCartForm) {
-		
+		insertCartForm.setItemId(1);
+		insertCartForm.setQuantity(2);
+		insertCartForm.setSize("M");
+		List<Integer> toppingList = new ArrayList<>();
+		toppingList.add(1);
+		toppingList.add(2);
+		insertCartForm.setToppingList(toppingList);
 		shopCartService.insertItem(insertCartForm);
 		return "redirect:/shopCart/showCartList";
 	}

@@ -6,6 +6,8 @@ import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import jp.co.example.ecommerce_a.domain.OrderItem;
@@ -44,9 +46,20 @@ public class OrderItemRepository {
 	 */
 	public OrderItem insert(OrderItem orderItem) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(orderItem);
-		String sql = "insert into order_items(item_id,order_id,quantity,size)"
-				+ "values(:itemId, :orderId, :quantity, size);";
-		template.update(sql, param);
+		
+		if(orderItem.getId() == null) {
+			String sql = "insert into order_items(item_id,order_id,quantity,size)"
+					+ "values(:itemId, :orderId, :quantity, :size);";
+			KeyHolder keyHolder = new GeneratedKeyHolder();
+			String[] keyColumnNames = { "id" };
+			template.update(sql, param, keyHolder, keyColumnNames);
+			orderItem.setId(keyHolder.getKey().intValue());
+		}else {
+			String sql = "insert into order_items(item_id,order_id,quantity,size)"
+					+ "values(:itemId, :orderId, :quantity, :size);";
+			template.update(sql, param);
+		}
+		
 		return orderItem;
 	}
 	
@@ -60,7 +73,6 @@ public class OrderItemRepository {
 		SqlParameterSource param = new MapSqlParameterSource().addValue("orderItemID", orderItemId);
 		template.update(deleteSql, param);
 	}
-	
 	
 	
 }
