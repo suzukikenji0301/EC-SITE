@@ -36,6 +36,7 @@
 						src="../img_toy/header_logo.png" />
 					</a>
 				</div>
+
 				<span sec:authentication="principal.user.name">山田</span>さんこんにちは！
 				<span sec:authorize="!isAuthenticated()"><a th:href="@{/login}">ログイン</a></span>
 				<span sec:authorize="isAuthenticated()"><a th:href="@{/logout}">ログアウト</a></span>
@@ -48,6 +49,7 @@
 						class="fas fa-sign-in-alt"></i>ログイン
 					</a> <a href="order_history.html">注文履歴</a>
 				</div>
+				
 			</div>
 		</div>
 	</header>
@@ -57,11 +59,16 @@
 			<form method="post" class="search-form"
 				th:action="@{/showItemList/serchItem}">
 				<span th:text="${result}">該当する商品がありません</span> <input type="text"
-					name="name" class="search-name-input" />
+					name="name" class="search-name-input" autocomplete="name"
+					list="itemList" />
+				<datalist id="itemList">
+					<option th:each="item:${itemList}" th:value="${item.name}"></option>
+				</datalist>
 				<button class="btn search-btn">検 索</button>
 			</form>
 		</div>
 	</div>
+	
 	<!-- item list -->
 	<div class="item-wrapper">
 		<div class="container">
@@ -71,18 +78,17 @@
 						<img src="../img_toy/1.jpg"
 							th:src="'../img_toy/' + ${item.imagePath}" />
 					</div>
-					<a href="item_detail.html"><span th:text="${item.name}"></a><br />
+					<a href="item_detail.html"><span th:text="${item.name}"></span></a><br />
 					<span class="price">Ｍ</span><span th:text="${item.priceM}">1,380円(税抜)</span><br />
 					<span class="price">Ｌ</span><span th:text="${item.priceL}">2,380円(税抜)</span><br />
 				</div>
 			</div>
 		</div>
 	</div>
-
 	<footer>
 		<div class="container">
 			<img src="../img_toy/header_logo.png" />
-			<p>アロハな気分をあなたにお届け！</p>
+			<p>楽しいおもちゃをあなたにお届け！</p>
 		</div>
 	</footer>
 	<!-- Compiled and minified JavaScript -->
