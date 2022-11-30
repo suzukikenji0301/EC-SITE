@@ -57,13 +57,15 @@
 	</header>
 	<div class="top-wrapper">
 		<div class="container">
-			<h1 class="page-title" th:text="${item.name}"></h1>
+			<h4 class="page-title" th:text="${item.name}"></h4>
 			<div class="row">
 				<div class="row item-detail">
 					<div class="item-icon">
 						<img src="img/1.jpg" th:src="@{/img_toy/} + ${item.imagePath}" />
 					</div>
-					<div class="item-intro" th:text="${item.description}"></div>
+					<div class="item-intro" >
+					<pre th:text="${item.description}"></pre>
+					</div>
 				</div>
 				
 				<form th:action="@{/shopCart/insertItem}" method="post" th:object="${insertCartForm}">
@@ -71,15 +73,15 @@
 						<div class="item-hedding">サイズ</div>
 						<div>
 							<label> 
-							<input name="size" type="radio" value="m" checked="checked" th:field="*{size}" /> <span>サイズM</span>
-								<span class="price" th:text="${item.priceM}"></span>
+							<input class="price" name="size" type="radio" value="m" checked="checked" th:field="*{size}" /> <span>M</span>
+								<span  th:text="${item.priceM}"></span>円
 							</label> 
 							
 							<label> 
 							<input
 					name="size" type="radio" value="l" checked="checked"
-					th:field="*{size}" /> <span>サイズL</span>
-							<span> <span class="price" th:text="${item.priceL}"></span>
+					th:field="*{size}" /> <span >L</span>
+							<span> <span  th:text="${item.priceL}"></span>円
 							</span>
 							</label> 
 
@@ -120,15 +122,12 @@
 						  <span>&nbsp;Ｌ</span>&nbsp;&nbsp;300円(税抜)
 						</div>
 						
-						<span th:each="topping:${item.toppingList}"> <label
-							class="item-topping"> <input type="checkbox" name="toppingList" th:value="${topping.id}" th:field="*{toppingList}"/>
-							</label></span>
 						<span th:each="topping:${item.toppingList}">
-						 <label
-							class="item-topping"> <input type="checkbox" /><span
+						 <label class="item-topping"> 
+						 <input type="checkbox" name="toppingList" th:value="${topping.id}"/>
+						 <span
 								th:text="${topping.name}">&nbsp;</span>
 						</label>
-
 						</span>
 					  </div>
 					<div class="row item-quantity">

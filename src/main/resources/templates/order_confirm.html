@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
   <head>
     <!--Import Google Icon Font-->
     <link
@@ -33,7 +34,7 @@
     <title>ラクラクアロハ</title>
   </head>
   <body>
-    <header>
+    <!-- <header>
       <div class="container">
         <div class="header">
           <div class="header-left">
@@ -43,7 +44,7 @@
           </div>
 
           <div class="header-right">
-            <a href="item_list.html">商品一覧</a>
+            <a href="item_list.html">商品一覧</a>　
             <a href="register_admin.html">会員登録</a>
             <a href="#"><i class="fas fa-shopping-cart"></i>カート</a>
             <a href="login.html" class="login">
@@ -54,52 +55,51 @@
           </div>
         </div>
       </div>
-    </header>
+    </header> -->
     <div class="top-wrapper">
+			
       <div class="container">
-        <h1 class="page-title">注文内容確認</h1>
+        <h1 class="page-title">ショッピングカート</h1>
         <!-- table -->
         <div class="row">
-          <table class="striped">
+<table class="table table-striped item-list-table">
             <thead>
-              <tr>
-                <th class="cart-table-th">商品名</th>
-                <th>サイズ、価格(税抜)、数量</th>
-                <th>トッピング、価格税(税抜)</th>
-                <th>小計</th>
-              </tr>
-              <tr th:each="orderItem:${orderItemList}">
-                <td class="cart-table-th" th:text="${orderItem.item.name}"></td>
-                <td th:text="${orderItem.size}"></td>
-                <td >
-                  <ul>
-                    <li th:each="orderTopping : ${orderItem.orderToppingList}" th:text="${orderTopping.topping.name}" th:if="${orderItem.size.compareTo('M') == 0}"></li>
-                    <li th:each="orderTopping : ${orderItem.orderToppingList}" th:text="${orderTopping.topping.name}" th:if="${orderItem.size.compareTo('L') == 0}"></li>
-                  </ul>
-                </td>
-                <td >
-                  
-                </td>
-              </tr>
-
-
-
-
-
-
-              <tr>
-                <th class="cart-table-th" th:text="${orderItem.item.name}">商品名あああ</th>
-                <th><span th:text="${orderItem.size}">サイズ</span>
-                	<span th:if="${orderItem.size.compareTo('M') == 0}" th:text="${orderItem.item.priceM}" >価格(税抜)</span>
-                	<span th:if="${orderItem.size.compareTo('L') == 0}" th:text="${orderItem.item.priceL}"></span>
-                	<span th:text="${orderItem.quantity}>数量</span>
+            　 <tr>
+					<th>
+                  <div class="text-center">商品名</div>
                 </th>
-                <th th:each="orderId:" ><span th:text="${orderItem.ordertoppingList}">トッピング</span>
-                	<span th:text="${orderItem.orderToppingList.price}">価格(税抜)</span>
+                <th>
+                  <div class="text-center">サイズ、価格(税抜)、数量</div>
                 </th>
-                <th th:text="${}">小計</th>
+                <th>
+                  <div class="text-center">トッピング、価格(税抜)</div>
+                </th>
+                <th>
+                  <div class="text-center">小計</div>
+                </th>
+               </tr>
+              <tr th:each="orderItem :${order.orderItemList}">
+                <td class="cart-table-th"><img
+                      src="../static/img_pizza/1.jpg"
+							th:src="'../img_toy/' + ${orderItem.item.imagePath}"
+                      class="img-responsive img-rounded item-img-center"
+                      width="70"
+                      height="70"
+                    /><p th:text="${orderItem.item.name}"></p></td>
+                <td><span th:text="${orderItem.size}">M</span><br><span th:text="${orderItem.item.priceM}"></span>円<br><span th:text=${orderItem.quantity}></span>個</td>
+                <td th:each="orderTopping: ${orderItem.orderToppingList}">
+				<ul th:each="topping : ${orderTopping.topping}">
+					<li th:text="${topping.name}"></li>
+				</ul>
+                <span th:text="${orderTopping.topping.priceM}"></span>円
+                </td> 
+                <td><div class="text-center">3,280円</div></td>
+                <td>
+                </td>
               </tr>
             </thead>
+          </table>
+        </div>
             <!-- <tbody>
               <tr>
                 <td class="cart-item-name">
@@ -123,7 +123,6 @@
               </tr>
               
             </tbody> -->
-          </table>
         </div>
 
         <div class="row cart-total-price">
@@ -134,10 +133,10 @@
           <h2 class="page-title">お届け先情報</h2>
           <div class="order-confirm-delivery-info">
             <div class="row">
-              <div th:errors="*{destinationName}" style="color: red"></div>
+               <div th:errors="*{destinationName}" style="color: red"></div>
               <div class="input-field">
-                <input id="name" type="text" th:field="*{destinationName}" />
-                <label for="name">お名前</label>
+                 <input id="name" type="text" th:field="*{destinationName}" />
+              <label for="name">お名前</label>
               </div>
             </div>
             <div class="row">
@@ -275,8 +274,7 @@
               </label>
             </div>
           </div>
-        </form>
-        <h2 class="page-title">お支払い方法</h2>
+          <h2 class="page-title">お支払い方法</h2>
         <div class="row order-confirm-payment-method">
           <span>
             <label class="order-confirm-payment-method-radio">
@@ -306,10 +304,15 @@
           <button class="btn">
             <span>この内容で注文する</span>
           </button>
+          </div>
+          
+         </form>
+          
         </div>
-      </div>
+     
+      
+        
       <!-- end container -->
-    </div>
     <!-- end top-wrapper -->
     <footer>
       <div class="container">
