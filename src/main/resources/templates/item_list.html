@@ -78,8 +78,8 @@
 							th:src="'../img_toy/' + ${item.imagePath}" />
 					</div>
 					<a href="item_detail.html" th:href="@{/showItemDetail/showItemDetail?id=} + ${item.id}" ><span th:text="${item.name}"></span></a><br />
-					<span class="price">Ｍ</span><span th:text="${item.priceM}">1,380円(税抜)</span><br />
-					<span class="price">Ｌ</span><span th:text="${item.priceL}">2,380円(税抜)</span><br />
+					<span class="price">Ｍ</span><span th:text="${item.priceM}">1,380円(税抜)</span>円<br />
+					<span class="price">Ｌ</span><span th:text="${item.priceL}">2,380円(税抜)</span>円<br />
 				</div>
 			</div>
 		</div>
