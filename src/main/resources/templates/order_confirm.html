@@ -216,9 +216,11 @@
 					th:errors="*{paymentMethod}" style="color: red"></span> <input
 					name="paymentMethod" type="radio" value="2"
 					th:field="*{paymentMethod}" /> <span>クレジットカード</span>
-				</label> <span>クレジットカード番号：</span> <input type="text" name="card_number"
+				</label><br>
+				<span>クレジットカード番号：</span> <input type="text" name="card_number"
 					id="card_number"> <span>有効期限：</span> <select
-					name="card_exp_month">
+					class="browser-default" name="card_exp_month">
+					<option value="" disabled selected>選択して下さい</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
@@ -231,7 +233,8 @@
 					<option value="10">10</option>
 					<option value="11">11</option>
 					<option value="12">12</option>
-				</select> <br> <select name="card_exp_year">
+				</select>月<select class="browser-default" name="card_exp_year">
+					<option value="" disabled selected>選択して下さい</option>
 					<option value="2022">2022</option>
 					<option value="2023">2023</option>
 					<option value="2024">2024</option>
@@ -243,9 +246,9 @@
 					<option value="2030">2030</option>
 					<option value="2031">2031</option>
 					<option value="2032">2032</option>
-				</select> <span>カード名義人：</span> <input type="text" name="card_name"
-					id="card_name"> <span>セキュリティコード：</span> <input type="text"
-					name="card_cvv" id="card_cvv">
+				</select>年<br> <span>カード名義人：</span> <input type="text" name="card_name"
+					id="card_name"><br> <span>セキュリティコード：</span> <input
+					type="text" name="card_cvv" id="card_cvv">
 			</div>
 			<div class="row order-confirm-btn">
 				<button class="btn">

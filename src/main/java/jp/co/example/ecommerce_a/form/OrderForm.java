@@ -136,6 +136,46 @@ public class OrderForm {
 		this.orderId = orderId;
 	}
 
+	public String getCardNumber() {
+		return cardNumber;
+	}
+
+	public void setCardNumber(String cardNumber) {
+		this.cardNumber = cardNumber;
+	}
+
+	public String getCardExpMonth() {
+		return cardExpMonth;
+	}
+
+	public void setCardExpMonth(String cardExpMonth) {
+		this.cardExpMonth = cardExpMonth;
+	}
+
+	public String getCardExpYear() {
+		return cardExpYear;
+	}
+
+	public void setCardExpYear(String cardExpYear) {
+		this.cardExpYear = cardExpYear;
+	}
+
+	public String getCardName() {
+		return cardName;
+	}
+
+	public void setCardName(String cardName) {
+		this.cardName = cardName;
+	}
+
+	public String getCardCvv() {
+		return cardCvv;
+	}
+
+	public void setCardCvv(String cardCvv) {
+		this.cardCvv = cardCvv;
+	}
+
 	public Timestamp getDeliveryTimestamp() {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		String str = deliveryDate + deliveryTime + ":00:00";
@@ -153,6 +193,8 @@ public class OrderForm {
 		return "OrderForm [destinationName=" + destinationName + ", destinationEmail=" + destinationEmail
 				+ ", destinationZipcode=" + destinationZipcode + ", destinationAddress=" + destinationAddress
 				+ ", distinationTel=" + distinationTel + ", deliveryDate=" + deliveryDate + ", deliveryTime="
-				+ deliveryTime + ", paymentMethod=" + paymentMethod + ", orderId=" + orderId + "]";
+				+ deliveryTime + ", paymentMethod=" + paymentMethod + ", orderId=" + orderId + ", cardNumber="
+				+ cardNumber + ", cardExpMonth=" + cardExpMonth + ", cardExpYear=" + cardExpYear + ", cardName="
+				+ cardName + ", cardCvv=" + cardCvv + "]";
 	}
 }
