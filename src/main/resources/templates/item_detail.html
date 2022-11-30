@@ -32,18 +32,25 @@
 		<div class="container">
 			<div class="header">
 				<div class="header-left">
+					<!--  トップページ実装後に下記リンク書き換え（トップページへ飛ぶコントローラー（メソッド）が必要） -->
 					<a href="top.html" th:href="top.html"> <img class="logo"
 						th:src="@{/img_toy/header_logo.png}" />
 					</a>
 				</div>
 
 				<div class="header-right">
-					<a href="item_list.html" th:href="@{/showItemList/}">商品一覧</a> <a href="register_admin.html">会員登録</a>
+					<a th:href="@{/showItemList/}">商品一覧</a> <a
+						th:href="@{/insertUser/toInsert}">会員登録</a>
+					<!-- カートリスト統合後にリンク式実装 -->
 					<a href="cart_list.html"> <i class="fas fa-shopping-cart">
 					</i>カート
-					</a> <a href="login.html" class="login"> <i
+					</a>
+					<!-- パス改修の余地あり -->
+					<a th:href="@{/login}" class="login"> <i
 						class="fas fa-sign-in-alt"></i>ログイン
-					</a> <a href="order_history.html">注文履歴</a>
+					</a>
+					<!-- 実装することがあれば書く、ないなら消す -->
+					<a href="order_history.html">注文履歴</a>
 				</div>
 			</div>
 		</div>
