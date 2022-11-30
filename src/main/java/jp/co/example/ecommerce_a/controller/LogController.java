@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jp.co.example.ecommerce_a.form.LoginUserForm;
+
 /**
  * ロギング処理のためのコントローラー.
  * 
@@ -24,7 +26,7 @@ public class LogController {
 	 * @return ログ出力完了画面
 	 */
 	@GetMapping("/loglevel")
-	public String logLevel() {
+	public String logLevel(LoginUserForm loginUserForm) {
 		LOGGER.error("エラーが発生しました");
 		LOGGER.warn("警告です");
 		LOGGER.info("情報です");

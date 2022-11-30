@@ -19,7 +19,7 @@ public class WebSecurityConfig {
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/", "/toInsert", "/insert").permitAll().anyRequest().authenticated();
+		http.authorizeRequests().antMatchers("/login", "/toInsert", "/insert", "/log/loglevel").permitAll().anyRequest().authenticated();
 
 		http.formLogin() // ログインに関する設定
 				.loginPage("/login") // ログイン画面に遷移させるパス(ログイン認証が必要なパスを指定してかつログインされていないとこのパスに遷移される)

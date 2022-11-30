@@ -35,7 +35,7 @@
 	</appender>
 
 	<root>
-		<level value="" /><!-- DEBUGやにするとDEBUGランク以上のログが送られるため、起動が遅くなる。 -->
+		<level value="INFO" /><!-- DEBUGやにするとDEBUGランク以上のログが送られるため、起動が遅くなる。 -->
 		<!-- ↑どうしても解決できない問題が発生した場合のみDEBUGランク以上情報を送信する -->
 		<appender-ref ref="EMAIL" /><!-- 上でappenderを登録したら、この一行を書かないと動作しない -->
 	</root>
