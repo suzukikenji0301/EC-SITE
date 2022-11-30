@@ -17,7 +17,7 @@ import jp.co.example.ecommerce_a.service.InsertUserService;
  *
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping("/insertUser")
 public class InsertUserController {
 	
 	@Autowired

@@ -24,7 +24,7 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ラクラクアロハ</title>
+<title>ラクラクトイ</title>
 </head>
 
 <body>
@@ -32,13 +32,16 @@
 		<div class="container">
 			<div class="header">
 				<div class="header-left">
-					<a href="top.html"> <img class="logo" src="img/header_logo.png" />
+					<!--  トップページ実装後に下記リンク書き換え（トップページへ飛ぶコントローラー（メソッド）が必要） -->
+					<a href="top.html"> <img class="logo"
+						th:src="@{/img_toy/header_logo.png}" />
 					</a>
 				</div>
-
 				<div class="header-right">
-					<a href="item_list.html">商品一覧</a> <a href="register_admin.html">会員登録</a>
-					<a href="login.html" class="login"> <i
+					<a th:href="@{/showItemList/}">商品一覧</a> <a
+						th:href="@{/insertUser/toInsert}">会員登録</a>
+					<!-- パス改修の余地あり -->
+					<a th:href="@{/login}" class="login"> <i
 						class="fas fa-sign-in-alt"></i>ログイン
 					</a>
 				</div>
@@ -57,8 +60,8 @@
 							<div class="input-field col s12">
 								<i class="material-icons prefix">mail_outline</i> <input
 									class="validate" id="mailAddress" type="email"
-									th:field="*{email}" /> <label
-									for="mailAddress" data-error="wrong" data-success="right">メールアドレス</label>
+									th:field="*{email}" /> <label for="mailAddress"
+									data-error="wrong" data-success="right">メールアドレス</label>
 							</div>
 						</div>
 						<div class="row">
@@ -76,7 +79,7 @@
 						<div class="row">
 							<div class="input-field col s6 m6 l6">
 								<p class="margin medium-small">
-									<a href="register_admin.html">ユーザー登録はこちら</a>
+									<a th:href="@{/insertUser/toInsert}">ユーザー登録はこちら</a>
 								</p>
 							</div>
 						</div>
@@ -88,8 +91,8 @@
 	<!-- end top-wrapper -->
 	<footer>
 		<div class="container">
-			<img src="img/header_logo.png" />
-			<p>アロハな気分をあなたにお届け！</p>
+			<img th:src="@{/img_toy/header_logo.png}" />
+			<p>楽しいおもちゃをあなたにお届け！</p>
 		</div>
 	</footer>
 	<!-- Compiled and minified JavaScript -->
