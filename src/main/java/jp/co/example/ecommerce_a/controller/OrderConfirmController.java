@@ -1,13 +1,14 @@
 package jp.co.example.ecommerce_a.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.example.ecommerce_a.domain.Order;
 import jp.co.example.ecommerce_a.service.OrderConfirmService;
-
-@RequestMapping("/")
+@Controller
+@RequestMapping("/orderConfirm")
 public class OrderConfirmController {
 
 	@Autowired
@@ -19,11 +20,12 @@ public class OrderConfirmController {
 	 * @param orderId オーダーID
 	 * @return　注文確認画面
 	 */
-	@RequestMapping("/orderConfirm")
+	@RequestMapping("/")
 	public String orderConfirm(Integer orderId,Model model) {
 		Order order = orderConfirmService.orderConfirm(orderId);
-		return "forward:/";
-		
+		model.addAttribute("order",order);
+		return "order_confirm";
+	
 	}
 
 }
