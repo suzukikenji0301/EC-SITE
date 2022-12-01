@@ -20,7 +20,7 @@ $(function () {
     let toy_num = $("#toynum").val();
     let size_price = 0;
     let topping_price = 0;
-    if (size === "M") {
+    if (size === "m") {
       size_price = $("#priceM").text();
       topping_price = 200 * topping_count;
     } else {

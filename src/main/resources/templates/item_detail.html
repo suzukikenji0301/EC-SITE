@@ -87,9 +87,14 @@
                     value="m"
                     checked="checked"
                     th:field="*{size}"
+                    class="size"
                   />
                   <span>サイズM</span>
-                  <span class="price" th:text="${item.priceM}"></span>
+                  <span
+                    class="price"
+                    th:text="${item.priceM}"
+                    id="priceM"
+                  ></span>
                 </label>
 
                 <label>
@@ -99,10 +104,15 @@
                     value="l"
                     checked="checked"
                     th:field="*{size}"
+                    class="size"
                   />
                   <span>サイズL</span>
                   <span>
-                    <span class="price" th:text="${item.priceL}"></span>
+                    <span
+                      class="price"
+                      th:text="${item.priceL}"
+                      id="priceL"
+                    ></span>
                   </span>
                 </label>
 
@@ -150,9 +160,10 @@
                     name="toppingList"
                     th:value="${topping.id}"
                     th:field="*{toppingList}"
+                    class="checkbox"
                   /> </label
               ></span>
-              <span th:each="topping:${item.toppingList}">
+              <span th:each="topping:${item.toppingList}" id="topping">
                 <label class="item-topping">
                   <input type="checkbox" /><span th:text="${topping.name}"
                     >&nbsp;</span
@@ -168,6 +179,7 @@
                     class="browser-default"
                     name="quantity"
                     th:field="*{quantity}"
+                    id="toynum"
                   >
                     <option value="" disabled selected>選択して下さい</option>
                     <option value="1">1</option>
@@ -187,7 +199,7 @@
               </div>
             </div>
             <div class="row item-total-price">
-              <span>この商品金額： 円(税抜)</span>
+              <span>この商品金額：<span id="totalprice"></span> 円(税抜)</span>
             </div>
             <div class="row item-cart-btn">
               <button
