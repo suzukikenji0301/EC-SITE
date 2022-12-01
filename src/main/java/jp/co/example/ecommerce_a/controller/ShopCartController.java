@@ -78,7 +78,7 @@ public class ShopCartController {
 	 */
 	@PostMapping("/deleteItem")
 	private String deleteItem(Integer orderItemId) {
-		shopCartService.deleteItem(orderItemId);
+				shopCartService.deleteItem(12);
 		return "redirect:/shopCart/showCartList";
 	}
 }
