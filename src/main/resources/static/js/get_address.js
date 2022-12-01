@@ -1,7 +1,7 @@
 "use strict";
 $(function() {
 	console.log("表示された");
-	$("#getdress_btn").on("click", function() {
+	$("#get_address_btn").on("click", function() {
 		console.log("呼ばれた");
 		$.ajax({
 			url: "https://zipcoda.net/api",

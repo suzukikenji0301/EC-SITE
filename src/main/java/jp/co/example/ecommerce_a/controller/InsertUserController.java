@@ -37,7 +37,7 @@ public class InsertUserController {
 	 * ユーザー情報を登録します.
 	 * 
 	 * @param form ユーザー登録用フォーム
-	 * @return　ログイン画面にリダイレクト
+	 * @return　ログイン画面に遷移
 	 */
 	@RequestMapping("/insert")
 	public String insertUser(@Validated InsertUserForm form,BindingResult result,Model model) {
@@ -48,6 +48,6 @@ public class InsertUserController {
 		BeanUtils.copyProperties(form, user);
 		user.setName(form.getLastName() + form.getFirstName());
 		insertUserService.insertUser(user);
-		return "redirect:/";
+		return "login";
 	}
 }

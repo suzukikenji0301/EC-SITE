@@ -20,7 +20,7 @@ public class OrderConfirmController {
 	 * @param orderId オーダーID
 	 * @return　注文確認画面
 	 */
-	@RequestMapping("/")
+	@RequestMapping("/orderConfirm")
 	public String orderConfirm(Integer orderId,Model model) {
 		Order order = orderConfirmService.orderConfirm(orderId);
 		model.addAttribute("order",order);
