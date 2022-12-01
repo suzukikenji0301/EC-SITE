@@ -49,6 +49,7 @@
             <a href="login.html" class="login">
               <i class="fas fa-sign-in-alt"></i>ログイン
             </a>
+            <a href="contactForm.html">お問合わせ</a>
           </div>
         </div>
       </div>
@@ -63,33 +64,32 @@
     <div class="top-wrapper">
       <div class="container">
         <div class="row register-page">
-          <div th:errors="*{lastName}" class="error-messages">名前を入力して下さい</div>
+          <div th:errors="*{lastName}" style="color:red" class="error-messages">名前を入力して下さい</div>
+          <div th:errors="*{firstName}" style="color:red" class="error-messages">名前を入力して下さい</div>
           <div class="row">
             <div class="input-field col s6">
               <input id="last_name"
                type="text" 
                class="validate" 
-               required 
-               placeholder="山田太郎"
+               placeholder="山田"
                th:field="*{lastName}"
                th:errorclass="error-input"
-               value="山田太郎"/>
-              <label for="last_name" 
-              th:errors="*{lastName}"
-              class="error-messages">姓</label>
+               value="山田"/>
+              <label>姓</label>
             </div>
-            <div class="input-field col s6">
+            <div class="input-field col s6"　>
               <input id="first_name" 
               name="name"
               type="text" 
               class="validate" 
+               placeholder="太郎"
               th:field="*{firstName}"
               th:errorclass="error-input"
-              required />
-              <label for="first_name">名</label>
+               value="太郎" />
+              <label>名</label>
             </div>
           </div>
-          <div class="error">メールアドレスの形式が不正です</div>
+          <div class="error" th:errors="*{email}" style="color:red">メールアドレスの形式が不正です</div>
           <div class="row">
             <div class="input-field col s12">
               <input id="email"
@@ -98,35 +98,33 @@
                 placeholder="yamada@gmail.com"
                 th:field="*{email}"
                 th:errorclass="error-input"
-                value="yamada@mail.com"
-                required />
-              <label for="email" 
-              th:errors="*{email}" 
-              class="error-message">メールアドレス</label>
+                value="yamada@mail.com"/>
+              <label>メールアドレス</label>
             </div>
           </div>
-          <div class="error">郵便番号はXXX-XXXXの形式で入力してください</div>
+          <div class="error" th:errors="*{zipcode}" style="color:red">郵便番号はXXX-XXXXの形式で入力してください</div>
           <div class="row">
             <div class="input-field col s12">
               <input id="zipcode" 
               type="text" 
+              size="8"
               th:field="*{zipcode}"
               maxlength="8" />
               <label for="zipcode">郵便番号(ハイフン含む)</label>
-              <button id="getdress_btn" 
+              <button id="get_address_btn" 
               type="button" >
                 <span>住所検索</span>
               </button>
             </div>
           </div>
-          <div class="error">住所を入力して下さい</div>
+          <div class="error" th:errors="*{address}" style="color:red">住所を入力して下さい</div>
           <div class="row">
             <div class="input-field col s12">
               <input id="address" type="text" size="50" th:field="*{address}">
               <label for="address" >住所</label>
             </div>
           </div>
-          <div class="error">
+          <div class="error"　th:errors="*{telephone}" style="color:red">
             電話番号はXXXX-XXXX-XXXXの形式で入力してください
           </div>
           <div class="row">
@@ -135,22 +133,20 @@
               <label for="tel">電話番号</label>
             </div>
           </div>
-          <div class="error">
+          <div class="error"　th:errors="*{password}" style="color:red">
             パスワードは８文字以上１６文字以内で設定してください
           </div>
-          <div class="row">
+          <div class="row" >
             <div class="input-field col s12">
               <input
                 id="password"
                 type="password"
                 class="validate"
-                minlength="8"
-                required
-              />
+                minlength="8" />
               <label for="password">パスワード</label>
             </div>
           </div>
-          <div class="error">パスワードと確認用パスワードが不一致です</div>
+          <div class="error"　th:errors="*{password}" style="color:red">パスワードと確認用パスワードが不一致です</div>
           <div class="row">
             <div class="input-field col s12">
               <input
@@ -158,13 +154,12 @@
                 type="password"
                 class="validate"
                 minlength="8"
-                required
                 placeholder ="password"
-                th:field="*{password}"
+                th:field ="*{password}"
                 th:errorclass="error-input"
                 value="xxxxxxxxxx"
               />
-              <label for="confirmation_password">確認用パスワード</label>
+              <label>確認用パスワード</label>
             </div>
           </div>
           <div class="row register-admin-btn">
@@ -192,7 +187,7 @@
     </footer>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-   	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+   	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script th:src="@{/js/get_address.js}"></script>
    </body>
 </html>
