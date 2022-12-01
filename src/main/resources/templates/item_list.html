@@ -40,7 +40,7 @@
 					<a th:href="@{/}">商品一覧</a> <a th:href="@{/insertUser/toInsert}">会員登録</a>
 					<a th:href="@{/shopCart/showCartList}"> <i class="fas fa-shopping-cart">
 					</i>カート
-					</a><span sec:authentication="principal.user.name">山田</span>さんこんにちは！ <span
+					</a><!-- <span sec:authentication="principal.user.name">山田</span>さんこんにちは！  --><span
 					sec:authorize="!isAuthenticated()"><a th:href="@{/login/}">ログイン</a></span>
 				<span sec:authorize="isAuthenticated()"><a
 					th:href="@{/logout}">ログアウト</a></span>
@@ -70,7 +70,7 @@
 				<div class="item" th:each="item : ${itemList}">
 					<div class="item-icon">
 						<img src="../img_toy/1.jpg"
-							th:src="'../img_toy/' + ${item.imagePath}" />
+							th:src="@{/img_toy/} + ${item.imagePath}" />
 					</div>
 					<a href="item_detail.html"
 						th:href="@{/showItemDetail/showItemDetail?id=} + ${item.id}"><span
