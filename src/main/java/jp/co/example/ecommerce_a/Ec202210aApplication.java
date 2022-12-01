@@ -9,5 +9,7 @@ public class Ec202210aApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(Ec202210aApplication.class, args);
 	}
+	
+	
 
 }

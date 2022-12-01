@@ -19,6 +19,7 @@ public class WebSecurityConfig {
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
 		http.authorizeRequests().antMatchers("/", "/insertUser/toInsert", "/insertUser/insert","/login/").permitAll().anyRequest().authenticated();
 
 		http.formLogin() // ログインに関する設定
