@@ -96,8 +96,9 @@
                 </td> 
                 <td><div class="text-center">3,280円</div></td>
                 <td>
-               <form th:action="@{/shopCart/deleteItem}" method="POST">
-                	<input type="hidden" th:value=${orderItem.id}>
+                	<form th:action="@{/shopCart/deleteItem}" method="POST">
+                	<input type="hidden" th:value=${orderItem.id} name="orderItemId">
+
                   <button class="btn" >
                     <span>削除</span>
                   </button>

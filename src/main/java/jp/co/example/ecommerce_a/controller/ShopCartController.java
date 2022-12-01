@@ -1,17 +1,16 @@
 package jp.co.example.ecommerce_a.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jp.co.example.ecommerce_a.domain.LoginUser;
 import jp.co.example.ecommerce_a.domain.Order;
 import jp.co.example.ecommerce_a.domain.User;
 import jp.co.example.ecommerce_a.form.InsertCartForm;
@@ -40,14 +39,14 @@ public class ShopCartController {
 	 * @return
 	 */
 	@GetMapping("/showCartList")
-	private String showCartList(Model model) {
-		User user = (User) session.getAttribute("user");
+	private String showCartList(Model model,@AuthenticationPrincipal LoginUser loginUser) {
+		User user = loginUser.getUser();
 		Order order = null;
 		
-		if(user != null) {
-			 order = shopCartService.showCartList(user.getId());
-		}else {
-			 order = shopCartService.showCartList(213025233);
+		if(user != null) { 
+			order = shopCartService.showCartList(user.getId()); }
+		else{ 
+			order = shopCartService.showCartList(session.hashCode()); 
 		}
 		
 		model.addAttribute(order);
@@ -61,12 +60,12 @@ public class ShopCartController {
 	 * @return
 	 */
 	@PostMapping("/insertItem")
-	private String insertItem(InsertCartForm insertCartForm,Integer itemId) {
+	private String insertItem(InsertCartForm insertCartForm,Integer itemId,@AuthenticationPrincipal LoginUser loginUser) {
 		insertCartForm.setItemId(itemId);
 		insertCartForm.setQuantity(insertCartForm.getQuantity());
 		insertCartForm.setSize(insertCartForm.getSize());
 		insertCartForm.setToppingList(insertCartForm.getToppingList());
-		shopCartService.insertItem(insertCartForm);
+		shopCartService.insertItem(insertCartForm, loginUser);
 		return "redirect:/shopCart/showCartList";
 	}
 	
@@ -78,7 +77,7 @@ public class ShopCartController {
 	 */
 	@PostMapping("/deleteItem")
 	private String deleteItem(Integer orderItemId) {
-				shopCartService.deleteItem(12);
+		shopCartService.deleteItem(orderItemId);
 		return "redirect:/shopCart/showCartList";
 	}
 }

@@ -3,9 +3,11 @@ package jp.co.example.ecommerce_a.service;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import jp.co.example.ecommerce_a.domain.LoginUser;
 import jp.co.example.ecommerce_a.domain.Order;
 import jp.co.example.ecommerce_a.domain.OrderItem;
 import jp.co.example.ecommerce_a.domain.OrderTopping;
@@ -43,8 +45,8 @@ public class ShopCartService {
 	}
 	
 	
-	public void insertItem(InsertCartForm insertCartForm) {
-		User user = (User) session.getAttribute("user");
+	public void insertItem(InsertCartForm insertCartForm,LoginUser loginUser) {
+		User user = loginUser.getUser();
 		Order order = null;
 		
 		//ユーザー情報が空でない場合のみ検索を行う.
@@ -56,7 +58,11 @@ public class ShopCartService {
 				//新規でオーダー情報を生成.
 				Order newOrder = new Order();
 				//オーダーオブジェクトのuserIdにsessionIDを利用.
-				newOrder.setUserId(session.hashCode());
+				if(user != null) {
+					newOrder.setUserId(user.getId());
+				}else {
+					newOrder.setUserId(session.hashCode());
+				}
 				newOrder.setStatus(0);
 				newOrder.setTotalPrice(0);
 				newOrder = orderRepository.insert(newOrder);
