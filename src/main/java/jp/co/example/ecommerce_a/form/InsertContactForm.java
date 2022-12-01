@@ -13,7 +13,7 @@ public class InsertContactForm {
 	/** メールアドレス */
 	private String mailAddress;
 	/** 電話番号 */
-	private Integer telephone;
+	private Integer telePhone;
 	/** 性別 */
 	private String gender;
 	/** お問合せ内容 */
@@ -43,12 +43,12 @@ public class InsertContactForm {
 		this.mailAddress = mailAddress;
 	}
 
-	public Integer getTelephone() {
-		return telephone;
+	public Integer getTelePhone() {
+		return telePhone;
 	}
 
-	public void setTelephone(Integer telephone) {
-		this.telephone = telephone;
+	public void setTelePhone(Integer telePhone) {
+		this.telePhone = telePhone;
 	}
 
 	public String getGender() {
@@ -70,7 +70,7 @@ public class InsertContactForm {
 	@Override
 	public String toString() {
 		return "InsertContactForm [name=" + name + ", fullName=" + fullName + ", mailAddress=" + mailAddress
-				+ ", telephone=" + telephone + ", gender=" + gender + ", inquiryDetails=" + inquiryDetails + "]";
+				+ ", telePhone=" + telePhone + ", gender=" + gender + ", inquiryDetails=" + inquiryDetails + "]";
 	}
 
 }
