@@ -24,9 +24,9 @@ public class OrderConfirmController {
 	 */
 
 	@RequestMapping("/orderConfirm")
-	public String orderConfirm(Integer orderId,Model model, OrderForm orderForm) {
+	public String orderConfirm(Integer orderId, Model model, OrderForm orderForm) {
 		Order order = orderConfirmService.orderConfirm(orderId);
-		model.addAttribute("order",order);
+		model.addAttribute("order", order);
 		return "order_confirm";
 	}
 }
