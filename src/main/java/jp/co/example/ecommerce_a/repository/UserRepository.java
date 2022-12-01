@@ -35,7 +35,7 @@ public class UserRepository {
 	/**
 	 * User情報を挿入します.
 	 * 
-	 * @param user
+	 * @param user User情報
 	 */
 	public void insert(User user) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(user);

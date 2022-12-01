@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.example.ecommerce_a.domain.Item;
 import jp.co.example.ecommerce_a.domain.LoginUser;
+import jp.co.example.ecommerce_a.domain.User;
 import jp.co.example.ecommerce_a.service.ShowItemListService;
 
 /**
@@ -21,7 +22,7 @@ import jp.co.example.ecommerce_a.service.ShowItemListService;
  *
  */
 @Controller
-@RequestMapping("/showItemList")
+@RequestMapping("")
 public class ShowItemListController {
 
 	@Autowired

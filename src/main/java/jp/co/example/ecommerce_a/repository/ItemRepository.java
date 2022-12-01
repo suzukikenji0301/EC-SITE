@@ -69,7 +69,7 @@ public class ItemRepository {
 	 * @return 検索した商品情報
 	 */
 	public List<Item> findByName(String name) {
-		String sql = "SELECT id,name,description,price_m,price_l,image_path,deleted FROM items WHERE name LIKE :itemSerch";
+		String sql = "SELECT id,name,description,price_m,price_l,image_path,deleted FROM items WHERE name ILIKE :itemSerch";
 
 		SqlParameterSource param = new MapSqlParameterSource().addValue("itemSerch", "%" + name + "%");
 
