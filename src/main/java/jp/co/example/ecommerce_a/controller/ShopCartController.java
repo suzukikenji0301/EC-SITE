@@ -47,7 +47,7 @@ public class ShopCartController {
 		if(user != null) {
 			 order = shopCartService.showCartList(user.getId());
 		}else {
-			 order = shopCartService.showCartList(session.hashCode());
+			 order = shopCartService.showCartList(213025233);
 		}
 		
 		model.addAttribute(order);
@@ -61,14 +61,11 @@ public class ShopCartController {
 	 * @return
 	 */
 	@PostMapping("/insertItem")
-	private String insertItem(InsertCartForm insertCartForm) {
-		insertCartForm.setItemId(1);
-		insertCartForm.setQuantity(2);
-		insertCartForm.setSize("M");
-		List<Integer> toppingList = new ArrayList<>();
-		toppingList.add(1);
-		toppingList.add(2);
-		insertCartForm.setToppingList(toppingList);
+	private String insertItem(InsertCartForm insertCartForm,Integer itemId) {
+		insertCartForm.setItemId(itemId);
+		insertCartForm.setQuantity(insertCartForm.getQuantity());
+		insertCartForm.setSize(insertCartForm.getSize());
+		insertCartForm.setToppingList(insertCartForm.getToppingList());
 		shopCartService.insertItem(insertCartForm);
 		return "redirect:/shopCart/showCartList";
 	}
@@ -81,7 +78,7 @@ public class ShopCartController {
 	 */
 	@PostMapping("/deleteItem")
 	private String deleteItem(Integer orderItemId) {
-		shopCartService.deleteItem(orderItemId);
+				shopCartService.deleteItem(12);
 		return "redirect:/shopCart/showCartList";
 	}
 }
