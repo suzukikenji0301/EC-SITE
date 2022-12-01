@@ -236,6 +236,10 @@ public class OrderRepository {
 				+ "LEFT OUTER JOIN toppings t ON ot.topping_id = t.id WHERE o.id = :orderId;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("orderId", orderId);
 		List<Order> orderList = template.query(sql, param, ORDER_RESULT_SET_EXTRACTOR);
+		
+		if(orderList.isEmpty()) {
+			return null;
+		}
 		return orderList.get(0);
 	}
 }
