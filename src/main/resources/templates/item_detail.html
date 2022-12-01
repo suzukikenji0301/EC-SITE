@@ -60,78 +60,50 @@
 					<div class="item-icon">
 						<img src="img/1.jpg" th:src="@{/img_toy/} + ${item.imagePath}" />
 					</div>
-					<div class="item-intro" >
-					<pre th:text="${item.description}"></pre>
+					<div class="item-intro">
+						<pre th:text="${item.description}"></pre>
 					</div>
 				</div>
-				
-				<form th:action="@{/shopCart/insertItem}" method="post" th:object="${insertCartForm}">
+
+				<form th:action="@{/shopCart/insertItem}" method="post"
+					th:object="${insertCartForm}">
 					<div class="row item-size">
 						<div class="item-hedding">サイズ</div>
 						<div>
-							<label> 
-							<input class="price" name="size" type="radio" value="m" checked="checked" th:field="*{size}" /> <span>M</span>
-								<span  th:text="${item.priceM}"></span>円
-							</label> 
-							
-							<label> 
-							<input
-					name="size" type="radio" value="l" checked="checked"
-					th:field="*{size}" /> <span >L</span>
-							<span> <span  th:text="${item.priceL}"></span>円
+							<label> <input name="size" type="radio" value="m"
+								th:field="*{size}" class="size" checked="checked" />
+								<span>サイズM</span> <span class="price" th:text="${item.priceM}"
+								id="priceM"></span>
+							</label> <label> <input name="size" type="radio" value="l"
+								th:field="*{size}" class="size" /> <span>サイズL</span>
+								<span> <span class="price" th:text="${item.priceL}"
+									id="priceL"></span>
 							</span>
-							</label> 
+							</label>
 
-		             	<!-- //平吹作 -->
-						 <!--  <label>
-							<input
-							  id="size-m"
-							  name="size"
-							  type="radio"
-							  checked="checked"
-							/>
-							<span>
-							  &nbsp;Ｍ&nbsp;<span
-								class="price"
-								id="priceM"
-								th:text="${item.priceM}"
-							  ></span
-							  >&nbsp;&nbsp;円(税抜)
-							</span>
-						  </label>
-						  <label>
-							<input id="size-l" name="size" type="radio" />
-							<span>
-							  &nbsp;L&nbsp;<span
-								class="price"
-								id="priceL"
-								th:text="${item.priceL}"
-							  ></span
-							  >&nbsp;&nbsp;円(税抜)
-							</span>
-						  </label> -->
 						</div>
-					  </div>
-					  <div class="row item-toppings">
+					</div>
+					<div class="row item-toppings">
 						<div class="item-hedding">
-						  トッピング：&nbsp;1つにつき
-						  <span>&nbsp;Ｍ&nbsp;</span>&nbsp;&nbsp;200円(税抜)
-						  <span>&nbsp;Ｌ</span>&nbsp;&nbsp;300円(税抜)
+							トッピング：&nbsp;1つにつき <span>&nbsp;Ｍ&nbsp;</span>&nbsp;&nbsp;200円(税抜)
+							<span>&nbsp;Ｌ</span>&nbsp;&nbsp;300円(税抜)
 						</div>
-						
-						<span th:each="topping:${item.toppingList}">
-						 <label class="item-topping"> 
-						 <input type="checkbox" name="toppingList" th:value="${topping.id}"/>
-						 <span
-								th:text="${topping.name}">&nbsp;</span>
-						</label>
-						</span>
-					  </div>
+
+						<div>
+							<span id="topping"> <label
+								th:each="topping:${item.toppingList}" class="item-topping">
+									<input type="checkbox" class="checkbox" /><span
+									th:text="${topping.name}">&nbsp;</span>
+							</label>
+							</span>
+						</div>
+					</div>
 					<div class="row item-quantity">
 						<div class="item-hedding item-hedding-quantity">数量</div>
 						<div class="item-quantity-selectbox">
 							<div class="input-field col s12">
-								<select class="browser-default" name="quantity" th:field="*{quantity}">
+								<select class="browser-default" name="quantity"
+									th:field="*{quantity}" id="toynum">
 									<option value="" disabled selected>選択して下さい</option>
 									<option value="1">1</option>
 									<option value="2">2</option>
@@ -150,7 +122,8 @@
 						</div>
 					</div>
 					<div class="row item-total-price">
-						<span>この商品金額：38,000 円(税抜)</span>
+						<span>この商品金額：<span id="totalprice"></span> 円(税抜)
+						</span>
 					</div>
 					<div class="row item-cart-btn">
 						<button class="btn" type="submit"
@@ -158,7 +131,7 @@
 							<i class="material-icons left">add_shopping_cart</i> <span>カートに入れる</span>
 						</button>
 					</div>
-					<input type="hidden" name="itemId" th:value="${item.id}">
+					<input type="hidden" name="itemId" th:value="${item.id}" />
 				</form>
 			</div>
 		</div>
@@ -174,5 +147,7 @@
 	<!-- Compiled and minified JavaScript -->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+	<script th:src="@{/js/total_price.js}"></script>
 </body>
 </html>
