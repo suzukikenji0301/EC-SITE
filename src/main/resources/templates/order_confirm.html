@@ -73,8 +73,8 @@
 								height="70" />
 							<p th:text="${orderItem.item.name}"></p></td>
 							<td><span th:text="${orderItem.size}">M</span><br>
-							<span th:if="${orderItem.size.compareTo('m')}" th:text="${#numbers.formatInteger(orderItem.item.priceM, 2, 'COMMA')}"></span><span th:if="${orderItem.compareTo('l')}" th:text="${#numbers.formatInteger(orderItem.item.priceL, 2, 'COMMA')}"></span>円<br>円<br>
-							<span th:text=${orderItem.quantity}></span>個</td>
+<!-- 							<span th:if="${orderItem.size.compareTo('m')}" th:text="${#numbers.formatInteger(orderItem.item.priceM, 2, 'COMMA')}"></span><span th:if="${orderItem.compareTo('l')}" th:text="${#numbers.formatInteger(orderItem.item.priceL, 2, 'COMMA')}"></span>円<br>円<br>
+ -->							<span th:text=${orderItem.quantity}></span>個</td>
 							<td th:each="orderTopping: ${orderItem.orderToppingList}">
 								<ul th:each="topping : ${orderTopping.topping}">
 									<li th:text="${topping.name}"></li>
@@ -86,34 +86,13 @@
 					</thead>
 				</table>
 			</div>
-			<!-- <tbody>
-              <tr>
-                <td class="cart-item-name">
-                  <div class="cart-item-icon">
-                    <img src="img/1.jpg" />
-                  </div>
-                  <span>ラクラクトイ</span>
-                </td>
-                <td>
-                  <span class="price" >&nbsp;Ｌ</span>&nbsp;&nbsp;2,380円
-                  &nbsp;&nbsp;1個
-                </td>
-                <td>
-                  <ul>
-                    <li>ピーマン300円</li>
-                    <li>オニオン300円</li>
-                    <li>あらびきソーセージ300円</li>
-                  </ul>
-                </td>
-                <td><div class="text-center">3,280円</div></td>
-              </tr>
-              
-            </tbody> -->
+			
 		</div>
 		<div class="row cart-total-price">
 			<div>消費税：8,000円</div>
 			<div>ご注文金額合計：38,000円 (税込)</div>
 		</div>
+		
 		<form method="post" th:action="@{/order}" th:object="${orderForm}">
 			<h2 class="page-title">お届け先情報</h2>
 			<div class="order-confirm-delivery-info">

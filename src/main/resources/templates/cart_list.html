@@ -88,6 +88,7 @@
                       height="70"
                     /><p th:text="${orderItem.item.name}"></p></td>
                 <td><span th:text="${orderItem.size}">M</span><br><span th:text="${orderItem.item.priceM}"></span>円<br><span th:text=${orderItem.quantity}></span>個</td>
+                
                 <td th:each="orderTopping: ${orderItem.orderToppingList}">
 				<ul th:each="topping : ${orderTopping.topping}">
 					<li th:text="${topping.name}"></li>
@@ -116,7 +117,7 @@
         <div class="row order-confirm-btn">
         
         <form th:action="@{/orderConfirm/orderConfirm}" method="post">
-        <input type="hidden" th:value="${order.Id}"　name="orderId">
+        <input type="hidden" th:value="${order.Id}" name="orderId">
           <button
             class="btn"
             onclick="location.href='order_confirm.html'"
