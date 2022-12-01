@@ -90,7 +90,7 @@
 						<div>
 							<span id="topping"> <label
 								th:each="topping:${item.toppingList}" class="item-topping">
-									<input type="checkbox" class="checkbox" /><span
+									<input type="checkbox" class="checkbox" th:value="${topping.id}" name="toppingList" /><span
 									th:text="${topping.name}">&nbsp;</span>
 							</label>
 							</span>
