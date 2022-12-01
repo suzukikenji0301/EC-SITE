@@ -3,9 +3,11 @@ package jp.co.example.ecommerce_a.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.example.ecommerce_a.domain.Order;
+import jp.co.example.ecommerce_a.form.OrderForm;
 import jp.co.example.ecommerce_a.service.OrderConfirmService;
 
 @Controller
@@ -55,6 +57,7 @@ public class OrderConfirmController {
 	public String orderConfirm(Integer orderId, Model model) {
 		Order order = orderConfirmService.orderConfirm(orderId);
 		model.addAttribute("order", order);
+
 		return "order_confirm";
 	}
 }

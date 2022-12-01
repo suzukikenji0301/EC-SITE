@@ -10,17 +10,17 @@
 <!-- Import Font Wesome -->
 <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
 	rel="stylesheet" />
-<link rel="stylesheet" href="css/common.css" />
-<link rel="stylesheet" href="css/header.css" />
-<link rel="stylesheet" href="css/footer.css" />
-<link rel="stylesheet" href="css/register_admin.css" />
-<link rel="stylesheet" href="css/login.css" />
-<link rel="stylesheet" href="css/item_list.css" />
-<link rel="stylesheet" href="css/item_detail.css" />
-<link rel="stylesheet" href="css/cart_list.css" />
-<link rel="stylesheet" href="css/order_confirm.css" />
-<link rel="stylesheet" href="css/order_finished.css" />
-<link rel="stylesheet" href="css/responsive.css" />
+<link rel="stylesheet" th:href="@{/css/common.css}" />
+<link rel="stylesheet" th:href="@{/css/header.css}" />
+<link rel="stylesheet" th:href="@{/css/footer.css}" />
+<link rel="stylesheet" th:href="@{/css/register_admin.css}" />
+<link rel="stylesheet" th:href="@{/css/login.css}" />
+<link rel="stylesheet" th:href="@{/css/item_list.css}" />
+<link rel="stylesheet" th:href="@{/css/item_detail.css}" />
+<link rel="stylesheet" th:href="@{/css/cart_list.css}" />
+<link rel="stylesheet" th:href="@{/css/order_confirm.css}" />
+<link rel="stylesheet" th:href="@{/css/order_finished.css}" />
+<link rel="stylesheet" th:href="@{/css/responsive.css}" />
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -31,17 +31,15 @@
 		<div class="container">
 			<div class="header">
 				<div class="header-left">
-					<a href="top.html"> <img th:src="@{/img_toy/header_logo.png}" /></a>
+					<a href="top.html"> <img class="logo"
+						th:src="@{/img_toy/header_logo.png}" /></a>
 				</div>
-
 				<div class="header-right">
 					<a th:href="@{/showItemList/}">商品一覧</a> <a
 						th:href="@{/insertUser/toInsert}">会員登録</a> <a href="#"><i
 						class="fas fa-shopping-cart"></i>カート</a> <a th:href="@{/login}"
 						class="login"> <i class="fas fa-sign-in-alt"></i>ログイン
 					</a>
-					<!-- 実装することがあれば書く、ないなら消す -->
-					<a href="order_history.html">注文履歴</a>
 				</div>
 			</div>
 		</div>
@@ -157,58 +155,60 @@
 						</label>
 					</div>
 				</div>
+				<h2 class="page-title">お支払い方法</h2>
+				<div class="row order-confirm-payment-method">
+					<label class="order-confirm-payment-method-radio"> <span
+						th:errors="*{paymentMethod}" style="color: red"></span> <input
+						name="paymentMethod" type="radio" value="1" checked="checked"
+						th:field="*{paymentMethod}" /> <span>代金引換</span>
+					</label> <label class="order-confirm-payment-method-radio"> <span
+						th:errors="*{paymentMethod}" style="color: red"></span> <input
+						name="paymentMethod" type="radio" value="2"
+						th:field="*{paymentMethod}" /> <span>クレジットカード</span>
+					</label> <br> <span>クレジットカード番号：</span> <input type="text"
+						name="card_number" id="card_number"> <span>有効期限：</span> <select
+						class="browser-default" name="card_exp_month">
+						<option value="" disabled selected>選択して下さい</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+					</select>月<select class="browser-default" name="card_exp_year">
+						<option value="" disabled selected>選択して下さい</option>
+						<option value="2022">2022</option>
+						<option value="2023">2023</option>
+						<option value="2024">2024</option>
+						<option value="2025">2025</option>
+						<option value="2026">2026</option>
+						<option value="2027">2027</option>
+						<option value="2028">2028</option>
+						<option value="2029">2029</option>
+						<option value="2030">2030</option>
+						<option value="2031">2031</option>
+						<option value="2032">2032</option>
+					</select>年<br> <span>カード名義人：</span> <input type="text" name="card_name"
+						id="card_name"><br> <span>セキュリティコード：</span> <input
+						type="text" name="card_cvv" id="card_cvv">
+
+				</div>
+				<div class="row order-confirm-btn">
+					<button class="btn">
+						<span>この内容で注文する</span>
+					</button>
+				</div>
 			</form>
-			<h2 class="page-title">お支払い方法</h2>
-			<div class="row order-confirm-payment-method">
-				<label class="order-confirm-payment-method-radio"> <span
-					th:errors="*{paymentMethod}" style="color: red"></span> <input
-					name="paymentMethod" type="radio" value="1" checked="checked"
-					th:field="*{paymentMethod}" /> <span>代金引換</span>
-				</label> <label class="order-confirm-payment-method-radio"> <span
-					th:errors="*{paymentMethod}" style="color: red"></span> <input
-					name="paymentMethod" type="radio" value="2"
-					th:field="*{paymentMethod}" /> <span>クレジットカード</span>
-				</label><br> <span>クレジットカード番号：</span> <input type="text"
-					name="card_number" id="card_number"> <span>有効期限：</span> <select
-					class="browser-default" name="card_exp_month">
-					<option value="" disabled selected>選択して下さい</option>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
-					<option value="10">10</option>
-					<option value="11">11</option>
-					<option value="12">12</option>
-				</select>月<select class="browser-default" name="card_exp_year">
-					<option value="" disabled selected>選択して下さい</option>
-					<option value="2022">2022</option>
-					<option value="2023">2023</option>
-					<option value="2024">2024</option>
-					<option value="2025">2025</option>
-					<option value="2026">2026</option>
-					<option value="2027">2027</option>
-					<option value="2028">2028</option>
-					<option value="2029">2029</option>
-					<option value="2030">2030</option>
-					<option value="2031">2031</option>
-					<option value="2032">2032</option>
-				</select>年<br> <span>カード名義人：</span> <input type="text" name="card_name"
-					id="card_name"><br> <span>セキュリティコード：</span> <input
-					type="text" name="card_cvv" id="card_cvv">
-			</div>
-			<div class="row order-confirm-btn">
-				<button class="btn">
-					<span>この内容で注文する</span>
-				</button>
-			</div>
 		</div>
-		<!-- end container -->
 	</div>
+
+	<!-- end container -->
 	<!-- end top-wrapper -->
 	<footer>
 		<div class="container">

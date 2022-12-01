@@ -17,7 +17,7 @@ import jp.co.example.ecommerce_a.service.InsertUserService;
  *
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping("/insertUser")
 public class InsertUserController {
 	
 	@Autowired
@@ -48,6 +48,6 @@ public class InsertUserController {
 		BeanUtils.copyProperties(form, user);
 		user.setName(form.getLastName() + form.getFirstName());
 		insertUserService.insertUser(user);
-		return "redirect:/";
+		return "redirect:/login/";
 	}
 }
