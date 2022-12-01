@@ -3,13 +3,17 @@ package jp.co.example.ecommerce_a.controller;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.client.RestTemplate;
 
+import jp.co.example.ecommerce_a.domain.RequestCreditCardPaymentApi;
+import jp.co.example.ecommerce_a.domain.ResponseCreditCardPaymentApi;
 import jp.co.example.ecommerce_a.form.OrderForm;
 import jp.co.example.ecommerce_a.service.OrderService;
 
@@ -25,6 +29,14 @@ public class OrderController {
 
 	@Autowired
 	private OrderService orderService;
+
+	@Autowired
+	private RestTemplate restTemplate;
+
+	/**
+	 * WebAPIのURL
+	 */
+	private static final String URL = "http://153.127.48.168:8080/sample-credit-card-web-api/credit-card/payment";
 
 	/**
 	 * 注文します.
@@ -43,11 +55,34 @@ public class OrderController {
 			result.rejectValue("deliveryDate", "", "今から3時間後の日時をご入力ください");
 		}
 		
+		//クレカだったらの処理
+		if(orderForm.getPaymentMethod().equals(2)) {
+			//クレカのWebAPIを叩いてレスポンスを受け取る
+			RequestCreditCardPaymentApi requestCreditCardPaymentApi = new RequestCreditCardPaymentApi();
+			BeanUtils.copyProperties(orderForm, requestCreditCardPaymentApi);
+			ResponseCreditCardPaymentApi responseCreditCardPaymentApi = restTemplate.postForObject(URL, requestCreditCardPaymentApi, ResponseCreditCardPaymentApi.class);
+			//エラーが返ってきた時の分岐
+			if(responseCreditCardPaymentApi.getError_code().equals(responseCreditCardPaymentApi)) {
+				
+			}
+			//rejectValueでresultにセット
+			
+			
+			return "orderConfirm";
+		}
+		
+		
+		
 		if(result.hasErrors()) {
 			return "orderConfirm";
 		}
-		orderService.update(orderForm);
-		return "order_finished";
-	}
+		
+			
+		}
+
+	orderService.update(orderForm);
+
+	return"order_finished";
+}
 
 }

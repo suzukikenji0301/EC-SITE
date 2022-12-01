@@ -46,15 +46,15 @@ public class OrderForm {
 	/** オーダーID */
 	private String orderId;
 	/** クレジットカード番号 */
-	private String cardNumber;
+	private String card_number;
 	/** 有効期限（月） */
-	private String cardExpMonth;
+	private String card_exp_month;
 	/** 有効期限（年） */
-	private String cardExpYear;
+	private String card_exp_year;
 	/** クレジットカード名義人 */
-	private String cardName;
+	private String card_name;
 	/** セキュリティコード */
-	private String cardCvv;
+	private String card_cvv;
 
 	public String getDestinationName() {
 		return destinationName;
@@ -136,44 +136,44 @@ public class OrderForm {
 		this.orderId = orderId;
 	}
 
-	public String getCardNumber() {
-		return cardNumber;
+	public String getCard_number() {
+		return card_number;
 	}
 
-	public void setCardNumber(String cardNumber) {
-		this.cardNumber = cardNumber;
+	public void setCard_number(String card_number) {
+		this.card_number = card_number;
 	}
 
-	public String getCardExpMonth() {
-		return cardExpMonth;
+	public String getCard_exp_month() {
+		return card_exp_month;
 	}
 
-	public void setCardExpMonth(String cardExpMonth) {
-		this.cardExpMonth = cardExpMonth;
+	public void setCard_exp_month(String card_exp_month) {
+		this.card_exp_month = card_exp_month;
 	}
 
-	public String getCardExpYear() {
-		return cardExpYear;
+	public String getCard_exp_year() {
+		return card_exp_year;
 	}
 
-	public void setCardExpYear(String cardExpYear) {
-		this.cardExpYear = cardExpYear;
+	public void setCard_exp_year(String card_exp_year) {
+		this.card_exp_year = card_exp_year;
 	}
 
-	public String getCardName() {
-		return cardName;
+	public String getCard_name() {
+		return card_name;
 	}
 
-	public void setCardName(String cardName) {
-		this.cardName = cardName;
+	public void setCard_name(String card_name) {
+		this.card_name = card_name;
 	}
 
-	public String getCardCvv() {
-		return cardCvv;
+	public String getCard_cvv() {
+		return card_cvv;
 	}
 
-	public void setCardCvv(String cardCvv) {
-		this.cardCvv = cardCvv;
+	public void setCard_cvv(String card_cvv) {
+		this.card_cvv = card_cvv;
 	}
 
 	public Timestamp getDeliveryTimestamp() {
@@ -193,8 +193,8 @@ public class OrderForm {
 		return "OrderForm [destinationName=" + destinationName + ", destinationEmail=" + destinationEmail
 				+ ", destinationZipcode=" + destinationZipcode + ", destinationAddress=" + destinationAddress
 				+ ", distinationTel=" + distinationTel + ", deliveryDate=" + deliveryDate + ", deliveryTime="
-				+ deliveryTime + ", paymentMethod=" + paymentMethod + ", orderId=" + orderId + ", cardNumber="
-				+ cardNumber + ", cardExpMonth=" + cardExpMonth + ", cardExpYear=" + cardExpYear + ", cardName="
-				+ cardName + ", cardCvv=" + cardCvv + "]";
+				+ deliveryTime + ", paymentMethod=" + paymentMethod + ", orderId=" + orderId + ", card_number="
+				+ card_number + ", card_exp_month=" + card_exp_month + ", card_exp_year=" + card_exp_year
+				+ ", card_name=" + card_name + ", card_cvv=" + card_cvv + "]";
 	}
 }
