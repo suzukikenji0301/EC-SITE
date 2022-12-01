@@ -24,7 +24,7 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ラクラクアロハ</title>
+<title>ラクラクトイ</title>
 </head>
 
 <body>
@@ -32,7 +32,7 @@
 		<div class="container">
 			<div class="header">
 				<div class="header-left">
-					<a href="top.html"> <img class="logo" src="img/header_logo.png" />
+					<a href="top.html"> <img class="logo" th:src="@{/img_toy/header_logo.png}" />
 					</a>
 				</div>
 
@@ -76,7 +76,7 @@
 						<div class="row">
 							<div class="input-field col s6 m6 l6">
 								<p class="margin medium-small">
-									<a href="register_admin.html">ユーザー登録はこちら</a>
+									<a th:href="@{/insertUser/toInsert}">ユーザー登録はこちら</a>
 								</p>
 							</div>
 						</div>
@@ -88,8 +88,8 @@
 	<!-- end top-wrapper -->
 	<footer>
 		<div class="container">
-			<img src="img/header_logo.png" />
-			<p>アロハな気分をあなたにお届け！</p>
+			<img th:src="@{/img_toy/header_logo.png}" />
+			<p>楽しいおもちゃをあなたにお届け！</p>
 		</div>
 	</footer>
 	<!-- Compiled and minified JavaScript -->

@@ -7,7 +7,9 @@ package jp.co.example.ecommerce_a.form;
  */
 public class LoginUserForm {
 
+	/** メールアドレス */
 	private String email;
+	/** パスワード */
 	private String password;
 
 	public String getEmail() {
@@ -25,5 +27,4 @@ public class LoginUserForm {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 }

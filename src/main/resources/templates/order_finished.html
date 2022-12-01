@@ -30,7 +30,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ラクラクアロハ</title>
+    <title>ラクラクトイ</title>
   </head>
   <body>
     <header>
@@ -38,7 +38,7 @@
         <div class="header">
           <div class="header-left">
             <a href="top.html">
-              <img class="logo" src="img/header_logo.png" />
+              <img class="logo" th:src="@{/img_toy/header_logo.png}" />
             </a>
           </div>
 
@@ -49,8 +49,6 @@
             <a href="login.html" class="login">
               <i class="fas fa-sign-in-alt"></i>ログイン
             </a>
-
-            <a href="order_history.html">注文履歴</a>
           </div>
         </div>
       </div>
@@ -80,8 +78,8 @@
     <!-- end top-wrapper -->
     <footer>
       <div class="container">
-        <img src="img/header_logo.png" />
-        <p>アロハな気分をあなたにお届け！</p>
+        <img th:src="@{/img_toy/header_logo.png}" />
+        <p>楽しいおもちゃをあなたにお届け！</p>
       </div>
     </footer>
     <!-- Compiled and minified JavaScript -->

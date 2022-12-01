@@ -31,7 +31,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ラクラクアロハ</title>
+    <title>ラクラクトイ</title>
   </head>
   <body>
     <header>
@@ -39,7 +39,7 @@
         <div class="header">
           <div class="header-left">
             <a href="top.html">
-              <img class="logo" src="img/header_logo.png" />
+              <img class="logo" th:src="@{/img_toy/header_logo.png}" />
             </a>
           </div>
 
@@ -56,7 +56,7 @@
     <form
     	method="post"
     	action="login"
-    	th:action="@{/insert}"
+    	th:action="@{/insertUser/insert}"
     	th:object="${insertUserForm}"
     	>
     
@@ -182,14 +182,17 @@
       <!-- end container-->
     </div>
     </form>
+   
     <!-- end top-wrapper -->
     <footer>
       <div class="container">
-        <img src="img/header_logo.png" />
+        <img th:src="@{/img_toy/header_logo.png}" />
         <p>楽しいおもちゃをあなたにお届け！</p>
       </div>
     </footer>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  </body>
+   	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script th:src="@{/js/get_address.js}"></script>
+   </body>
 </html>
