@@ -72,7 +72,7 @@
 								height="70" />
 							<p th:text="${orderItem.item.name}"></p></td>
 							<td><span th:text="${orderItem.size}">M</span><br>
-							<span th:text="${orderItem.item.priceM}"></span>円<br>
+							<span th:if="${orderItem.size.compareTo('m')}" th:text="${#numbers.formatInteger(orderItem.item.priceM, 2, 'COMMA')}"></span><span th:if="${orderItem.compareTo('l')}" th:text="${#numbers.formatInteger(orderItem.item.priceL, 2, 'COMMA')}"></span>円<br>円<br>
 							<span th:text=${orderItem.quantity}></span>個</td>
 							<td th:each="orderTopping: ${orderItem.orderToppingList}">
 								<ul th:each="topping : ${orderTopping.topping}">
