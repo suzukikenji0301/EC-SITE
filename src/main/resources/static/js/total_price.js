@@ -23,11 +23,12 @@ $(function () {
     if (size === "m") {
       size_price = $("#priceM").text();
       topping_price = 200 * topping_count;
-    } else {
+    } else if (size === "l") {
       size_price = $("#priceL").text();
       topping_price = 300 * topping_count;
     }
-    let price = (size_price + topping_price) * toy_num;
+    let numberSizePrice = Number(size_price);
+    let price = (numberSizePrice + topping_price) * toy_num;
     $("#totalprice").text(price.toLocaleString());
   }
 });

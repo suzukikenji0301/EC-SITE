@@ -85,9 +85,9 @@
                     name="size"
                     type="radio"
                     value="m"
-                    checked="checked"
                     th:field="*{size}"
                     class="size"
+                    checked="checked"
                   />
                   <span>サイズM</span>
                   <span
@@ -102,7 +102,6 @@
                     name="size"
                     type="radio"
                     value="l"
-                    checked="checked"
                     th:field="*{size}"
                     class="size"
                   />
@@ -153,7 +152,7 @@
                 <span>&nbsp;Ｌ</span>&nbsp;&nbsp;300円(税抜)
               </div>
 
-              <span th:each="topping:${item.toppingList}">
+              <!-- <span th:each="topping:${item.toppingList}">
                 <label class="item-topping">
                   <input
                     type="checkbox"
@@ -162,14 +161,20 @@
                     th:field="*{toppingList}"
                     class="checkbox"
                   /> </label
-              ></span>
-              <span th:each="topping:${item.toppingList}" id="topping">
-                <label class="item-topping">
-                  <input type="checkbox" /><span th:text="${topping.name}"
-                    >&nbsp;</span
+              ></span> -->
+              <div>
+                <span id="topping">
+                  <label
+                    th:each="topping:${item.toppingList}"
+                    class="item-topping"
                   >
-                </label>
-              </span>
+                    <input type="checkbox" class="checkbox" /><span
+                      th:text="${topping.name}"
+                      >&nbsp;</span
+                    >
+                  </label>
+                </span>
+              </div>
             </div>
             <div class="row item-quantity">
               <div class="item-hedding item-hedding-quantity">数量</div>
@@ -226,5 +231,7 @@
     </footer>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script th:src="@{/js/total_price.js}"></script>
   </body>
 </html>
