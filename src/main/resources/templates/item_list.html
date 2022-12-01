@@ -38,12 +38,13 @@
 				</div>
 				<div class="header-right">
 					<a th:href="@{/}">商品一覧</a> <a th:href="@{/insertUser/toInsert}">会員登録</a>
-					<a th:href="@{/shopCart/showCartList}"> <i class="fas fa-shopping-cart">
-					</i>カート
-					</a><!-- <span sec:authentication="principal.user.name">山田</span>さんこんにちは！  --><span
-					sec:authorize="!isAuthenticated()"><a th:href="@{/login/}">ログイン</a></span>
-				<span sec:authorize="isAuthenticated()"><a
-					th:href="@{/logout}">ログアウト</a></span>
+					<a th:href="@{/shopCart/showCartList}"> <i
+						class="fas fa-shopping-cart"> </i>カート
+					</a>
+					<!-- <span sec:authentication="principal.user.name">山田</span>さんこんにちは！  -->
+					<span sec:authorize="!isAuthenticated()"><a
+						th:href="@{/login/}">ログイン</a></span> <span
+						sec:authorize="isAuthenticated()"><a th:href="@{/logout}">ログアウト</a></span>
 				</div>
 			</div>
 		</div>
@@ -51,8 +52,7 @@
 	<!-- search form -->
 	<div class="search-wrapper">
 		<div class="container">
-			<form method="post" class="search-form"
-				th:action="@{/serchItem}">
+			<form method="post" class="search-form" th:action="@{/serchItem}">
 				<span th:text="${result}">該当する商品がありません</span> <input type="text"
 					name="name" class="search-name-input" autocomplete="name"
 					list="itemList" />
@@ -75,8 +75,9 @@
 					<a href="item_detail.html"
 						th:href="@{/showItemDetail/showItemDetail?id=} + ${item.id}"><span
 						th:text="${item.name}"></span></a><br /> <span class="price">Ｍ</span><span
-						th:text="${item.priceM}">1,380円(税抜)</span>円<br /> <span
-						class="price">Ｌ</span><span th:text="${item.priceL}">2,380円(税抜)</span>円<br />
+						th:text="${#numbers.formatInteger(item.priceM, 2, 'COMMA')}">1,380円(税抜)</span>円<br />
+					<span class="price">Ｌ</span><span
+						th:text="${#numbers.formatInteger(item.priceL, 2, 'COMMA')}">2,380円(税抜)</span>円<br />
 				</div>
 			</div>
 		</div>
