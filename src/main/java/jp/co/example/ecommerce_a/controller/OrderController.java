@@ -42,8 +42,8 @@ public class OrderController {
 	 * 注文します.
 	 * 
 	 * @param orderForm 注文情報格納用フォーム
-	 * @param result エラー情報格納用
-	 * @return 正常系→注文完了画面へ遷移　異常系→注文確認画面へ遷移しエラー分表示
+	 * @param result    エラー情報格納用
+	 * @return 正常系→注文完了画面へ遷移 異常系→注文確認画面へ遷移しエラー分表示
 	 */
 	@PostMapping("")
 	public String order(@Validated OrderForm orderForm, BindingResult result) {
@@ -51,38 +51,35 @@ public class OrderController {
 		localDateTime = localDateTime.plusHours(3);
 		Timestamp userOrderTimestamp = orderForm.getDeliveryTimestamp();
 		LocalDateTime userOrderTime = userOrderTimestamp.toLocalDateTime();
-		if(!localDateTime.isAfter(userOrderTime)) {
+		if (!localDateTime.isAfter(userOrderTime)) {
 			result.rejectValue("deliveryDate", "", "今から3時間後の日時をご入力ください");
 		}
-		
-		//クレカだったらの処理
-		if(orderForm.getPaymentMethod().equals(2)) {
-			//クレカのWebAPIを叩いてレスポンスを受け取る
+
+		// クレカだったらの処理
+		//TODO 数値式に直す
+		//status==0だった場合の処理は必要か？
+		if (orderForm.getPaymentMethod().equals("2")) {
+			// クレカのWebAPIを叩いてレスポンスを受け取る
 			RequestCreditCardPaymentApi requestCreditCardPaymentApi = new RequestCreditCardPaymentApi();
 			BeanUtils.copyProperties(orderForm, requestCreditCardPaymentApi);
-			ResponseCreditCardPaymentApi responseCreditCardPaymentApi = restTemplate.postForObject(URL, requestCreditCardPaymentApi, ResponseCreditCardPaymentApi.class);
-			//エラーが返ってきた時の分岐
-			if(responseCreditCardPaymentApi.getError_code().equals(responseCreditCardPaymentApi)) {
-				
+			ResponseCreditCardPaymentApi responseCreditCardPaymentApi = restTemplate.postForObject(URL,
+					requestCreditCardPaymentApi, ResponseCreditCardPaymentApi.class);
+			// エラーが返ってきた時の分岐
+			if (responseCreditCardPaymentApi.getError_code().equals("E-01")) {
+				result.rejectValue("error1", "カードの有効期限を確認してください");
+			} else if (responseCreditCardPaymentApi.getError_code().equals("E-02")) {
+				result.rejectValue("error2", "セキュリティコードを確認してください");
+			} else if (responseCreditCardPaymentApi.getError_code().equals("E-03")) {
+				result.rejectValue("error3", "数値を入力してください");
+				return "orderConfirm";
 			}
-			//rejectValueでresultにセット
-			
-			
+		}
+
+		if (result.hasErrors()) {
 			return "orderConfirm";
 		}
-		
-		
-		
-		if(result.hasErrors()) {
-			return "orderConfirm";
-		}
-		
-			
-		}
 
-	orderService.update(orderForm);
-
-	return"order_finished";
-}
-
+		orderService.update(orderForm);
+		return "order_finished";
+	}
 }
