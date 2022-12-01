@@ -1,22 +1,38 @@
 package jp.co.example.ecommerce_a.form;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 public class InsertUserForm {
 
 	/** ID */
 	private Integer id;
 	/** 苗字 */
+	@NotBlank(message = "苗字の入力は必須です。")
+	@Size(max = 50, message = "苗字は10桁以内で入力してください")
 	private String lastName;
 	/** 名前 */
+	@NotBlank(message = "名前の入力は必須です。")
+	@Size(max = 50, message = "名前は10桁以内で入力してください")
 	private String firstName;
 	/** メール */
+	@NotBlank(message = "Eメールの入力は必須です。")
+	@Email(message = "Eメールの形式が不正です。")
 	private String email;
 	/** パスワード */
+	@Pattern(regexp = "^(?=.*[A-Z])(?=.*[.?/-])[a-zA-Z0-9.?/-]{8,24}$", message = "大文字、小文字、数字、記号で入力してください。")
+	@Size(min = 1, max = 127, message = "パスワードは1文字以上127文字以内で記載してください。")
 	private String password;
 	/** 郵便番号 */
+	@Pattern(regexp = "^[0-9]{3}-[0-9]{4}$", message = "郵便番号形式で入力してください。")
 	private String zipcode;
 	/** 住所 */
+	@NotBlank(message = "住所の入力は必須です。")
 	private String address;
 	/** 電話番号 */
+	@Pattern(regexp = "^0\\d{2,3}-\\d{1,4}-\\d{4}$", message = "電話番号の形式で入力してください")
 	private String telephone;
 
 	public Integer getId() {
