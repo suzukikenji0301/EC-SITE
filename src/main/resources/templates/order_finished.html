@@ -37,16 +37,16 @@
       <div class="container">
         <div class="header">
           <div class="header-left">
-            <a href="top.html">
+            <a th:href="@{/}">
               <img class="logo" th:src="@{/img_toy/header_logo.png}" />
             </a>
           </div>
 
           <div class="header-right">
-            <a href="item_list.html">商品一覧</a>
-            <a href="register_admin.html">会員登録</a>
-            <a href="#"><i class="fas fa-shopping-cart"></i>カート</a>
-            <a href="login.html" class="login">
+            <a th:href="@{/}">商品一覧</a>
+            <a th:href="@{/insertUser/toInsert}">会員登録</a>
+            <a th:href="@{/shopCart/showCartList}"><i class="fas fa-shopping-cart"></i>カート</a>
+            <a th:href="@{/login/}" class="login">
               <i class="fas fa-sign-in-alt"></i>ログイン
             </a>
           </div>
