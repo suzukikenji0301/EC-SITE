@@ -1,5 +1,8 @@
 package jp.co.example.ecommerce_a.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,19 +30,27 @@ public class OrderService {
 	 * @param orderForm 注文情報を受け取ったフォーム
 	 */
 	public void update(OrderForm orderForm) {
+		Order order = orderRepository.load(orderForm.intGetOrderId());
 		
-		 Order order = orderRepository.load(orderForm.intGetOrderId());
-		 order.setTotalPrice(order.getCalcTotalPrice());
-		 order.setDestinationName(orderForm.getDestinationName());
-		 order.setDestinationEmail(orderForm.getDestinationEmail());
-		 order.setDestinationZipcode(orderForm.getDestinationZipcode());
-		 order.setDestinationAddress(orderForm.getDestinationAddress());
-		 order.setDistinationTel(orderForm.getDistinationTel());
-		 order.setDeliveryTime(orderForm.getDeliveryTimestamp()); 
-		 if (orderForm.intGetPaymentMethod() == 1) { order.setPaymentMethod(1);
-		 order.setStatus(1); } else if (orderForm.intGetPaymentMethod() == 2) {
-		 order.setPaymentMethod(2); order.setStatus(2); }
-		 orderRepository.update(order);
+		 Date dateObj = new Date();
+		 order.setOrderDate(dateObj);
+		
+		System.out.println("おーだーidはこれ=" + order.getId());
+		order.setTotalPrice(order.getCalcTotalPrice());
+		order.setDestinationName(orderForm.getDestinationName());
+		order.setDestinationEmail(orderForm.getDestinationEmail());
+		order.setDestinationZipcode(orderForm.getDestinationZipcode());
+		order.setDestinationAddress(orderForm.getDestinationAddress());
+		order.setDistinationTel(orderForm.getDistinationTel());
+		order.setDeliveryTime(orderForm.getDeliveryTimestamp());
+		if (orderForm.intGetPaymentMethod() == 1) {
+			order.setPaymentMethod(1);
+			order.setStatus(1);
+		} else if (orderForm.intGetPaymentMethod() == 2) {
+			order.setPaymentMethod(2);
+			order.setStatus(2);
+		}
+		orderRepository.update(order);
 	}
 
 }
