@@ -115,8 +115,8 @@
         </div>
         <div class="row order-confirm-btn">
         
-        <form th:action="@{/orderConfirm/}" method="post">
-        <input type="hidden" th:value="${order.Id}">
+        <form th:action="@{/orderConfirm/orderConfirm}" method="post">
+        <input type="hidden" th:value="${order.Id}"　name="orderId">
           <button
             class="btn"
             onclick="location.href='order_confirm.html'"
