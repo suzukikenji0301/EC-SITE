@@ -57,7 +57,6 @@ public class OrderController {
 
 		// クレカだったらの処理
 		//TODO 数値式に直す
-		//status==0だった場合の処理は必要か？
 		if (orderForm.getPaymentMethod().equals("2")) {
 			// クレカのWebAPIを叩いてレスポンスを受け取る
 			RequestCreditCardPaymentApi requestCreditCardPaymentApi = new RequestCreditCardPaymentApi();
@@ -66,7 +65,7 @@ public class OrderController {
 					requestCreditCardPaymentApi, ResponseCreditCardPaymentApi.class);
 			// エラーが返ってきた時の分岐
 			if (responseCreditCardPaymentApi.getError_code().equals("E-01")) {
-				result.rejectValue("error1", "カードの有効期限を確認してください");
+				result.rejectValue("card_exp_month", "カードの有効期限を確認してください");
 			} else if (responseCreditCardPaymentApi.getError_code().equals("E-02")) {
 				result.rejectValue("error2", "セキュリティコードを確認してください");
 			} else if (responseCreditCardPaymentApi.getError_code().equals("E-03")) {
