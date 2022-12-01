@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.client.RestTemplate;
 
 import jp.co.example.ecommerce_a.domain.Order;
 import jp.co.example.ecommerce_a.form.OrderForm;
@@ -16,16 +17,9 @@ public class OrderConfirmController {
 
 	@Autowired
 	private OrderConfirmService orderConfirmService;
-
-//	/**
-//	 * WebAPIをコールするためのrestTemplate.
-//	 * 
-//	 * @return restTemplate
-//	 */
-//	@Bean
-//	public RestTemplate restTemplate() {
-//		return new RestTemplate();
-//	}
+	
+	@Autowired
+	private RestTemplate restTemplate;
 //
 //	public String post(String url, String json) {
 //		RequestEntity.BodyBuilder builder = RequestEntity.post(uri(url));
