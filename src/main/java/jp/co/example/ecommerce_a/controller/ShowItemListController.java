@@ -22,7 +22,7 @@ import jp.co.example.ecommerce_a.service.ShowItemListService;
  *
  */
 @Controller
-@RequestMapping("/showItemList")
+@RequestMapping("")
 public class ShowItemListController {
 
 	@Autowired

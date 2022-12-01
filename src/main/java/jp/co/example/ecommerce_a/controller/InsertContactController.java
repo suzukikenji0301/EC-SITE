@@ -39,7 +39,7 @@ public class InsertContactController {
 	 * お問合せ情報を登録します.
 	 * 
 	 * @param form お問い合わせフォーム
-	 * @return TOP画面にリダイレクト
+	 * @return 一覧画面にリダイレクト
 	 */
 	@PostMapping("/insertC")
 	public String insertContact(@Validated InsertContactForm form, BindingResult result, Model model) {
@@ -49,7 +49,7 @@ public class InsertContactController {
 				errorList.add(error.getDefaultMessage());
 			}
 			model.addAttribute("validationError", errorList);
-			return "user/";
+			return "item_list";
 		}
 	
 		Contact contact = new Contact();
