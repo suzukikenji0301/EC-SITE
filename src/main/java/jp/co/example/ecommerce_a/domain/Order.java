@@ -153,6 +153,33 @@ public class Order {
 		this.orderItemList = orderItemList;
 	}
 
+//	public int getTax(int num) {
+//
+//	}
+
+	public int getCalcTotalPrice() {
+		int itemPrice = 0;
+		for (OrderItem orderItem : this.orderItemList) {
+			if (orderItem.getSize().equals("m")) {
+				itemPrice = orderItem.getItem().getPriceM();
+				for (OrderTopping orderTopping : orderItem.getOrderToppingList()) {
+					itemPrice += orderTopping.getTopping().getPriceM();
+				}
+				itemPrice *= orderItem.getQuantity();
+				itemPrice *= 1.1;
+
+			} else if (orderItem.getSize().equals("l")) {
+				itemPrice = orderItem.getItem().getPriceL();
+				for (OrderTopping orderTopping : orderItem.getOrderToppingList()) {
+					itemPrice += orderTopping.getTopping().getPriceL();
+				}
+				itemPrice *= orderItem.getQuantity();
+				itemPrice *= 1.1;
+			}
+		}
+		return itemPrice;
+	}
+
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", userId=" + userId + ", status=" + status + ", totalPrice=" + totalPrice
@@ -161,7 +188,5 @@ public class Order {
 				+ destinationAddress + ", distinationTel=" + distinationTel + ", deliveryTime=" + deliveryTime
 				+ ", paymentMethod=" + paymentMethod + ", user=" + user + ", orderItemList=" + orderItemList + "]";
 	}
-
-	
 
 }
