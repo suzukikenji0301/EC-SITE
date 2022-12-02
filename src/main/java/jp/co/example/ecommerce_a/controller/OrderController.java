@@ -7,14 +7,16 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
+
+import jp.co.example.ecommerce_a.domain.LoginUser;
 import jp.co.example.ecommerce_a.domain.RequestCreditCardPaymentApi;
 import jp.co.example.ecommerce_a.domain.ResponseCreditCardPaymentApi;
-import jp.co.example.ecommerce_a.domain.LoginUser;
 import jp.co.example.ecommerce_a.form.OrderForm;
 import jp.co.example.ecommerce_a.service.OrderService;
 
@@ -27,6 +29,9 @@ import jp.co.example.ecommerce_a.service.OrderService;
 @Controller
 @RequestMapping("/order")
 public class OrderController {
+
+	@Autowired
+	private OrderConfirmController confirmController;
 
 	@Autowired
 	private OrderService orderService;
@@ -48,7 +53,7 @@ public class OrderController {
 	 */
 	@PostMapping("")
 	public String order(@Validated OrderForm orderForm, BindingResult result,
-			@AuthenticationPrincipal LoginUser loginUser) {
+			@AuthenticationPrincipal LoginUser loginUser, Model model) {
 
 		orderForm.setOrderId(String.valueOf(loginUser.getUser().getId()));
 
@@ -70,13 +75,12 @@ public class OrderController {
 		localDateTime = localDateTime.plusHours(3);
 		Timestamp userOrderTimestamp = orderForm.getDeliveryTimestamp();
 		LocalDateTime userOrderTime = userOrderTimestamp.toLocalDateTime();
-		if (!localDateTime.isAfter(userOrderTime)) {
-			result.rejectValue("deliveryDate", "", "今から3時間後の日時をご入力ください");
+		if (localDateTime.isAfter(userOrderTime)) {
+			result.rejectValue("deliveryDate", null, "今から3時間後の日時をご入力ください");
 		}
 
 		// クレカだったらの処理
-		// TODO 数値式に直す
-		if (orderForm.getIntPaymentMethod()==2) {
+		if (orderForm.getIntPaymentMethod() == 2) {
 			// クレカのWebAPIを叩いてレスポンスを受け取る
 			RequestCreditCardPaymentApi requestCreditCardPaymentApi = new RequestCreditCardPaymentApi();
 			BeanUtils.copyProperties(orderForm, requestCreditCardPaymentApi);
@@ -86,17 +90,18 @@ public class OrderController {
 			if (responseCreditCardPaymentApi.getError_code().equals("E-01")) {
 				result.rejectValue("card_exp_month", "カードの有効期限を確認してください");
 			} else if (responseCreditCardPaymentApi.getError_code().equals("E-02")) {
-				result.rejectValue("error2", "セキュリティコードを確認してください");
+				result.rejectValue("card_cvv", "セキュリティコードを確認してください");
 			} else if (responseCreditCardPaymentApi.getError_code().equals("E-03")) {
-				result.rejectValue("error3", "数値を入力してください");
-				return "orderConfirm";
+				result.rejectValue("card_number", "数値を入力してください");
 			}
 		}
 
-//		if (result.hasErrors()) {
-//			return "orderConfirm";
-//		}
-
+		if (result.hasErrors()) {
+			System.out.println("result:" + result);
+			return confirmController.orderConfirm(orderForm.getIntOrderId(), model, orderForm);
+//			return "forward:/orderConfirm/orderConfirm?orderId=" + orderForm.getOrderId();
+		}
+		System.out.println("入力値チェックOK");
 		orderService.update(orderForm);
 		return "order_finished";
 	}
