@@ -24,7 +24,7 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ラクラクトイ</title>
+<title>お問合せ確認画面</title>
 </head>
 <body>
 	<header>
@@ -41,18 +41,16 @@
 					<a th:href="@{/shopCart/showCartList}"><i
 						class="fas fa-shopping-cart"></i>カート</a> <a th:href="@{/login/}"
 						class="login"> <i class="fas fa-sign-in-alt"></i>ログイン
-					</a> <a th:href="@{/contact/InsertContact}">お問合わせ</a>
+					</a> <a href="contactForm.html">お問合わせ</a>
 				</div>
 			</div>
 		</div>
 	</header>
 	<div class="top-wrapper">
 		<div class="container">
-			<h1 class="page-title">決済が完了しました！</h1>
+			<h1 class="page-title">お問合せの送信を完了しました！</h1>
 			<div class="order-finished-thanks-message">
-				<p>この度はご注文ありがとうございます。</p>
-				<p>お支払い先は、お送りしたメールに記載してありますのでご確認ください。</p>
-				<p>メールが届かない場合は「注文履歴」からご確認ください。</p>
+				<p>この度は、お問合せありがとうございます。</p>
 			</div>
 			<form th:action="@{/}" method="get" >
 				<div class="row order-finished-btn">

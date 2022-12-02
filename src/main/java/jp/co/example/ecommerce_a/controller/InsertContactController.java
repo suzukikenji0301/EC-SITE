@@ -47,7 +47,7 @@ public class InsertContactController {
 		insertcontactService.insertContact(contact);
 //		contact.setGender(form.getGender());
 		System.out.println("送信された");
-		return "redirect:/item_list";
+		return "contact_finish";
 	}
 	
 
