@@ -26,24 +26,23 @@ import jp.co.example.ecommerce_a.repository.OrderToppingRepository;
 @Service
 @Transactional
 public class ShopCartService {
-	
+
 	@Autowired
-	private HttpSession session;  
-	
+	private HttpSession session;
+
 	@Autowired
 	private OrderRepository orderRepository;
-	
+
 	@Autowired
 	private OrderItemRepository orderItemRepository;
-	
+
 	@Autowired
 	private OrderToppingRepository orderToppingRepository;
-	
-	public Order showCartList(Integer userId) {		
+
+	public Order showCartList(Integer userId) {
 		Order order = orderRepository.findByUserIdAndStatus(userId, 0);
 		return order;
-	}
-	
+	}	
 	
 	public void insertItem(InsertCartForm insertCartForm,LoginUser loginUser) {
 		User user = null;
@@ -102,9 +101,10 @@ public class ShopCartService {
 						orderToppingRepository.insert(orderTopping);
 					}
 				}
-		}
 
-	
+		}
+	}
+
 	public void deleteItem(Integer orderItemId) {
 		orderItemRepository.deleteById(orderItemId);
 	}
