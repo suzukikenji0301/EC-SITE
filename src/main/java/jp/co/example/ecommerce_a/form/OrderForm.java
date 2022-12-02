@@ -54,6 +54,10 @@ public class OrderForm {
 	/** セキュリティコード */
 	private String card_cvv;
 
+	public int getIntPaymentMethod() {
+		return Integer.parseInt(paymentMethod);
+	}
+
 	public String getDestinationName() {
 		return destinationName;
 	}
