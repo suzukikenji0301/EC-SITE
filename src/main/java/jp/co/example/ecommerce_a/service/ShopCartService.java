@@ -46,14 +46,19 @@ public class ShopCartService {
 	
 	
 	public void insertItem(InsertCartForm insertCartForm,LoginUser loginUser) {
-		User user = loginUser.getUser();
+		User user = null;
 		Order order = null;
+
+		if(loginUser != null ) {
+			user = loginUser.getUser();
+		}
 		
 		//ユーザー情報が空でない場合のみ検索を行う.
 		if(user != null) {	
 			order = orderRepository.findByUserIdAndStatus(user.getId(), 0);
 		}
-		
+		System.out.println("インサートの処理"+session.hashCode());
+
 		if(order == null) {
 				//新規でオーダー情報を生成.
 				Order newOrder = new Order();
