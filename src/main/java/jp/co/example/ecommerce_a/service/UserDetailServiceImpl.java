@@ -41,5 +41,4 @@ public class UserDetailServiceImpl implements UserDetailsService {
 //		}
 		return new LoginUser(user, authorityList);
 	}
-
 }
