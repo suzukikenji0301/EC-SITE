@@ -76,11 +76,11 @@
                   <div class="text-center">小計</div>
                 </th>
                </tr>
-              <tr th:each="orderItem :${order.orderItemList}">
+              <tr th:each="orderItem:${order.orderItemList}">
               	
                 <td class="cart-table-th"><img
                       src="../static/img_pizza/1.jpg"
-							th:src="'../img_toy/' + ${orderItem.item.imagePath}"
+							th:src="@{/img_toy/}+${orderItem.item.imagePath}"
                       class="img-responsive img-rounded item-img-center"
                       width="70"
                       height="70"

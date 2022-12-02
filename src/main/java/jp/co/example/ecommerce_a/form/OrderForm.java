@@ -175,15 +175,9 @@ public class OrderForm {
 	}
 
 	public Timestamp getDeliveryTimestamp() {
-//		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		String str = deliveryDate + " " + deliveryTime + ":00:00";
 		Timestamp timestamp = Timestamp.valueOf(str);
-//		Timestamp timestamp = null;
-//		try {
-//			timestamp = new Timestamp(simpleDateFormat.parse(str).getTime());
-//		} catch (ParseException e) {
-//			e.printStackTrace();
-//		}
+
 		return timestamp;
 	}
 
