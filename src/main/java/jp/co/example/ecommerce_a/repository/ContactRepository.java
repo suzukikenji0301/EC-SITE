@@ -1,15 +1,12 @@
 package jp.co.example.ecommerce_a.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import jp.co.example.ecommerce_a.domain.Contact;
-import jp.co.example.ecommerce_a.domain.User;
 
 /**
  * @author kenji.suzuki
@@ -24,7 +21,7 @@ public class ContactRepository {
 	/**
 	 * Userオブジェクトを生成するローマッパー
 	 */
-	private static final RowMapper<Contact> USER_ROW_MAPPER = new BeanPropertyRowMapper<>(Contact.class);
+//	private static final RowMapper<Contact> USER_ROW_MAPPER = new BeanPropertyRowMapper<>(Contact.class);
 
 	/**
 	 * お問合せ情報を挿入します.
@@ -32,8 +29,10 @@ public class ContactRepository {
 	 * @param contact お問合せ情報
 	 */
 	public void insertContact(Contact contact) {
+		
 		SqlParameterSource param = new BeanPropertySqlParameterSource(contact);
-		String sql = "insert into contacts(name,fullName,mailAddress,telephone,gender,inquiryDetails) values(:name,:fullName,:mailAddress,:telephone,:gender,:inquiryDetails);";
+		String sql = "insert into contacts(name,fullName,mailAddress,telephone,gender,inquiryDetails) values(:name,:fullName,:mailAddress,:telePhone,:gender,:inquiryDetails);";
+		System.out.println(contact);
 		template.update(sql, param);
 	}
 }

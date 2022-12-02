@@ -1,15 +1,12 @@
 package jp.co.example.ecommerce_a.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.example.ecommerce_a.domain.Contact;
@@ -38,24 +35,20 @@ public class InsertContactController {
 	 * お問合せ情報を登録します.
 	 * 
 	 * @param form お問い合わせフォーム
-	 * @return ログイン画面にリダイレクト
+	 * @return 一覧画面にリダイレクト
 	 */
-	@RequestMapping("/insertC")
+	@PostMapping("/insertC")
 	public String insertContact(@Validated InsertContactForm form, BindingResult result, Model model) {
 		if (result.hasErrors()) {
-			List<String> errorList = new ArrayList<String>();
-			for (ObjectError error : result.getAllErrors()) {
-				errorList.add(error.getDefaultMessage());
-			}
-			model.addAttribute("validationError", errorList);
-			return "user/";
+			return toInsertContact(form);
 		}
-	
 		Contact contact = new Contact();
 		BeanUtils.copyProperties(form, contact);
-		contact.setName(form.getName() + form.getName());
 		insertcontactService.insertContact(contact);
-		return "redirect:/";
+//		contact.setGender(form.getGender());
+		System.out.println("送信された");
+		return "redirect:/item_list";
 	}
+	
 
 }
