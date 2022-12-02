@@ -32,7 +32,7 @@ public class OrderForm {
 	private String destinationAddress;
 	/** 宛先TEL */
 	@NotBlank(message = "電話番号を入力して下さい")
-	@Pattern(regexp = "/^0\\d{4}-\\d{4}-\\d{4}$/", message = "郵便番号形式にしてください")
+	@Pattern(regexp = "^\\d{3}-\\d{4}-\\d{4}$", message = "電話番号を入力して下さい")
 	private String distinationTel;
 	/** 配達日 */
 	@NotBlank(message = "配達日時を入力して下さい")
@@ -56,6 +56,10 @@ public class OrderForm {
 
 	public int getIntPaymentMethod() {
 		return Integer.parseInt(paymentMethod);
+	}
+
+	public int getIntOrderId() {
+		return Integer.parseInt(orderId);
 	}
 
 	public String getDestinationName() {

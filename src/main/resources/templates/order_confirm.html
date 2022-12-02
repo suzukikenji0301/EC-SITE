@@ -187,10 +187,9 @@
 				</label>
 				</span> <br> <span>クレジットカード番号：</span> <span
 					th:errors="*{card_exp_month}" style="color: red"></span><input
-					type="text" name="card_number" id="card_number"> <span>有効期限：</span>
+					type="text" name="card_number" id="card_number" th:field="*{card_number}"> <span>有効期限：</span>
 				<select class="browser-default" name="card_exp_month"
 					th:field="*{card_exp_month}">
-					<option value="" disabled selected>選択して下さい</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
@@ -203,8 +202,7 @@
 					<option value="10">10</option>
 					<option value="11">11</option>
 					<option value="12">12</option>
-				</select>月<select class="browser-default" name="card_exp_year">
-					<option value="" disabled selected>選択して下さい</option>
+				</select>月<select class="browser-default" name="card_exp_year" th:field="*{card_exp_year}">
 					<option value="2022">2022</option>
 					<option value="2023">2023</option>
 					<option value="2024">2024</option>
