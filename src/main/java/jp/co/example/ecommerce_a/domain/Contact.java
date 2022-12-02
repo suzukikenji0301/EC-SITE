@@ -1,5 +1,10 @@
 package jp.co.example.ecommerce_a.domain;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 /**
  * @author kenji.suzuki
  *
@@ -7,16 +12,29 @@ package jp.co.example.ecommerce_a.domain;
 public class Contact {
 
 	/** 名前 */
+	@NotBlank(message = "名前の入力は必須です。")
+	@Size(max = 50, message = "名前は10桁以内で入力してください")
 	private String name;
+
 	/** フリガナ */
+	@NotBlank(message = "フリガナの入力は必須です。")
+	@Size(max = 50, message = "フリガナは10桁以内で入力してください")
 	private String fullName;
+
 	/** メールアドレス */
+	@NotBlank(message = "Eメールの入力は必須です。")
+	@Email(message = "Eメールの形式が不正です。")
 	private String mailAddress;
+
 	/** 電話番号 */
-	private Integer telephone;
+	@Pattern(regexp = "^0\\d{2,3}-\\d{1,4}-\\d{4}$", message = "電話番号の形式で入力してください")
+	private String telePhone;
+
 	/** 性別 */
 	private String gender;
+
 	/** お問合せ内容 */
+	@NotBlank(message = "お問合せ内容の入力は必須です。")
 	private String inquiryDetails;
 
 	public String getName() {
@@ -43,12 +61,12 @@ public class Contact {
 		this.mailAddress = mailAddress;
 	}
 
-	public Integer getTelephone() {
-		return telephone;
+	public String getTelePhone() {
+		return telePhone;
 	}
 
-	public void setTelephone(Integer telephone) {
-		this.telephone = telephone;
+	public void setTelePhone(String telePhone) {
+		this.telePhone = telePhone;
 	}
 
 	public String getGender() {
@@ -69,8 +87,8 @@ public class Contact {
 
 	@Override
 	public String toString() {
-		return "Contact [name=" + name + ", fullName=" + fullName + ", mailAddress=" + mailAddress + ", telephone="
-				+ telephone + ", gender=" + gender + ", inquiryDetails=" + inquiryDetails + "]";
+		return "Contact [name=" + name + ", fullName=" + fullName + ", mailAddress=" + mailAddress + ", telePhone="
+				+ telePhone + ", gender=" + gender + ", inquiryDetails=" + inquiryDetails + "]";
 	}
 
 }
