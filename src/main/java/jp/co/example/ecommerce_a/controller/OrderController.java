@@ -53,9 +53,9 @@ public class OrderController {
 	 */
 	@PostMapping("")
 	public String order(@Validated OrderForm orderForm, BindingResult result,
-			@AuthenticationPrincipal LoginUser loginUser, Model model) {
+			@AuthenticationPrincipal LoginUser loginUser, Model model,Integer orderId) {
 
-		orderForm.setOrderId(String.valueOf(loginUser.getUser().getId()));
+		orderForm.setOrderId(String.valueOf(orderId));
 
 //		テスト用sysoutたち
 		System.out.println(orderForm.getDestinationName());

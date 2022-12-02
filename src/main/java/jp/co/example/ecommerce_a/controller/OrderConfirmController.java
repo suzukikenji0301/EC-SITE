@@ -25,6 +25,7 @@ public class OrderConfirmController {
 
 	@RequestMapping("/orderConfirm")
 	public String orderConfirm(Integer orderId, Model model, OrderForm orderForm) {
+		System.out.println(orderId);
 		Order order = orderConfirmService.orderConfirm(orderId);
 		double tax = order.getCalcTotalPrice();
 		tax = tax / 1.1;
