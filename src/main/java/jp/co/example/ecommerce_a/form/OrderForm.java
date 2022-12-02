@@ -1,8 +1,6 @@
 package jp.co.example.ecommerce_a.form;
 
 import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

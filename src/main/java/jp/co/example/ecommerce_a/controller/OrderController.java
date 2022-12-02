@@ -93,9 +93,9 @@ public class OrderController {
 			}
 		}
 
-		if (result.hasErrors()) {
-			return "orderConfirm";
-		}
+//		if (result.hasErrors()) {
+//			return "orderConfirm";
+//		}
 
 		orderService.update(orderForm);
 		return "order_finished";
