@@ -105,11 +105,11 @@
 
 			<div class="row cart-total-price">
 				<div>
-					消費税：<span th:text="${#numbers.formatInteger(tax, 2, 'COMMA')}"></span>円
+					消費税：<span th:text="${#numbers.formatInteger(tax, 1, 'COMMA')}"></span>円
 				</div>
 				<div>
 					ご注文金額合計：<span
-						th:text="${#numbers.formatInteger(totalPrice, 2, 'COMMA')}"></span>円
+						th:text="${#numbers.formatInteger(totalPrice, 1, 'COMMA')}"></span>円
 					(税込)
 				</div>
 			</div>
