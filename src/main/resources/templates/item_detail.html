@@ -42,10 +42,10 @@
 					<a th:href="@{/shopCart/showCartList}"> <i class="fas fa-shopping-cart">
 					</i>カート
 					</a>
-					<!-- パス改修の余地あり -->
 					<a th:href="@{/login/}" class="login"> <i
 						class="fas fa-sign-in-alt"></i>ログイン
 					</a>
+					<a href="contactForm.html">お問合わせ</a>
 				</div>
 			</div>
 		</div>
@@ -89,7 +89,7 @@
 						<div>
 							<span id="topping"> <label
 								th:each="topping:${item.toppingList}" class="item-topping">
-									<input type="checkbox" class="checkbox" /><span
+									<input type="checkbox" class="checkbox" th:value="${topping.id}" name="toppingList" /><span
 									th:text="${topping.name}">&nbsp;</span>
 							</label>
 							</span>

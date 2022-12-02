@@ -208,16 +208,30 @@ public class OrderRepository {
 		return orderList;
 	}
 
+//	修正前　保存用
+//	public void update(Order order) {
+//		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
+//		StringBuilder updateSqlBuilder = new StringBuilder("UPDATE orders");
+//		updateSqlBuilder.append("SET user_id=:userId, status=:status, total_price=:totalPrice, ");
+//		updateSqlBuilder.append(
+//				"order_date=:orderDate, destination_name=:destinationName, destination_email=:destinationEmail, ");
+//		updateSqlBuilder.append("destination_zipcode=:destinationZipcode, destination_address=:destinationAddress, ");
+//		updateSqlBuilder.append(
+//				"destination_tel=:distinationTel, delivery_time=:deliveryTime, payment_method=:paymentMethod, ");
+//		updateSqlBuilder.append("WHERE id=:id;");
+//		template.update(updateSqlBuilder.toString(), param);
+//	}
+	
+	
 	public void update(Order order) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
-		StringBuilder updateSqlBuilder = new StringBuilder("UPDATE orders");
-		updateSqlBuilder.append("SET user_id=:userId, status=:status, total_price=:totalPrice, ");
+		StringBuilder updateSqlBuilder = new StringBuilder("UPDATE orders ");
+		updateSqlBuilder.append("SET status=:status, total_price=:totalPrice, ");
 		updateSqlBuilder.append(
 				"order_date=:orderDate, destination_name=:destinationName, destination_email=:destinationEmail, ");
 		updateSqlBuilder.append("destination_zipcode=:destinationZipcode, destination_address=:destinationAddress, ");
-		updateSqlBuilder.append(
-				"destination_tel=:distinationTel, delivery_time=:deliveryTime, payment_method=:paymentMethod, ");
-		updateSqlBuilder.append("WHERE id=:id;");
+		updateSqlBuilder.append("destination_tel=:distinationTel, delivery_time=:deliveryTime, payment_method=:paymentMethod ");
+		updateSqlBuilder.append("WHERE id=:id");
 		template.update(updateSqlBuilder.toString(), param);
 	}
 
@@ -236,6 +250,10 @@ public class OrderRepository {
 				+ "LEFT OUTER JOIN toppings t ON ot.topping_id = t.id WHERE o.id = :orderId;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("orderId", orderId);
 		List<Order> orderList = template.query(sql, param, ORDER_RESULT_SET_EXTRACTOR);
+		
+		if(orderList.isEmpty()) {
+			return null;
+		}
 		return orderList.get(0);
 	}
 }

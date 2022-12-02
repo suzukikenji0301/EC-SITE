@@ -40,8 +40,13 @@ public class ShopCartController {
 	 */
 	@GetMapping("/showCartList")
 	private String showCartList(Model model,@AuthenticationPrincipal LoginUser loginUser) {
-		User user = loginUser.getUser();
+		
+		User user = null;
 		Order order = null;
+
+		if(loginUser != null) {
+			user = loginUser.getUser();
+		}
 		
 		if(user != null) { 
 			order = shopCartService.showCartList(user.getId()); }
@@ -49,7 +54,10 @@ public class ShopCartController {
 			order = shopCartService.showCartList(session.hashCode()); 
 		}
 		
-		model.addAttribute(order);
+		System.out.println("コントローラーの処理"+session.hashCode());
+		
+		System.out.println("--------------"+order.toString());
+		model.addAttribute("order",order);
 		return "cart_list";
 	}
 	

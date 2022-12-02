@@ -45,9 +45,7 @@
 				<div class="header-right">
 					<a th:href="@{/}">商品一覧</a> <a
 						th:href="@{/insertUser/toInsert}">会員登録</a>
-					<!-- これリンクいる？ -->
 					<a th:href="@{/shopCart/showCartList}"><i class="fas fa-shopping-cart"></i>カート</a>
-					<!-- パス改修の余地あり -->
 					<a th:href="@{/login/}" class="login"> <i
 						class="fas fa-sign-in-alt"></i>ログイン
 					</a>
@@ -78,16 +76,17 @@
                   <div class="text-center">小計</div>
                 </th>
                </tr>
-              <tr th:each="orderItem :${order.orderItemList}">
+              <tr th:each="orderItem:${order.orderItemList}">
               	
                 <td class="cart-table-th"><img
                       src="../static/img_pizza/1.jpg"
-							th:src="'../img_toy/' + ${orderItem.item.imagePath}"
+							th:src="@{/img_toy/}+${orderItem.item.imagePath}"
                       class="img-responsive img-rounded item-img-center"
                       width="70"
                       height="70"
                     /><p th:text="${orderItem.item.name}"></p></td>
                 <td><span th:text="${orderItem.size}">M</span><br><span th:text="${orderItem.item.priceM}"></span>円<br><span th:text=${orderItem.quantity}></span>個</td>
+                
                 <td th:each="orderTopping: ${orderItem.orderToppingList}">
 				<ul th:each="topping : ${orderTopping.topping}">
 					<li th:text="${topping.name}"></li>
@@ -115,8 +114,8 @@
         </div>
         <div class="row order-confirm-btn">
         
-        <form th:action="@{/orderConfirm/}" method="post">
-        <input type="hidden" th:value="${order.Id}">
+        <form th:action="@{/orderConfirm/orderConfirm}" method="post">
+        <input type="hidden" th:value="${order.Id}" name="orderId">
           <button
             class="btn"
             onclick="location.href='order_confirm.html'"

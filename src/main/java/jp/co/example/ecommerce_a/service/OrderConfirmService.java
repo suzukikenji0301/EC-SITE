@@ -25,7 +25,6 @@ public class OrderConfirmService {
 	 */
 	public Order orderConfirm(Integer orderId) {
 		Order order = orderRepository.load(orderId);
-		System.out.println(orderId);
 		return order;
 	}
 }

@@ -1,8 +1,6 @@
 package jp.co.example.ecommerce_a.form;
 
 import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -45,6 +43,16 @@ public class OrderForm {
 	private String paymentMethod;
 	/** オーダーID */
 	private String orderId;
+	/** クレジットカード番号 */
+	private String card_number;
+	/** 有効期限（月） */
+	private String card_exp_month;
+	/** 有効期限（年） */
+	private String card_exp_year;
+	/** クレジットカード名義人 */
+	private String card_name;
+	/** セキュリティコード */
+	private String card_cvv;
 
 	public String getDestinationName() {
 		return destinationName;
@@ -126,15 +134,50 @@ public class OrderForm {
 		this.orderId = orderId;
 	}
 
+	public String getCard_number() {
+		return card_number;
+	}
+
+	public void setCard_number(String card_number) {
+		this.card_number = card_number;
+	}
+
+	public String getCard_exp_month() {
+		return card_exp_month;
+	}
+
+	public void setCard_exp_month(String card_exp_month) {
+		this.card_exp_month = card_exp_month;
+	}
+
+	public String getCard_exp_year() {
+		return card_exp_year;
+	}
+
+	public void setCard_exp_year(String card_exp_year) {
+		this.card_exp_year = card_exp_year;
+	}
+
+	public String getCard_name() {
+		return card_name;
+	}
+
+	public void setCard_name(String card_name) {
+		this.card_name = card_name;
+	}
+
+	public String getCard_cvv() {
+		return card_cvv;
+	}
+
+	public void setCard_cvv(String card_cvv) {
+		this.card_cvv = card_cvv;
+	}
+
 	public Timestamp getDeliveryTimestamp() {
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		String str = deliveryDate + deliveryTime + ":00:00";
-		Timestamp timestamp = null;
-		try {
-			timestamp = new Timestamp(simpleDateFormat.parse(str).getTime());
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		String str = deliveryDate + " " + deliveryTime + ":00:00";
+		Timestamp timestamp = Timestamp.valueOf(str);
+
 		return timestamp;
 	}
 
@@ -143,7 +186,8 @@ public class OrderForm {
 		return "OrderForm [destinationName=" + destinationName + ", destinationEmail=" + destinationEmail
 				+ ", destinationZipcode=" + destinationZipcode + ", destinationAddress=" + destinationAddress
 				+ ", distinationTel=" + distinationTel + ", deliveryDate=" + deliveryDate + ", deliveryTime="
-				+ deliveryTime + ", paymentMethod=" + paymentMethod + ", orderId=" + orderId + "]";
+				+ deliveryTime + ", paymentMethod=" + paymentMethod + ", orderId=" + orderId + ", card_number="
+				+ card_number + ", card_exp_month=" + card_exp_month + ", card_exp_year=" + card_exp_year
+				+ ", card_name=" + card_name + ", card_cvv=" + card_cvv + "]";
 	}
-
 }
