@@ -120,7 +120,11 @@
           <div class="error" th:errors="*{address}" style="color:red">住所を入力して下さい</div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="address" type="text" size="50" th:field="*{address}">
+              <input id="address" 
+              type="text" 
+              size="50" 
+              th:field="*{address}"
+              placeholder="例）東京都渋谷区〇〇-〇〇-〇〇ビル" >
               <label for="address" >住所</label>
             </div>
           </div>
@@ -129,7 +133,7 @@
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="tel" type="tel" th:field="*{telephone}"/>
+              <input id="tel" type="tel" th:field="*{telephone}" placeholder="例）090-1234-5678" />
               <label for="tel">電話番号</label>
             </div>
           </div>
@@ -142,6 +146,7 @@
                 id="password"
                 type="password"
                 class="validate"
+                placeholder="8文字以上、大文字、小文字、数字、記号で入力してください。" 
                 minlength="8" />
               <label for="password">パスワード</label>
             </div>

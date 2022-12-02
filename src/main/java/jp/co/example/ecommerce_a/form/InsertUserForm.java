@@ -23,7 +23,7 @@ public class InsertUserForm {
 	private String email;
 	/** パスワード */
 	@Pattern(regexp = "^(?=.*[A-Z])(?=.*[.?/-])[a-zA-Z0-9.?/-]{8,24}$", message = "大文字、小文字、数字、記号で入力してください。")
-	@Size(min = 1, max = 127, message = "パスワードは1文字以上127文字以内で記載してください。")
+	@Size(min = 8, max = 127, message = "パスワードは8文字以上127文字以内で記載してください。")
 	private String password;
 	/** 郵便番号 */
 	@Pattern(regexp = "^[0-9]{3}-[0-9]{4}$", message = "郵便番号形式で入力してください。")
