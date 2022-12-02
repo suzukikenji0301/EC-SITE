@@ -230,8 +230,8 @@ public class OrderRepository {
 		updateSqlBuilder.append(
 				"order_date=:orderDate, destination_name=:destinationName, destination_email=:destinationEmail, ");
 		updateSqlBuilder.append("destination_zipcode=:destinationZipcode, destination_address=:destinationAddress, ");
-		updateSqlBuilder.append("destination_tel=:distinationTel, delivery_time=:deliveryTime, payment_method=:paymentMethod");
-//		updateSqlBuilder.append("WHERE id=:id");
+		updateSqlBuilder.append("destination_tel=:distinationTel, delivery_time=:deliveryTime, payment_method=:paymentMethod ");
+		updateSqlBuilder.append("WHERE id=:id");
 		template.update(updateSqlBuilder.toString(), param);
 	}
 
