@@ -21,10 +21,10 @@ $(function () {
     let size_price = 0;
     let topping_price = 0;
     if (size === "m") {
-      size_price = $("#priceM").text();
+      size_price = $("#priceM").val();
       topping_price = 200 * topping_count;
     } else if (size === "l") {
-      size_price = $("#priceL").text();
+      size_price = $("#priceL").val();
       topping_price = 300 * topping_count;
     }
     let numberSizePrice = Number(size_price);
