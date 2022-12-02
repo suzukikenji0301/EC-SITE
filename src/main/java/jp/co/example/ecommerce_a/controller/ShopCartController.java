@@ -25,13 +25,13 @@ import jp.co.example.ecommerce_a.service.ShopCartService;
 @Controller
 @RequestMapping("/shopCart")
 public class ShopCartController {
-	
+
 	@Autowired
-	private HttpSession session;  
-	
+	private HttpSession session;
+
 	@Autowired
 	private ShopCartService shopCartService;
-	
+
 	/**
 	 * 一覧を表示します.
 	 * 
@@ -39,28 +39,36 @@ public class ShopCartController {
 	 * @return
 	 */
 	@GetMapping("/showCartList")
-	private String showCartList(Model model,@AuthenticationPrincipal LoginUser loginUser) {
-		
+	private String showCartList(Model model, @AuthenticationPrincipal LoginUser loginUser) {
+
 		User user = null;
 		Order order = null;
 
-		if(loginUser != null) {
+		if (loginUser != null) {
 			user = loginUser.getUser();
 		}
-		
-		if(user != null) { 
-			order = shopCartService.showCartList(user.getId()); }
-		else{ 
-			order = shopCartService.showCartList(session.hashCode()); 
+
+		if (user != null) {
+			order = shopCartService.showCartList(user.getId());
+		} else {
+			order = shopCartService.showCartList(session.hashCode());
 		}
-		
-		System.out.println("コントローラーの処理"+session.hashCode());
-		
-		System.out.println("--------------"+order.toString());
-		model.addAttribute("order",order);
+
+		System.out.println("コントローラーの処理" + session.hashCode());
+
+		System.out.println("--------------" + order.toString());
+
+		double tax = order.getCalcTotalPrice();
+		tax = tax / 1.1;
+		tax = tax * 0.1;
+		model.addAttribute("order", order);
+		model.addAttribute("tax", tax);
+		model.addAttribute("totalPrice", order.getCalcTotalPrice());
+
+		model.addAttribute("order", order);
 		return "cart_list";
 	}
-	
+
 	/**
 	 * オーダーアイテム情報の追加を行います.
 	 * 
@@ -68,7 +76,8 @@ public class ShopCartController {
 	 * @return
 	 */
 	@PostMapping("/insertItem")
-	private String insertItem(InsertCartForm insertCartForm,Integer itemId,@AuthenticationPrincipal LoginUser loginUser) {
+	private String insertItem(InsertCartForm insertCartForm, Integer itemId,
+			@AuthenticationPrincipal LoginUser loginUser) {
 		insertCartForm.setItemId(itemId);
 		insertCartForm.setQuantity(insertCartForm.getQuantity());
 		insertCartForm.setSize(insertCartForm.getSize());
@@ -76,7 +85,7 @@ public class ShopCartController {
 		shopCartService.insertItem(insertCartForm, loginUser);
 		return "redirect:/shopCart/showCartList";
 	}
-	
+
 	/**
 	 * オーダーアイテム情報を削除します.
 	 * 
