@@ -99,7 +99,6 @@ public class OrderController {
 		if (result.hasErrors()) {
 			System.out.println("result:" + result);
 			return confirmController.orderConfirm(orderForm.getIntOrderId(), model, orderForm);
-//			return "forward:/orderConfirm/orderConfirm?orderId=" + orderForm.getOrderId();
 		}
 		System.out.println("入力値チェックOK");
 		orderService.update(orderForm);

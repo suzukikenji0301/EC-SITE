@@ -3,7 +3,6 @@ package jp.co.example.ecommerce_a.service;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -84,7 +83,7 @@ public class ShopCartService {
 				orderTopping.setOrderItemId(orderItem.getId());
 				orderToppingRepository.insert(orderTopping);
 			}
-
+			
 		} else {
 			// 既存のオーダー情報に紐づくOrderItem情報を新規で作成.
 			OrderItem orderItem = new OrderItem();
@@ -102,6 +101,7 @@ public class ShopCartService {
 			}
 		}
 	}
+	
 	public void deleteItem(Integer orderItemId) {
 		orderItemRepository.deleteById(orderItemId);
 	}
