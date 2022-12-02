@@ -70,12 +70,10 @@
 						<div>
 							<label> <input name="size" type="radio" value="m"
 								th:field="*{size}" class="size" checked="checked" />
-								<span>サイズM</span> <span th:text="${item.priceM}"
-								id="priceM"></span>円
+								<span>サイズM</span><span th:text="${#numbers.formatInteger(item.priceM, 1, 'COMMA')}" id="priceM" style="font-size: 18px; color: black;" ></span>円
 							</label> <label> <input name="size" type="radio" value="l"
 								th:field="*{size}" class="size" /> <span>サイズL</span>
-								<span> <span th:text="${item.priceL}"
-									id="priceL"></span>円
+								<span><span th:text="${#numbers.formatInteger(item.priceL, 1, 'COMMA')}" id="priceL" style="font-size: 18px; color: black;" ></span>円
 							</span>
 							</label> 
 						</div>
