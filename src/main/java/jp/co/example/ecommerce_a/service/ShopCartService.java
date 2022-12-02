@@ -101,7 +101,7 @@ public class ShopCartService {
 				orderToppingRepository.insert(orderTopping);
 			}
 		}
-
+	}
 	public void deleteItem(Integer orderItemId) {
 		orderItemRepository.deleteById(orderItemId);
 	}
