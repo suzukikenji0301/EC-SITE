@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <!--Import Google Icon Font-->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -42,9 +42,9 @@
 					<a th:href="@{/shopCart/showCartList}"> <i class="fas fa-shopping-cart">
 					</i>カート
 					</a>
-					<a th:href="@{/login/}" class="login"> <i
-						class="fas fa-sign-in-alt"></i>ログイン
-					</a>
+					<span sec:authorize="!isAuthenticated()"><a
+						th:href="@{/login/}">ログイン</a></span> <span
+						sec:authorize="isAuthenticated()"><a th:href="@{/logout}">ログアウト</a></span>
 					<a th:href="@{/contact/InsertContact}">お問合わせ</a>
 				</div>
 			</div>
@@ -70,12 +70,10 @@
 						<div>
 							<label> <input name="size" type="radio" value="m"
 								th:field="*{size}" class="size" checked="checked" />
-								<span>サイズM</span> <span th:text="${item.priceM}"
-								id="priceM"></span>円
+								<span>サイズM</span><span th:text="${#numbers.formatInteger(item.priceM, 1, 'COMMA')}" id="priceM" style="font-size: 18px; color: black;" ></span>円
 							</label> <label> <input name="size" type="radio" value="l"
 								th:field="*{size}" class="size" /> <span>サイズL</span>
-								<span> <span th:text="${item.priceL}"
-									id="priceL"></span>円
+								<span><span th:text="${#numbers.formatInteger(item.priceL, 1, 'COMMA')}" id="priceL" style="font-size: 18px; color: black;" ></span>円
 							</span>
 							</label> 
 						</div>
@@ -102,7 +100,7 @@
 							<div class="input-field col s12">
 								<select class="browser-default" name="quantity"
 									th:field="*{quantity}" id="toynum">
-									<option value="" selected>選択して下さい</option>
+									<option value="" disabled selected>選択して下さい</option>
 									<option value="1">1</option>
 									<option value="2">2</option>
 									<option value="3">3</option>

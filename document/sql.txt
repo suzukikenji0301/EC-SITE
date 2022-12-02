@@ -28,6 +28,16 @@ create table items (
   , deleted boolean default false not null
 ) ;
 
+-- お問合せ
+create table contacts (
+ id serial primary key
+ , name varchar(100) not null
+ ,fullName varchar(100) not null
+ , mailAddress varchar(100) not null unique
+ , telephone text not null
+ , gender text not null
+ , inquiryDetails varchar(500) not null
+) ;
 
 insert into items values(1, 'ビニールプール', '製品サイズ:(約)幅157×奥行157×高さ122cm
 材質:塩化ビニル樹脂(非フタル酸系可塑剤使用)

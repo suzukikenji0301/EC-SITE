@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <!--Import Google Icon Font-->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -36,9 +36,9 @@
 				</div>
 				<div class="header-right">
 					<a th:href="@{/}">商品一覧</a> <a th:href="@{/insertUser/toInsert}">会員登録</a>
-					<a th:href="@{/shopCart/showCartList}"><i class="fas fa-shopping-cart"></i>カート</a> <a
-						th:href="@{/login/}" class="login"> <i class="fas fa-sign-in-alt"></i>ログイン
-					</a>
+					<a th:href="@{/shopCart/showCartList}"><i class="fas fa-shopping-cart"></i>カート</a> <span sec:authorize="!isAuthenticated()"><a
+						th:href="@{/login/}">ログイン</a></span> <span
+						sec:authorize="isAuthenticated()"><a th:href="@{/logout}">ログアウト</a></span>
 					<a th:href="@{/contact/InsertContact}">お問合わせ</a>
 				</div>
 			</div>
@@ -49,7 +49,7 @@
 			<h1 class="page-title">注文確認画面</h1>
 			<!-- table -->
 			<div class="row">
-				<table class="striped">
+				<table class="table table-striped item-list-table">
 					<thead>
 						<tr>
 							<th>
@@ -72,7 +72,7 @@
 								class="img-responsive img-rounded item-img-center" width="70"
 								height="70" />
 								<p th:text="${orderItem.item.name}"></p></td>
-							<td><span th:text="${orderItem.size}">M</span><br> <!-- 							<span th:if="${orderItem.size.compareTo(‘m’)}" th:text="${#numbers.formatInteger(orderItem.item.priceM, 2, ‘COMMA’)}"></span><span th:if="${orderItem.compareTo(‘l’)}" th:text="${#numbers.formatInteger(orderItem.item.priceL, 2, ‘COMMA’)}"></span>円<br>円<br>
+							<td><span th:text="${orderItem.size}">M</span>サイズ<br> <!-- 							<span th:if="${orderItem.size.compareTo(‘m’)}" th:text="${#numbers.formatInteger(orderItem.item.priceM, 2, ‘COMMA’)}"></span><span th:if="${orderItem.compareTo(‘l’)}" th:text="${#numbers.formatInteger(orderItem.item.priceL, 2, ‘COMMA’)}"></span>円<br>円<br>
  --> <span th:text=${orderItem.quantity}></span>個</td>
 							<td th:each="orderTopping:${orderItem.orderToppingList}">
 								<ul th:each="topping:${orderTopping.topping}">
