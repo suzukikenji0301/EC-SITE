@@ -76,7 +76,7 @@ public class OrderController {
 
 		// クレカだったらの処理
 		// TODO 数値式に直す
-		if (orderForm.getPaymentMethod().equals("2")) {
+		if (orderForm.getIntPaymentMethod()==2) {
 			// クレカのWebAPIを叩いてレスポンスを受け取る
 			RequestCreditCardPaymentApi requestCreditCardPaymentApi = new RequestCreditCardPaymentApi();
 			BeanUtils.copyProperties(orderForm, requestCreditCardPaymentApi);
