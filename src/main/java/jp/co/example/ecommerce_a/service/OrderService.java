@@ -30,6 +30,7 @@ public class OrderService {
 	 * @param orderForm 注文情報を受け取ったフォーム
 	 */
 	public void update(OrderForm orderForm) {
+		System.out.println(orderForm.intGetOrderId());
 		Order order = orderRepository.load(orderForm.intGetOrderId());
 		
 		 Date dateObj = new Date();

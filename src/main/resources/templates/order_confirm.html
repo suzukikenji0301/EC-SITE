@@ -93,6 +93,7 @@
 		</div>
 
 		<form method="post" th:action="@{/order}" th:object="${orderForm}">
+			<input type="hidden" name="orderId" th:value=${order.id}>
 			<h2 class="page-title">お届け先情報</h2>
 			<div class="order-confirm-delivery-info">
 				<div class="row">
