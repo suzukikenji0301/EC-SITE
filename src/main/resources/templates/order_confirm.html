@@ -39,7 +39,7 @@
 					<a th:href="@{/shopCart/showCartList}"><i class="fas fa-shopping-cart"></i>カート</a> <a
 						th:href="@{/login/}" class="login"> <i class="fas fa-sign-in-alt"></i>ログイン
 					</a>
-					<a href="contactForm.html">お問合わせ</a>
+					<a th:href="@{/contact/InsertContact}">お問合わせ</a>
 				</div>
 			</div>
 		</div>
@@ -110,14 +110,18 @@
 					</div>
 				</div>
 				<div class="row">
-					<div th:errors="*{destinationZipcode}" style="color: red"></div>
 					<div class="input-field">
-						<input id="zipcode" type="text" maxlength="8"
-							th:field="*{destinationZipcode}" /> <label
-							for="zipcode">郵便番号</label>
-						<button class="btn" type="button">
-							<span>住所検索</span>
-						</button>
+					<div th:errors="*{destinationZipcode}" style="color: red"></div>
+					<input id="zipcode" 
+             			 type="text" 
+             			 size="8"
+             			 th:field="*{destinationZipcode}"
+             			 maxlength="8" />
+             		 <label for="zipcode">郵便番号(ハイフン含む)</label>
+             		 <button id="get_address_btn" 
+              			type="button" >
+              		  <span>住所検索</span>
+					</button>
 					</div>
 				</div>
 				<div class="row">
