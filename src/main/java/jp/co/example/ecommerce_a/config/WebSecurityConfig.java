@@ -21,7 +21,7 @@ public class WebSecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		
 
-		http.authorizeRequests().antMatchers("/", "/insertUser/toInsert", "/insertUser/insert","/login/", "/showItemDetail/showItemDetail","/contact/InsertContact").permitAll().anyRequest().authenticated();
+		http.authorizeRequests().antMatchers("/", "/insertUser/toInsert", "/insertUser/insert","/login/", "/showItemDetail/showItemDetail","/contact/InsertContact","/contact/insertC").permitAll().anyRequest().authenticated();
 
 		http.formLogin() // ログインに関する設定
 				.loginPage("/login/") // ログイン画面に遷移させるパス(ログイン認証が必要なパスを指定してかつログインされていないとこのパスに遷移される)

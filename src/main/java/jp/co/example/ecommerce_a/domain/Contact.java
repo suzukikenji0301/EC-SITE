@@ -15,28 +15,28 @@ public class Contact {
 	@NotBlank(message = "名前の入力は必須です。")
 	@Size(max = 50, message = "名前は10桁以内で入力してください")
 	private String name;
-	
+
 	/** フリガナ */
 	@NotBlank(message = "フリガナの入力は必須です。")
 	@Size(max = 50, message = "フリガナは10桁以内で入力してください")
 	private String fullName;
-	
+
 	/** メールアドレス */
 	@NotBlank(message = "Eメールの入力は必須です。")
 	@Email(message = "Eメールの形式が不正です。")
 	private String mailAddress;
-	
+
 	/** 電話番号 */
 	@Pattern(regexp = "^0\\d{2,3}-\\d{1,4}-\\d{4}$", message = "電話番号の形式で入力してください")
-	private Integer telePhone;
-	
+	private String telePhone;
+
 	/** 性別 */
 	private String gender;
-	
+
 	/** お問合せ内容 */
 	@NotBlank(message = "お問合せ内容の入力は必須です。")
 	private String inquiryDetails;
-	
+
 	public String getName() {
 		return name;
 	}
@@ -61,11 +61,11 @@ public class Contact {
 		this.mailAddress = mailAddress;
 	}
 
-	public Integer getTelePhone() {
+	public String getTelePhone() {
 		return telePhone;
 	}
 
-	public void setTelePhone(Integer telePhone) {
+	public void setTelePhone(String telePhone) {
 		this.telePhone = telePhone;
 	}
 

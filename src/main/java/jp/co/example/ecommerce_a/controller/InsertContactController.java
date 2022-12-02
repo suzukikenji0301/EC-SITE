@@ -1,14 +1,10 @@
 package jp.co.example.ecommerce_a.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,19 +40,15 @@ public class InsertContactController {
 	@PostMapping("/insertC")
 	public String insertContact(@Validated InsertContactForm form, BindingResult result, Model model) {
 		if (result.hasErrors()) {
-			List<String> errorList = new ArrayList<String>();
-			for (ObjectError error : result.getAllErrors()) {
-				errorList.add(error.getDefaultMessage());
-			}
-			model.addAttribute("validationError", errorList);
-			return "item_list";
+			return toInsertContact(form);
 		}
-	
 		Contact contact = new Contact();
 		BeanUtils.copyProperties(form, contact);
 		insertcontactService.insertContact(contact);
+//		contact.setGender(form.getGender());
 		System.out.println("送信された");
-		return "redirect:/top/";
+		return "redirect:/item_list";
 	}
+	
 
 }

@@ -6,16 +6,20 @@
 <title>お問い合わせフォーム</title>
 <link rel="stylesheet" href="contactForm.css">
 <script type="text/javascript" src="contact.js"></script>
+
 <!--Import Google Icon Font-->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet" />
+	
 <!-- Import Materialize CSS -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+
 <!-- Import Font Wesome -->
 <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
 	rel="stylesheet" />
-<link rel="stylesheet" th:href="@{/css/common.css}" />
+	
+ <link rel="stylesheet" th:href="@{/css/common.css}" />
 <link rel="stylesheet" th:href="@{/css/header.css}" />
 <link rel="stylesheet" th:href="@{/css/footer.css}" />
 <link rel="stylesheet" th:href="@{/css/register_admin.css}" />
@@ -32,6 +36,7 @@
     <title>ラクラクトイお問合せフォーム</title>
 </head>
 <body>
+ <header>
  	<div class="container">
 		<div class="header">
 			<div class="header-left">
@@ -40,14 +45,16 @@
 				</a>
 			</div>
 			<div class="header-right">
-				<a th:href="@{/}">商品一覧</a> <a th:href="@{/insertUser/toInsert}">会員登録</a> <a
-					th:href="@{/shopCart/showCartList}"><i class="fas fa-shopping-cart"></i>カート</a> <a
+				<a th:href="@{/}">商品一覧</a> 
+				<a th:href="@{/insertUser/toInsert}">会員登録</a> 
+				<a th:href="@{/shopCart/showCartList}"><i class="fas fa-shopping-cart"></i>カート</a> <a
 					th:href="@{/login/}" class="login"> <i class="fas fa-sign-in-alt"></i>ログイン
-				</a> <a href="contactForm.html">お問合わせ</a>
+				</a>  
+				<a th:href="@{/contact/InsertContact}">お問合わせ</a>
 			</div>
 		</div>
 	</div>
-<div>
+ </header>
     <form 
     method="post" 
     name="form" 
@@ -56,85 +63,110 @@
     
     <div class="top-wrapper">
       <div class="container">
-        <div class="row register-page">
-        <h1 class="contact-title">お問い合わせ 内容入力</h1>
+        <div class="row contact-page">
+        <h2 class="contact-title">お問い合わせ 内容入力画面</h2>
         <p>お問い合わせ内容をご入力の上、「確認画面へ」ボタンをクリックしてください。</p>
-        <div>
-            <div th:errors="*{name}" style="color:red" class="error-messages">
-               <div class="row"> 
-                
-                <input id="name"
-                type="text" 
-                name="name" 
-                placeholder="例）山田太郎" 
-                th:field="*{name}"
-                value="">
-                <label>お名前<span>必須</span></label>
+          <div th:errors="*{name}" style="color:red" class="error-messages"></div>
+          <div class="row"> 
+            <div class="input-field col s6">
+            <label>お名前<span>必須</span></label>
+              <input id="name"
+              type="text" 
+              class="validate" 
+              placeholder="例）山田太郎" 
+              th:field="*{name}"
+              th:errorclass="error-input"
+              >
+         	  </div>
+          </div>
+          
+            <div class="error-messages" th:errors="*{fullName}" style="color:red" ></div>
+            <div class="row"> 
+            <label>ふりがな<span>必須</span></label>
+               <input id="fullName"
+               type="text" 
+               class="validate" 
+               name="furigana" 
+               placeholder="例）やまだたろう" 
+               th:field="*{fullName}"
+               th:errorclass="error-input"
+               >
             </div>
-            <div th:errors="*{fullName}" style="color:red" class="error-messages">
-                <label>ふりがな<span>必須</span></label>
-                <input id="fullName"
+            
+            <div class="error-messages" th:errors="*{mailAddress}" style="color:red"> </div>
+              <div class="row">
+              <label>メールアドレス<span>必須</span></label>
+              <div class="input-field col s12">
+                <input id="mailAddress"
                 type="text" 
-                name="furigana" 
-                placeholder="例）やまだたろう" 
-                th:field="*{fullName}"
-                value="">
-            </div>
-            <div th:errors="*{mailAddress}" style="color:red" class="error-messages">
-                <label>メールアドレス<span>必須</span></label>
-                <input id="mailaddress"
-                type="text" 
+                class="validate" 
                 name="email" 
                 placeholder="例）guest@gmail.com" 
                 th:field="*{mailAddress}"
-                value="xxxxx">
+                th:errorclass="error-input"
+                >
+           	  </div>
             </div>
-            <div th:errors="*{telePhone}" style="color:red" class="error-messages">
-                <label>電話番号<span>必須</span></label>
-                <input id="telephone" 
-                type="text"
-                 name="tel" 
-                 placeholder="例）0000000000" 
-                 th:field="*{telePhone}"
-                 value="">
+            <div class="error-messages" th:errors="*{telePhone}" style="color:red">電話番号はXXXX-XXXX-XXXXの形式で入力してください。</div>
+              <div class="row">
+              <label>電話番号<span>必須</span></label>
+               <div class="input-field col s12">
+                 <input id="telePhone" 
+                 class="validate" 
+                 type="text"
+                 name="telePhone" 
+                 placeholder="例）090-1234-5678" 
+                 th:field="*{telePhone}">
+              </div>
             </div>
-            <div th:errors="*{gender}" style="color:red" class="error-messages">
-                <label>性別<span>必須</span></label>
+           <div class="error-messages" th:errors="*{gender}" style="color:red">性別は必ず入力してください。</div>
+            <div class="row">
+             <div class="input-field col s12">
+            <div>
               <label>
-                <input id="gender-m" 
+                <input id="gender" 
+                class="validate" 
                 name="gender" 
                 type="radio" 
-                th:field="*{gender}"
-                checked="checked" />
-                <span>男性</span>
+                value="男"
+                checked="checked"/>
+              　　<span>男</span>
               </label>
               <label>
-                <input id="gender-w"
+                <input id="gender"
+                 class="validate" 
                  name="gender" 
                  type="radio" 
-                 th:field="*{gender}"/>
+                 value="女"/>
                 <span>女性</span>
               </label>
             </div>
-            <div th:errors="*{gender}" style="color:red" class="error-messages">
-                <label>お問い合わせ内容<span>必須</span></label>
+            </div>
+            <div class="error-messages" th:errors="*{inquiryDetails}" style="color:red">お問合せは必ず入力してください。</div>
+             <label>お問合せ内容<span>必須</span></label>
+             <div class="input-field col s12"> 
                 <textarea id="contact" 
+                class="validate" 
                 name="content" 
                 rows="50" cols="50" 
                 placeholder="お問合せ内容を入力"
-                th:field="*{inquiryDetails}"
-                ></textarea>
-            </div>
-        </div>
-       </div>
-     </div>
+                th:field="*{inquiryDetails}">
+                </textarea>
+     		 </div>
+      </div>
+   </div>
       <!-- end container-->
     </div>
-   </div>   
-     <button type="submit" th:action="@{/top}">送信してトップ画面へ</button>
-    </form>
-	
-</div>
+   <div class="row contactForm-btn">  
+     <button class="btn btn-primary" type="submit" th:action="@{/itemlist}"><span>送信して商品一覧画面へ<i class="material-icons right">done</i></span></button>
+   </div> 
+   </form>
+<footer>
+   <div class="container">
+     <img th:src="@{/img_toy/header_logo.png}" />
+     <p>楽しいおもちゃをあなたにお届け！</p>
+   </div>
+</footer>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 </body>
