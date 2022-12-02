@@ -174,7 +174,6 @@
 						th:field="*{deliveryTime}" /> <span>18時</span>
 					</label>
 				</div>
-			</div>
 			<h2 class="page-title">お支払い方法</h2>
 			<div class="row order-confirm-payment-method">
 				<span> <label class="order-confirm-payment-method-radio">
@@ -186,9 +185,22 @@
 						name="paymentMethod" type="radio" value="2"
 						th:field="*{paymentMethod}" /> <span>クレジットカード</span>
 				</label>
-				</span> <br> <span>クレジットカード番号：</span> <span
-					th:errors="*{card_exp_month}" style="color: red"></span><input
-					type="text" name="card_number" id="card_number" th:field="*{card_number}"> <span>有効期限：</span>
+				</span>
+				</div>
+				<br>
+				
+				<div class="row">
+					<div th:errors="*{card_number}" style="color: red"></div>
+					<div class="input-field">
+						<input id="card_number" type="text" th:field="*{card_number}" />
+						<label for="card_number">クレジットカード番号</label>
+					</div>
+					</div>
+				<div class="row">
+				<div th:errors="*{card_exp_month}" style="color: red"></div>
+				<span style="color: grey">有効期限</span>
+				 <label for="card_exp_month"></label>
+				
 				<select class="browser-default" name="card_exp_month"
 					th:field="*{card_exp_month}">
 					<option value="1">1</option>
@@ -215,11 +227,25 @@
 					<option value="2030">2030</option>
 					<option value="2031">2031</option>
 					<option value="2032">2032</option>
-				</select>年<br> <span>カード名義人：</span> <span th:errors="*{card_name}"
-					style="color: red"></span> <input type="text" name="card_name"
-					id="card_name" th:field="*{card_name}"><br> <span>セキュリティコード：</span><span
-					th:errors="*{card_cvv}" style="color: red"></span><input
-					type="text" name="card_cvv" id="card_cvv" th:field="*{card_cvv}">
+				</select>年
+				<br>
+				
+				<div class="row">
+					<div th:errors="*{card_name}" style="color: red"></div>
+					<div class="input-field">
+						<input id="card_name" type="text" th:field="*{card_name}" />
+						<label for="card_name">カード名義人お名前</label>
+					</div>
+					</div>
+					
+					<div class="row">
+					<div th:errors="*{card_cvv}" style="color: red"></div>
+					<div class="input-field">
+						<input id="card_cvv" type="text" th:field="*{card_cvv}" />
+						<label for="card_cvv">セキュリティコード</label>
+					</div>
+					</div>
+			</div>
 			</div>
 			<div class="row order-confirm-btn">
 				<button class="btn">

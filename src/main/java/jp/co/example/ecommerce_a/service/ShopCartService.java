@@ -102,9 +102,6 @@ public class ShopCartService {
 		}
 	}
 
-	
-
-
 	public void deleteItem(Integer orderItemId) {
 		orderItemRepository.deleteById(orderItemId);
 	}
