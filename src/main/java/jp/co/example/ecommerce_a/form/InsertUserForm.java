@@ -11,11 +11,11 @@ public class InsertUserForm {
 	private Integer id;
 	/** 苗字 */
 	@NotBlank(message = "苗字の入力は必須です。")
-	@Size(max = 50, message = "苗字は10桁以内で入力してください")
+	@Size(max = 10, message = "苗字は10桁以内で入力してください")
 	private String lastName;
 	/** 名前 */
 	@NotBlank(message = "名前の入力は必須です。")
-	@Size(max = 50, message = "名前は10桁以内で入力してください")
+	@Size(max = 10, message = "名前は10桁以内で入力してください")
 	private String firstName;
 	/** メール */
 	@NotBlank(message = "Eメールの入力は必須です。")
