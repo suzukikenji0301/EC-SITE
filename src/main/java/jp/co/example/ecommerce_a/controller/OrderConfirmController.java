@@ -25,7 +25,12 @@ public class OrderConfirmController {
 	public String orderConfirm(Integer orderId,Model model,OrderForm orderForm) {
 		System.out.println(orderId);
 		Order order = orderConfirmService.orderConfirm(orderId);
+		double tax = order.getCalcTotalPrice();
+		tax = tax / 1.1;
+		tax = tax * 0.1;
 		model.addAttribute("order",order);
+		model.addAttribute("tax", tax);
+		model.addAttribute("totalPrice", order.getCalcTotalPrice());
 		return "order_confirm";
 	
 	}
