@@ -42,59 +42,66 @@ public class ShopCartService {
 	public Order showCartList(Integer userId) {
 		Order order = orderRepository.findByUserIdAndStatus(userId, 0);
 		return order;
-	}
-
-	public void insertItem(InsertCartForm insertCartForm, LoginUser loginUser) {
-		User user = loginUser.getUser();
+	}	
+	
+	public void insertItem(InsertCartForm insertCartForm,LoginUser loginUser) {
+		User user = null;
 		Order order = null;
 
-		// ユーザー情報が空でない場合のみ検索を行う.
-		if (user != null) {
+		if(loginUser != null ) {
+			user = loginUser.getUser();
+		}
+		
+		//ユーザー情報が空でない場合のみ検索を行う.
+		if(user != null) {	
 			order = orderRepository.findByUserIdAndStatus(user.getId(), 0);
 		}
+		System.out.println("インサートの処理"+session.hashCode());
 
-		if (order == null) {
-			// 新規でオーダー情報を生成.
-			Order newOrder = new Order();
-			// オーダーオブジェクトのuserIdにsessionIDを利用.
-			if (user != null) {
-				newOrder.setUserId(user.getId());
-			} else {
-				newOrder.setUserId(session.hashCode());
-			}
-			newOrder.setStatus(0);
-			newOrder.setTotalPrice(0);
-			newOrder = orderRepository.insert(newOrder);
-			// 新規で作成したオーダー情報に紐づくOrderItem情報を新規で作成.
-			OrderItem orderItem = new OrderItem();
-			orderItem.setItemId(insertCartForm.getItemId());
-			orderItem.setOrderId(newOrder.getId());
-			orderItem.setQuantity(insertCartForm.getQuantity());
-			orderItem.setSize(insertCartForm.getSize());
-			orderItem = orderItemRepository.insert(orderItem);
-			// 新規で作成したOrderItem情報に紐づくOrderTopping情報を作成.
-			for (Integer toppingId : insertCartForm.getToppingList()) {
-				OrderTopping orderTopping = new OrderTopping();
-				orderTopping.setToppingId(toppingId);
-				orderTopping.setOrderItemId(orderItem.getId());
-				orderToppingRepository.insert(orderTopping);
-			}
+		if(order == null) {
+				//新規でオーダー情報を生成.
+				Order newOrder = new Order();
+				//オーダーオブジェクトのuserIdにsessionIDを利用.
+				if(user != null) {
+					newOrder.setUserId(user.getId());
+				}else {
+					newOrder.setUserId(session.hashCode());
+				}
+				newOrder.setStatus(0);
+				newOrder.setTotalPrice(0);
+				newOrder = orderRepository.insert(newOrder);
+				//新規で作成したオーダー情報に紐づくOrderItem情報を新規で作成.
+				OrderItem orderItem = new OrderItem();
+				orderItem.setItemId(insertCartForm.getItemId());
+				orderItem.setOrderId(newOrder.getId());
+				orderItem.setQuantity(insertCartForm.getQuantity());
+				orderItem.setSize(insertCartForm.getSize());
+				orderItem = orderItemRepository.insert(orderItem);
+				//新規で作成したOrderItem情報に紐づくOrderTopping情報を作成.
+				for(Integer toppingId : insertCartForm.getToppingList() ) {
+					OrderTopping orderTopping = new OrderTopping(); 
+					orderTopping.setToppingId(toppingId);
+					orderTopping.setOrderItemId(orderItem.getId());
+					orderToppingRepository.insert(orderTopping);
+				 }
+				
+				} else {
+					//既存のオーダー情報に紐づくOrderItem情報を新規で作成.
+					OrderItem orderItem = new OrderItem();
+					orderItem.setItemId(insertCartForm.getItemId());
+					orderItem.setOrderId(order.getId());
+					orderItem.setQuantity(insertCartForm.getQuantity());
+					orderItem.setSize(insertCartForm.getSize());
+					orderItem = orderItemRepository.insert(orderItem);
+					//新規で作成したOrderItem情報に紐づくOrderToppingテーブルを作成.
+					for(Integer toppingId : insertCartForm.getToppingList() ) {
+						OrderTopping orderTopping = new OrderTopping(); 
+						orderTopping.setToppingId(toppingId);
+						orderTopping.setOrderItemId(orderItem.getId());
+						orderToppingRepository.insert(orderTopping);
+					}
+				}
 
-		} else {
-			// 既存のオーダー情報に紐づくOrderItem情報を新規で作成.
-			OrderItem orderItem = new OrderItem();
-			orderItem.setItemId(insertCartForm.getItemId());
-			orderItem.setOrderId(order.getId());
-			orderItem.setQuantity(insertCartForm.getQuantity());
-			orderItem.setSize(insertCartForm.getSize());
-			orderItem = orderItemRepository.insert(orderItem);
-			// 新規で作成したOrderItem情報に紐づくOrderToppingテーブルを作成.
-			for (Integer toppingId : insertCartForm.getToppingList()) {
-				OrderTopping orderTopping = new OrderTopping();
-				orderTopping.setToppingId(toppingId);
-				orderTopping.setOrderItemId(orderItem.getId());
-				orderToppingRepository.insert(orderTopping);
-			}
 		}
 	}
 
